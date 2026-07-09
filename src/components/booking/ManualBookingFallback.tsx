@@ -80,7 +80,7 @@ export default function ManualBookingFallback() {
   return (
     <div className="rounded-2xl border border-black/10 bg-[var(--card)] p-6 shadow-sm md:p-8">
       <p className="mb-6 text-sm leading-relaxed text-neutral-600">
-        Pick a preferred window below. We match it against studio availability and confirm by email.
+        Pick a preferred window below. I’ll match it against my availability and confirm by email.
       </p>
       <form onSubmit={handleSubmit} className="relative space-y-6">
         <div className="absolute -left-[2000px] top-0 h-px w-px overflow-hidden opacity-0" aria-hidden>

@@ -10,19 +10,26 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
-        mono: ["ui-monospace", "SFMono-Regular", "monospace"],
-        /* Same as sans — hero + all headings use DM Sans site-wide */
-        display: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "ui-serif", "Georgia", "serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        surface: "var(--surface)",
+        "surface-elevated": "var(--surface-elevated)",
         accent: "var(--accent)",
+        "accent-dim": "var(--accent-dim)",
         muted: "var(--muted)",
+        "muted-foreground": "var(--muted-foreground)",
+        "muted-dim": "var(--muted-dim)",
         border: "var(--border)",
+        "border-strong": "var(--border-strong)",
         card: "var(--card)",
         "card-foreground": "var(--card-foreground)",
-        "muted-foreground": "var(--muted-foreground)",
+      },
+      borderRadius: {
+        luxury: "var(--radius)",
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease forwards",
@@ -42,6 +49,9 @@ const config: Config = {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(-50%)" },
         },
+      },
+      transitionTimingFunction: {
+        luxury: "cubic-bezier(0.16, 1, 0.3, 1)",
       },
     },
   },

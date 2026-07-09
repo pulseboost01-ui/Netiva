@@ -2,12 +2,15 @@
 
 import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, Calendar, Clock, Tag } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Calendar, Clock, Tag, ExternalLink } from "lucide-react";
 import { projects } from "@/data";
 import { FadeIn } from "@/components/ui/FadeIn";
+import ProjectVisual from "@/components/ui/ProjectVisual";
+import { DeviceFrame } from "@/components/ui/DeviceFrame";
+import LuxuryButton from "@/components/ui/LuxuryButton";
 import { useContactDrawer } from "@/components/contact/ContactDrawerContext";
+import { easeOutExpo } from "@/lib/motion";
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
   const { open: openContact } = useContactDrawer();
@@ -15,100 +18,134 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
   if (!project) notFound();
 
   const otherProjects = projects.filter((p) => p.id !== project.id).slice(0, 3);
+  const externalUrl = "externalUrl" in project ? project.externalUrl : undefined;
+  const frameVariant = project.id === "edtech" ? "phone" : "browser";
 
   return (
     <div className="pt-28">
-      {/* Hero */}
-      <div className="max-w-6xl mx-auto px-6 pb-12">
+      <div className="mx-auto max-w-7xl border-x border-border px-6 pb-12 md:px-10">
         <FadeIn>
           <Link
             href="/work"
-            className="inline-flex items-center gap-2 text-sm text-neutral-500 hover:text-neutral-900 transition-colors mb-8"
+            className="link-draw mb-10 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft size={14} />
-            Back to work
+            All work
           </Link>
         </FadeIn>
 
-        <div className="grid md:grid-cols-2 gap-12 items-end mb-12">
-          <FadeIn>
-            <p className="text-xs uppercase tracking-widest text-[var(--accent)] font-medium mb-3">
-              {project.category}
+        <div className="grid items-end gap-12 lg:grid-cols-12 lg:gap-16">
+          <FadeIn className="lg:col-span-7">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.38em] text-accent">
+              {project.category} · {project.year}
             </p>
-            <h1 className="text-5xl md:text-6xl text-neutral-900 leading-[1.05]">
+            <h1 className="font-display mt-4 text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] text-foreground">
               {project.title}
             </h1>
-            {"subtitle" in project && project.subtitle ? (
-              <p className="mt-3 text-lg text-neutral-500">{project.subtitle}</p>
-            ) : null}
+            <p className="mt-3 text-sm uppercase tracking-[0.18em] text-muted-foreground">{project.subtitle}</p>
           </FadeIn>
 
-          <FadeIn delay={0.1}>
-            <p className="text-neutral-500 text-base leading-relaxed mb-6">{project.description}</p>
-            <div className="grid grid-cols-3 gap-4">
+          <FadeIn delay={0.08} className="lg:col-span-5">
+            <p className="text-base leading-relaxed text-muted-foreground">{project.description}</p>
+            <div className="mt-8 grid grid-cols-3 gap-4 border-t border-border pt-6">
               <div>
-                <p className="text-xs text-neutral-400 uppercase tracking-wider mb-1 flex items-center gap-1">
+                <p className="mb-1 flex items-center gap-1 font-mono text-[9px] uppercase tracking-[0.2em] text-muted-dim">
                   <Calendar size={10} /> Client
                 </p>
-                <p className="text-sm text-neutral-700">{project.client}</p>
+                <p className="text-sm text-foreground">{project.client}</p>
               </div>
               <div>
-                <p className="text-xs text-neutral-400 uppercase tracking-wider mb-1 flex items-center gap-1">
+                <p className="mb-1 flex items-center gap-1 font-mono text-[9px] uppercase tracking-[0.2em] text-muted-dim">
                   <Clock size={10} /> Duration
                 </p>
-                <p className="text-sm text-neutral-700">{project.duration}</p>
+                <p className="text-sm text-foreground">{project.duration}</p>
               </div>
               <div>
-                <p className="text-xs text-neutral-400 uppercase tracking-wider mb-1 flex items-center gap-1">
-                  <Tag size={10} /> Year
+                <p className="mb-1 flex items-center gap-1 font-mono text-[9px] uppercase tracking-[0.2em] text-muted-dim">
+                  <Tag size={10} /> Stack
                 </p>
-                <p className="text-sm text-neutral-700">{project.year}</p>
+                <p className="text-sm text-foreground">{project.tags[0]}</p>
               </div>
             </div>
+            {externalUrl ? (
+              <a
+                href={externalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-draw mt-6 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.24em] text-accent"
+              >
+                Visit live product
+                <ExternalLink size={14} />
+              </a>
+            ) : null}
           </FadeIn>
         </div>
       </div>
 
-      {/* Hero image */}
       <FadeIn>
-        <div className="relative aspect-[16/7] overflow-hidden max-w-6xl mx-auto px-6 mb-16">
-          <div className="relative w-full h-full rounded-2xl overflow-hidden">
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-cover"
-              priority
-              sizes="100vw"
-            />
-          </div>
+        <div className="mx-auto max-w-7xl border-x border-border px-6 py-12 md:px-10 md:py-16">
+          <DeviceFrame label={project.title} variant={frameVariant}>
+            <div className={`relative ${frameVariant === "phone" ? "aspect-[9/16]" : "aspect-[16/9]"}`}>
+              <ProjectVisual
+                project={project}
+                fill
+                showLabel={false}
+                className="object-cover"
+                priority
+                sizes="100vw"
+              />
+            </div>
+          </DeviceFrame>
         </div>
       </FadeIn>
 
-      {/* Project details */}
-      <div className="max-w-6xl mx-auto px-6 pb-24">
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {/* Services */}
-          <FadeIn className="p-6 rounded-2xl bg-[var(--card)] border border-black/5">
-            <p className="text-xs uppercase tracking-widest text-neutral-400 mb-4">Services</p>
-            <ul className="space-y-2">
+      <div className="mx-auto max-w-7xl border-x border-border px-6 pb-24 md:px-10">
+        <div className="grid gap-16 border-t border-border py-16 md:grid-cols-2 md:py-24">
+          <FadeIn>
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.38em] text-muted-dim">Problem</p>
+            <p className="mt-4 text-xl leading-relaxed text-foreground md:text-2xl">{project.problem}</p>
+          </FadeIn>
+          <FadeIn delay={0.08}>
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.38em] text-muted-dim">
+              Engineering
+            </p>
+            <ul className="mt-6 space-y-4">
+              {project.engineering.map((item, i) => (
+                <motion.li
+                  key={item}
+                  initial={{ opacity: 0, x: -12 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.06, duration: 0.55, ease: easeOutExpo }}
+                  className="flex gap-4 text-base text-muted-foreground"
+                >
+                  <span className="mt-2.5 h-px w-6 shrink-0 bg-accent" />
+                  {item}
+                </motion.li>
+              ))}
+            </ul>
+          </FadeIn>
+        </div>
+
+        <div className="grid gap-8 border-t border-border py-16 md:grid-cols-3 md:py-20">
+          <FadeIn className="rounded-luxury border border-border bg-card p-8 shadow-soft">
+            <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted-dim">Services</p>
+            <ul className="mt-5 space-y-3">
               {project.services.map((s) => (
-                <li key={s} className="flex items-center gap-2 text-sm text-neutral-600">
-                  <div className="w-1 h-1 rounded-full bg-[var(--accent)]" />
+                <li key={s} className="text-sm text-muted-foreground">
                   {s}
                 </li>
               ))}
             </ul>
           </FadeIn>
 
-          {/* Tags */}
-          <FadeIn delay={0.05} className="p-6 rounded-2xl bg-[var(--card)] border border-black/5">
-            <p className="text-xs uppercase tracking-widest text-neutral-400 mb-4">Tags</p>
-            <div className="flex flex-wrap gap-2">
+          <FadeIn delay={0.06} className="rounded-luxury border border-border bg-card p-8 shadow-soft">
+            <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted-dim">Stack</p>
+            <div className="mt-5 flex flex-wrap gap-2">
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-2.5 py-1 text-xs rounded-full bg-neutral-50 text-neutral-500 border border-black/5"
+                  className="rounded-full border border-border bg-muted px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground"
                 >
                   {tag}
                 </span>
@@ -116,94 +153,60 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             </div>
           </FadeIn>
 
-          {/* Outcome */}
-          <FadeIn
-            delay={0.1}
-            className="p-6 rounded-2xl border border-[var(--accent)]/20 bg-[var(--accent)]/[0.03]"
-          >
-            <p className="text-xs uppercase tracking-widest text-neutral-400 mb-4">Key Outcome</p>
-            <p
-              className="text-4xl text-[var(--accent)] font-display"
-            >
-              {project.outcome}
-            </p>
-          </FadeIn>
-        </div>
-
-        {/* More images grid */}
-        <div className="grid md:grid-cols-2 gap-4 mb-16">
-          {[
-            "https://images.unsplash.com/photo-1542744094-24638eff58bb?w=800&q=80",
-            "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&q=80",
-          ].map((img, i) => (
-            <FadeIn key={i} delay={i * 0.1}>
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
-                <Image src={img} alt={`${project.title} detail ${i + 1}`} fill className="object-cover" sizes="50vw" />
-              </div>
+          {project.outcomeStat ? (
+            <FadeIn delay={0.12} className="rounded-luxury border border-accent/20 bg-accent-dim p-8">
+              <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted-dim">Outcome</p>
+              <p className="font-display mt-4 text-5xl text-accent md:text-6xl">{project.outcomeStat.value}</p>
+              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                {project.outcomeStat.label}
+              </p>
             </FadeIn>
-          ))}
+          ) : (
+            <FadeIn delay={0.12} className="rounded-luxury border border-border bg-card p-8 shadow-soft">
+              <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted-dim">Outcome</p>
+              <p className="font-display mt-4 text-3xl text-foreground">{project.outcome}</p>
+            </FadeIn>
+          )}
         </div>
 
-        {/* CTA */}
         <FadeIn>
-          <div className="p-8 md:p-12 rounded-2xl bg-[var(--card)] border border-black/5 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="flex flex-col items-start justify-between gap-8 rounded-luxury border border-border bg-card p-10 shadow-soft md:flex-row md:items-center md:p-14">
             <div>
-              <h3
-                className="text-2xl md:text-3xl text-neutral-900 mb-2 font-display"
-              >
-                Want results like this?
-              </h3>
-              <p className="text-neutral-600 text-sm">
-                Let&apos;s talk about your project and how I can help.
+              <h2 className="font-display text-3xl text-foreground md:text-4xl">Building something similar?</h2>
+              <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
+                Send a brief with your goals, timeline, and constraints. I&apos;ll reply with scope and a clear next step.
               </p>
             </div>
-            <motion.button
-              type="button"
-              onClick={() => openContact()}
-              whileHover={{ scale: 1.02, backgroundColor: "#d4eb3f" }}
-              whileTap={{ scale: 0.98 }}
-              className="group flex items-center gap-2 px-7 py-3.5 bg-[var(--accent)] text-black font-semibold rounded-full whitespace-nowrap"
-            >
+            <LuxuryButton type="button" onClick={() => openContact()} size="lg" className="gap-2">
               Start a project
-              <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </motion.button>
+              <ArrowUpRight size={16} />
+            </LuxuryButton>
           </div>
         </FadeIn>
 
-        {/* More work */}
-        {otherProjects.length > 0 && (
-          <div className="mt-20">
+        {otherProjects.length > 0 ? (
+          <div className="mt-24 border-t border-border pt-16">
             <FadeIn>
-              <h3
-                className="text-2xl text-neutral-900 mb-8 font-display"
-              >
-                More work
-              </h3>
+              <h2 className="font-display mb-10 text-3xl text-foreground">More production work</h2>
             </FadeIn>
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid gap-6 md:grid-cols-3">
               {otherProjects.map((p, i) => (
                 <FadeIn key={p.id} delay={i * 0.08}>
-                  <Link href={`/work/${p.id}`}>
-                    <motion.div
-                      whileHover={{ y: -3 }}
-                      className="group rounded-xl overflow-hidden bg-[var(--card)] border border-black/5"
-                    >
-                      <div className="relative aspect-[4/3] overflow-hidden">
-                        <Image
-                          src={p.image}
-                          alt={p.title}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          sizes="33vw"
-                        />
-                      </div>
-                      <div className="p-4">
-                        <p className="text-xs text-neutral-400 mb-1">{p.category}</p>
-                        <p
-                          className="text-sm text-neutral-800 group-hover:text-neutral-900 transition-colors font-display"
-                        >
-                          {p.title}
-                        </p>
+                  <Link href={`/work/${p.id}`} className="group block">
+                    <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.35, ease: easeOutExpo }}>
+                      <div className="overflow-hidden rounded-luxury border border-border bg-card shadow-soft">
+                        <div className="relative aspect-[4/3] overflow-hidden">
+                          <ProjectVisual
+                            project={p}
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                            sizes="33vw"
+                          />
+                        </div>
+                        <div className="p-5">
+                          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-dim">{p.category}</p>
+                          <p className="font-display mt-2 text-lg text-foreground">{p.title}</p>
+                        </div>
                       </div>
                     </motion.div>
                   </Link>
@@ -211,7 +214,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
               ))}
             </div>
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );

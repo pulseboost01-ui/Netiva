@@ -53,7 +53,7 @@ export default function InquiryDeliveryActions({ whatsAppUrl, emailDelivered }: 
         <a
           href={`tel:${siteConfig.phone.tel}`}
           className="inline-flex items-center justify-center gap-2 rounded-full border border-black/12 bg-transparent px-6 py-[0.65rem] text-[13px] font-semibold text-neutral-800 hover:border-black/25"
-          aria-label="Call Netiva studio"
+          aria-label="Call Netiva"
         >
           Call <span className="font-mono">{siteConfig.phone.display}</span>
         </a>

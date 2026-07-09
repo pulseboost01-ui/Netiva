@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight, Layers, Pen, Code2, Database, Check, type LucideProps } from "lucide-react";
-import { services, faqs } from "@/data";
+import { services } from "@/data";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/ui/FadeIn";
 import FAQSection from "@/components/sections/FAQSection";
 import { useContactDrawer, useQuoteDrawer } from "@/components/contact/ContactDrawerContext";
@@ -18,27 +18,23 @@ const iconMap: Record<string, ForwardRefExoticComponent<Omit<LucideProps, "ref">
 const process = [
   {
     step: "01",
-    title: "Discovery Call",
-    description:
-      "A working session to align incentives, timelines, stakeholders, and the north-star outcomes you measure.",
+    title: "Discovery call",
+    description: "We align on the problem, users, constraints, and what success looks like before any build starts.",
   },
   {
     step: "02",
-    title: "Proposal & Contract",
-    description:
-      "We deliver a phased proposal—scope narrative, RACI-lite, roadmap, commercials, then green-light with deposit.",
+    title: "Scope & estimate",
+    description: "I send a clear scope outline with milestones, timeline, and pricing—no vague agency packages.",
   },
   {
     step: "03",
-    title: "Design & Iteration",
-    description:
-      "Design and engineering sprint in tandem—reviews at predictable intervals, ruthless decision logs, async + live.",
+    title: "Build & review",
+    description: "I implement directly with regular checkpoints so you can see progress and make decisions early.",
   },
   {
     step: "04",
-    title: "Delivery & Support",
-    description:
-      "Handover with documentation plus 30 days of stabilization—we stay close until KPIs plateau.",
+    title: "Launch & handover",
+    description: "We ship, test the real workflow, and document what you need to keep the system running.",
   },
 ];
 
@@ -47,26 +43,22 @@ export default function ServicesPage() {
   const { open: openQuote } = useQuoteDrawer();
 
   return (
-    <div className="pt-24 pb-14 md:pt-28 md:pb-16">
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        {/* Header */}
+    <div className="pb-14 pt-24 md:pb-16 md:pt-28">
+      <div className="mx-auto max-w-6xl px-6 md:px-10">
         <FadeIn>
-          <p className="text-xs uppercase tracking-[0.35em] text-neutral-400 font-semibold mb-3">
-            Expertise
-          </p>
-          <h1 className="text-5xl md:text-7xl text-neutral-900 mb-6">
-            Capabilities &
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.35em] text-muted-dim">Services</p>
+          <h1 className="mb-6 text-5xl text-foreground md:text-7xl">
+            What I
             <br />
-            <em>commercials.</em>
+            <em>build.</em>
           </h1>
-          <p className="text-neutral-600 text-base max-w-md leading-relaxed mb-12">
-            The same pillars we showcase on-site—paired with indicative ranges so budgeting conversations start
-            from reality, not guesses.
+          <p className="mb-12 max-w-md text-base leading-relaxed text-muted-foreground">
+            Project-based work for production web products. Pricing is scoped per engagement—reach out and we&apos;ll
+            define it together.
           </p>
         </FadeIn>
 
-        {/* Service cards */}
-        <StaggerChildren id="pricing" className="grid gap-4 mb-14 scroll-mt-24 md:grid-cols-2 lg:grid-cols-4">
+        <StaggerChildren id="pricing" className="mb-14 grid scroll-mt-24 gap-4 md:grid-cols-2 lg:grid-cols-4">
           {services.map((service) => {
             const Icon = iconMap[service.icon] || Layers;
             return (
@@ -74,44 +66,46 @@ export default function ServicesPage() {
                 <motion.div
                   whileHover={{ y: -6 }}
                   transition={{ duration: 0.3 }}
-                  className={`relative p-7 rounded-2xl border h-full flex flex-col ${
+                  className={`relative flex h-full flex-col rounded-2xl border p-7 ${
                     service.popular
                       ? "border-[var(--accent)]/30 bg-[var(--accent)]/[0.04]"
-                      : "border-black/5 bg-[var(--card)]"
+                      : "border-border bg-card"
                   }`}
                 >
-                  {service.popular && (
+                  {service.popular ? (
                     <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                      <span className="px-4 py-1.5 bg-[var(--accent)] text-black text-xs font-bold rounded-full shadow-lg shadow-[var(--accent)]/20">
-                        Most Popular
+                      <span className="rounded-full bg-[var(--accent)] px-4 py-1.5 text-xs font-bold text-black shadow-lg shadow-[var(--accent)]/20">
+                        Common starting point
                       </span>
                     </div>
-                  )}
+                  ) : null}
 
-                  <div className="w-11 h-11 rounded-xl bg-black/5 flex items-center justify-center mb-5">
-                    <Icon size={20} className="text-neutral-600" />
+                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-black/5">
+                    <Icon size={20} className="text-muted-foreground" />
                   </div>
 
-                  <h2
-                    className="text-2xl text-neutral-900 mb-2 font-display"
-                  >
-                    {service.title}
-                  </h2>
-                  <p className="text-sm text-neutral-600 leading-relaxed mb-5">{service.description}</p>
+                  <h2 className="font-display mb-2 text-2xl text-foreground">{service.title}</h2>
+                  <p className="mb-5 text-sm leading-relaxed text-muted-foreground">{service.description}</p>
 
-                  <div className="flex items-baseline gap-1.5 mb-6">
-                    <span className="text-4xl font-light text-neutral-900">
-                      ${service.price.toLocaleString()}
-                    </span>
-                    <span className="text-sm text-neutral-400">/ {service.priceType}</span>
+                  <div className="mb-6">
+                    {service.price != null ? (
+                      <div className="flex items-baseline gap-1.5">
+                        <span className="text-4xl font-light text-foreground">
+                          ${service.price.toLocaleString()}
+                        </span>
+                        <span className="text-sm text-muted-dim">/ {service.priceType}</span>
+                      </div>
+                    ) : (
+                      <p className="text-base font-semibold text-foreground">Scoped per project</p>
+                    )}
                   </div>
 
-                  <ul className="space-y-2.5 mb-7 flex-1">
+                  <ul className="mb-7 flex-1 space-y-2.5">
                     {service.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2.5 text-sm text-neutral-600">
+                      <li key={feature} className="flex items-start gap-2.5 text-sm text-muted-foreground">
                         <Check
                           size={14}
-                          className={`mt-0.5 flex-shrink-0 ${service.popular ? "text-[var(--accent)]" : "text-neutral-400"}`}
+                          className={`mt-0.5 flex-shrink-0 ${service.popular ? "text-[var(--accent)]" : "text-muted-dim"}`}
                         />
                         {feature}
                       </li>
@@ -123,13 +117,13 @@ export default function ServicesPage() {
                     onClick={() => openContact()}
                     whileHover={{ scale: 1.01 }}
                     whileTap={{ scale: 0.99 }}
-                    className={`w-full py-3.5 rounded-full text-sm font-semibold transition-all ${
+                    className={`w-full rounded-full py-3.5 text-sm font-semibold transition-all ${
                       service.popular
                         ? "bg-[var(--accent)] text-black hover:bg-[#d4eb3f]"
-                        : "border border-black/10 text-neutral-700 hover:border-black/25 hover:text-neutral-900"
+                        : "border border-border text-neutral-700 hover:border-black/25 hover:text-foreground"
                     }`}
                   >
-                    Book intro call
+                    Discuss your project
                   </motion.button>
                 </motion.div>
               </StaggerItem>
@@ -137,37 +131,24 @@ export default function ServicesPage() {
           })}
         </StaggerChildren>
 
-        {/* How it works */}
         <div className="mb-12">
           <FadeIn>
-            <p className="text-xs uppercase tracking-widest text-[var(--accent)] font-medium mb-3">
-              The Process
-            </p>
-            <h2
-              className="text-4xl md:text-5xl text-neutral-900 mb-14 font-display"
-            >
-              How we work
+            <p className="mb-3 text-xs font-medium uppercase tracking-widest text-[var(--accent)]">Process</p>
+            <h2 className="font-display mb-14 text-4xl text-foreground md:text-5xl">
+              How I work
               <br />
-              <em>together</em>
+              <em>with you</em>
             </h2>
           </FadeIn>
 
-          <div className="grid md:grid-cols-2 gap-5">
+          <div className="grid gap-5 md:grid-cols-2">
             {process.map((step, i) => (
               <FadeIn key={step.step} delay={i * 0.08}>
-                <div className="p-7 rounded-2xl bg-[var(--card)] border border-black/5 flex gap-5">
-                  <span
-                    className="text-5xl text-neutral-900/8 flex-shrink-0 leading-none font-display"
-                  >
-                    {step.step}
-                  </span>
+                <div className="flex gap-5 rounded-2xl border border-border bg-card p-7">
+                  <span className="font-display flex-shrink-0 text-5xl leading-none text-foreground/8">{step.step}</span>
                   <div>
-                    <h3
-                      className="text-lg text-neutral-900 mb-2 font-display"
-                    >
-                      {step.title}
-                    </h3>
-                    <p className="text-sm text-neutral-600 leading-relaxed">{step.description}</p>
+                    <h3 className="font-display mb-2 text-lg text-foreground">{step.title}</h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{step.description}</p>
                   </div>
                 </div>
               </FadeIn>
@@ -175,13 +156,13 @@ export default function ServicesPage() {
           </div>
         </div>
 
-        {/* Custom project CTA */}
         <FadeIn>
-          <div className="p-7 md:p-10 rounded-2xl bg-[var(--card)] border border-black/5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 mb-8">
+          <div className="mb-8 flex flex-col items-start justify-between gap-5 rounded-2xl border border-border bg-card p-7 md:flex-row md:items-center md:p-10">
             <div>
-              <h3 className="text-2xl text-neutral-900 mb-2 font-display">Off‑menu engagements</h3>
-              <p className="text-neutral-600 text-sm max-w-md">
-                Deviation from norm is encouraged—send the messy brief and we&apos;ll architect a phased response.
+              <h3 className="font-display mb-2 text-2xl text-foreground">Custom project?</h3>
+              <p className="max-w-md text-sm text-muted-foreground">
+                Send a brief with your goals, timeline, and constraints. I&apos;ll reply with a practical scope and
+                estimate.
               </p>
             </div>
             <motion.button
@@ -189,10 +170,10 @@ export default function ServicesPage() {
               onClick={() => openQuote()}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="group flex items-center gap-2 px-7 py-3.5 border border-black/15 text-neutral-800 font-medium rounded-full hover:border-black/30 hover:text-neutral-900 transition-all whitespace-nowrap"
+              className="group flex items-center gap-2 whitespace-nowrap rounded-full border border-black/15 px-7 py-3.5 font-medium text-neutral-800 transition-all hover:border-black/30 hover:text-foreground"
             >
               Get a quote
-              <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </motion.button>
           </div>
         </FadeIn>

@@ -3,50 +3,43 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import {
-  agencyPhases,
-  siteConfig,
-  stats,
-  workHistory,
-} from "@/data";
+import { siteConfig, stats, workHistory, workPhases } from "@/data";
 import { FadeIn } from "@/components/ui/FadeIn";
 
 export default function AboutSection() {
   const leadStat = stats[0];
 
   return (
-    <section id="agency" className="border-t border-black/6 scroll-mt-24 py-14 md:py-20">
-      <div className="w-full px-6 md:px-10">
+    <section id="about" className="scroll-mt-24 border-t border-border section-luxury">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45 }}
-          className="font-mono text-[10px] font-semibold uppercase tracking-[0.42em] text-neutral-400"
+          className="font-mono text-[10px] font-semibold uppercase tracking-[0.42em] text-muted-dim"
         >
-          The agency
+          About
         </motion.p>
         <div className="mt-12 grid gap-12 md:grid-cols-2 md:gap-14">
           <div>
             <FadeIn>
-              <h2 className="mb-6 text-[clamp(1.85rem,3.9vw,2.75rem)] font-semibold leading-[1.04] tracking-tight text-neutral-900">
-                Signals over static.
+              <h2 className="font-display mb-6 text-[clamp(2rem,4vw,3.25rem)] leading-[0.98] tracking-[-0.03em] text-foreground">
+                Solo developer.
                 <br />
-                <span className="text-neutral-400">Systems over souvenirs.</span>
+                <em>Production-focused builds.</em>
               </h2>
             </FadeIn>
             <FadeIn delay={0.06}>
-              <p className="mb-5 text-[15px] leading-relaxed text-neutral-600">
-                <strong className="font-semibold text-neutral-900">{siteConfig.description}</strong>{" "}
-                We obsess over fidelity from discovery through launch—articulating narratives in product,
-                polish, and code.
+              <p className="mb-5 text-[15px] leading-relaxed text-muted-foreground">
+                <strong className="font-semibold text-foreground">{siteConfig.description}</strong> I focus on
+                systems that handle real users, real money, and real operational workflows—not template sites.
               </p>
-              <p className="mb-8 text-[15px] leading-relaxed text-neutral-600">
-                Netiva behaves like your embedded frontier team—one pod, asynchronous by default,
-                ruthless about documentation when time zones widen.
+              <p className="mb-8 text-[15px] leading-relaxed text-muted-foreground">
+                You work directly with me from scope through launch. I ship the core implementation myself and
+                keep communication straightforward across time zones.
               </p>
               <motion.div className="mb-10 flex flex-wrap gap-2">
-                {agencyPhases.map((phase, i) => (
+                {workPhases.map((phase, i) => (
                   <motion.span
                     key={phase}
                     initial={{ opacity: 0, y: 8 }}
@@ -57,7 +50,7 @@ export default function AboutSection() {
                       delay: 0.1 + i * 0.05,
                       ease: [0.16, 1, 0.3, 1],
                     }}
-                    className="rounded-full border border-black/8 bg-neutral-950 px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-white"
+                    className="rounded-full border border-border bg-foreground px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-background"
                   >
                     {phase}
                   </motion.span>
@@ -65,9 +58,9 @@ export default function AboutSection() {
               </motion.div>
               <Link
                 href="/work"
-                className="group inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-900"
+                className="group inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-foreground"
               >
-                Open output log
+                View production work
                 <ArrowUpRight size={13} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </FadeIn>
@@ -78,26 +71,26 @@ export default function AboutSection() {
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="rounded-2xl border border-black/8 bg-[var(--card)] p-6 md:p-7"
+                className="rounded-[1.6rem] border border-border bg-[var(--card)] p-6 shadow-[0_20px_70px_-45px_rgba(22,21,19,0.45)] md:p-7"
               >
-                <p className="text-6xl font-semibold tracking-tight text-neutral-900 md:text-[4.75rem]">
+                <p className="font-display text-6xl tracking-tight text-accent md:text-[4.75rem]">
                   {leadStat.value}
                 </p>
-                <p className="mt-2 text-sm uppercase tracking-[0.18em] text-neutral-400">{leadStat.label}</p>
-                <div className="mt-10 border-t border-black/8 pt-5">
-                  <p className="text-base font-semibold text-neutral-900">{siteConfig.name}</p>
-                  <p className="text-xs font-medium uppercase tracking-[0.3em] text-neutral-400">
+                <p className="mt-2 text-sm uppercase tracking-[0.18em] text-muted-dim">{leadStat.label}</p>
+                <div className="mt-10 border-t border-border pt-5">
+                  <p className="text-base font-semibold text-foreground">{siteConfig.legalName}</p>
+                  <p className="text-xs font-medium uppercase tracking-[0.3em] text-muted-dim">
                     {siteConfig.location}
                   </p>
-                  <p className="mt-3 text-[13px] leading-relaxed text-neutral-600">{siteConfig.tagline}</p>
+                  <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground">{siteConfig.tagline}</p>
                 </div>
               </motion.div>
             </FadeIn>
 
             <FadeIn delay={0.16}>
-              <div className="rounded-2xl border border-black/8 bg-[var(--card)] p-6 md:p-7">
-                <p className="mb-6 font-mono text-[10px] font-semibold uppercase tracking-[0.38em] text-neutral-400">
-                  Signals on record
+              <div className="rounded-[1.6rem] border border-border bg-[var(--card)] p-6 shadow-[0_20px_70px_-45px_rgba(22,21,19,0.4)] md:p-7">
+                <p className="mb-6 font-mono text-[10px] font-semibold uppercase tracking-[0.38em] text-muted-dim">
+                  Recent focus
                 </p>
                 <ul className="space-y-4">
                   {workHistory.map((job) => (
@@ -107,13 +100,13 @@ export default function AboutSection() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.45 }}
-                      className="flex items-start justify-between gap-5 border-b border-black/6 pb-4 last:border-none last:pb-0"
+                      className="flex items-start justify-between gap-5 border-b border-border pb-4 last:border-none last:pb-0"
                     >
                       <div className="min-w-0">
-                        <p className="truncate text-[15px] font-semibold text-neutral-900">{job.company}</p>
-                        <p className="text-sm text-neutral-500">{job.role}</p>
+                        <p className="truncate text-[15px] font-semibold text-foreground">{job.company}</p>
+                        <p className="text-sm text-muted-foreground">{job.role}</p>
                       </div>
-                      <p className="whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.15em] text-neutral-400">
+                      <p className="whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.15em] text-muted-dim">
                         {job.period}
                       </p>
                     </motion.li>
@@ -123,7 +116,6 @@ export default function AboutSection() {
             </FadeIn>
           </div>
         </div>
-      </div>
     </section>
   );
 }

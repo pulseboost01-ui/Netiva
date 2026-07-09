@@ -3,40 +3,54 @@
 @tailwind utilities;
 
 @layer base {
-  /* All headings: DM Sans — same stack as hero (“Design that / delivers results.”) */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-    letter-spacing: -0.035em;
+    font-family: var(--font-display), ui-serif, Georgia, serif;
+    letter-spacing: -0.03em;
     color: var(--foreground);
   }
+
   h1 {
-    line-height: 1.08;
+    line-height: 0.96;
   }
+
   h2,
   h3,
   h4,
   h5,
   h6 {
-    line-height: 1.1;
+    line-height: 1.06;
+  }
+
+  body {
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   }
 }
 
+/* Signal / Systems — light ivory editorial luxury (global high-end client tier) */
 :root {
-  --background: #f5f5f4;
-  --foreground: #141414;
-  --accent: #c8e600;
-  --muted: #f0f0ee;
-  --muted-foreground: #5c5c5a;
-  --border: rgba(0, 0, 0, 0.08);
+  --background: #faf8f4;
+  --foreground: #141310;
+  --surface: #ffffff;
+  --surface-elevated: #fffefb;
+  --accent: #b8943f;
+  --accent-dim: rgba(184, 148, 63, 0.1);
+  --accent-glow: rgba(184, 148, 63, 0.32);
+  --muted: #f2efe8;
+  --muted-foreground: #5c5952;
+  --muted-dim: #949088;
+  --border: rgba(20, 19, 16, 0.07);
+  --border-strong: rgba(20, 19, 16, 0.12);
   --card: #ffffff;
-  --card-foreground: #141414;
-  --radius: 12px;
-  /* --font-sans: set by next/font on <body> */
+  --card-foreground: #141310;
+  --radius: 16px;
+  --shadow-soft: 0 28px 90px -36px rgba(20, 19, 16, 0.1);
+  --shadow-lift: 0 52px 120px -48px rgba(20, 19, 16, 0.16);
+  --hero-wash: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(184, 148, 63, 0.07), transparent 70%);
 }
 
 * {
@@ -48,47 +62,61 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  scroll-padding-top: 5rem;
+  scroll-padding-bottom: 5rem;
 }
 
 body {
   background-color: var(--background);
+  background-image: var(--hero-wash);
+  background-attachment: fixed;
   color: var(--foreground);
-  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.022;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 h2 em,
 h3 em {
   font-family: inherit;
   font-style: italic;
+  color: var(--muted-foreground);
 }
 
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
+
 ::-webkit-scrollbar-track {
-  background: var(--muted);
+  background: var(--background);
 }
+
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.15);
+  background: var(--accent);
+  opacity: 0.5;
   border-radius: 2px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.25);
 }
 
 ::selection {
   background: var(--accent);
-  color: #141414;
+  color: #ffffff;
 }
 
 :focus-visible {
   outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
 a {
@@ -101,97 +129,112 @@ img {
   height: auto;
 }
 
-.noise-texture {
+.glass-luxury {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.link-draw {
   position: relative;
 }
 
-.noise-texture::before {
+.link-draw::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
-  opacity: 0.04;
-  pointer-events: none;
-  z-index: 0;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, #141414 0%, #6b6b69 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.link-draw:hover::after {
+  transform: scaleX(1);
 }
 
-.accent-glow {
-  box-shadow: 0 0 40px rgba(200, 230, 0, 0.2);
-}
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  backdrop-filter: blur(10px);
-}
-
-.magnetic-area {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+.hairline-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent) 20%, var(--accent) 80%, transparent);
+  opacity: 0.35;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+
+  .font-display {
+    font-family: var(--font-display), ui-serif, Georgia, serif;
+  }
+
+  .font-mono-label {
+    font-family: var(--font-mono), ui-monospace, monospace;
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-lift {
+    box-shadow: var(--shadow-lift);
+  }
+
+  .section-luxury {
+    @apply px-6 py-20 md:px-10 md:py-28;
+  }
+
+  .text-hero {
+    font-size: clamp(3rem, 7.5vw, 6.25rem);
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+  }
 }
 
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
-
-.page-enter {
-  opacity: 0;
-  transform: translateY(8px);
-}
-
-.page-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 400ms ease, transform 400ms ease;
-}
-
-/* Blog / prose (light) */
 .prose-custom {
-  color: rgba(20, 20, 20, 0.75);
+  color: var(--muted-foreground);
 }
-.prose-custom h2 {
+
+.prose-custom h2,
+.prose-custom h3 {
   color: var(--foreground);
-  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+}
+
+.prose-custom h2 {
   font-size: 1.75rem;
   margin: 2rem 0 0.75rem;
 }
+
 .prose-custom h3 {
-  color: var(--foreground);
-  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: 1.35rem;
   margin: 1.5rem 0 0.5rem;
 }
+
 .prose-custom p {
   margin-bottom: 1rem;
   line-height: 1.75;
 }
+
 .prose-custom strong {
   color: var(--foreground);
   font-weight: 600;
 }
-.prose-custom ul {
-  margin: 1rem 0;
-  padding-left: 1.25rem;
-}
-.prose-custom li {
-  margin-bottom: 0.5rem;
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
