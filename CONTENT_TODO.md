@@ -83,9 +83,23 @@ than 3 real testimonials are available, trim the array rather than shipping plac
 ## Notes on what was deliberately left alone
 
 - No fake client logos, fake review-site ratings, or invented press mentions were added anywhere.
-- The homepage's existing "Partner signals" section (`src/components/sections/TestimonialsSection.tsx`)
-  was left as-is — it's Netiva's own account of each engagement, not attributed client quotes, so
-  it isn't a fabrication risk.
+- The homepage's "How we approach the work" section (`src/components/sections/TestimonialsSection.tsx`,
+  formerly "Partner signals") is Netiva's own account of each engagement, styled deliberately
+  without quote marks or testimonial-card chrome so it can't be mistaken for third-party
+  endorsement. Real client testimonials belong exclusively in
+  `src/components/sections/ClientTestimonialsSection.tsx`, which stays hidden until real quotes
+  are added to `clientTestimonials` in `src/data/index.ts` — keep these two sections visually
+  distinct going forward.
 - Organization JSON-LD in `src/app/layout.tsx` only encodes facts already present in
   `siteConfig` (name, email, phone, location, social links) — no registration numbers or claims
   requiring verification were added to structured data.
+
+## Legal entity / registration status — do not change without explicit instruction
+
+Netiva's URSB business registration is in **Draft/Pending** status. Per explicit user
+instruction, do not add a company registration number, "registered company" language, or any
+other legal-entity claim anywhere on the site (footer, `/company`, `/capability-statement`, or
+elsewhere) until told the registration has moved past Draft/Pending. `companyInfo` in
+`src/data/index.ts` currently uses neutral "Available on request" copy for these fields — this
+is intentional and should not be upgraded to an affirmative registered/incorporated claim
+without that go-ahead.
