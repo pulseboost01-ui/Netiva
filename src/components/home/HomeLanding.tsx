@@ -1,29 +1,19 @@
-"use client";
-
-import HeroProjectsBridge from "@/components/home/HeroProjectsBridge";
-import StatsStrip from "@/components/sections/StatsStrip";
-import CaseStudyShowcase from "@/components/sections/CaseStudyShowcase";
+import HeroSection from "@/components/sections/HeroSection";
+import WorkCategoriesSection from "@/components/sections/WorkCategoriesSection";
 import FeaturedQuoteSection from "@/components/sections/FeaturedQuoteSection";
-import ServicesSection from "@/components/sections/ServicesSection";
 import AboutSection from "@/components/sections/AboutSection";
-import HomePricingSection from "@/components/sections/HomePricingSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import EdtechSection from "@/components/sections/EdtechSection";
 import FAQSection from "@/components/sections/FAQSection";
 import BlogSection from "@/components/sections/BlogSection";
 
 export default function HomeLanding() {
   return (
     <>
-      <HeroProjectsBridge />
-      <div className="mx-auto w-full max-w-7xl border-x border-border">
-        <StatsStrip />
-        <CaseStudyShowcase />
+      <div className="mx-auto w-full max-w-6xl border-x border-neutral-300/90">
+        <HeroSection />
+        <WorkCategoriesSection />
         <FeaturedQuoteSection />
-        <ServicesSection />
         <AboutSection />
-        <EdtechSection />
-        <HomePricingSection />
         <TestimonialsSection />
         <FAQSection />
         <BlogSection />

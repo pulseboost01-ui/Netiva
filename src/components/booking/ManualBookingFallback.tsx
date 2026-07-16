@@ -55,8 +55,8 @@ export default function ManualBookingFallback() {
   if (submitted) {
     return (
       <div className="rounded-2xl border border-black/10 bg-[var(--card)] p-8 text-center shadow-sm">
-        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-emerald-200 bg-emerald-50">
-          <Calendar className="h-7 w-7 text-emerald-700" />
+        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-premium/20 bg-premium/10">
+          <Calendar className="h-7 w-7 text-premium" />
         </div>
         <h2 className="text-xl font-semibold text-neutral-900">Request received</h2>
         <p className="mt-2 text-sm leading-relaxed text-neutral-600">
@@ -80,7 +80,7 @@ export default function ManualBookingFallback() {
   return (
     <div className="rounded-2xl border border-black/10 bg-[var(--card)] p-6 shadow-sm md:p-8">
       <p className="mb-6 text-sm leading-relaxed text-neutral-600">
-        Pick a preferred window below. I’ll match it against my availability and confirm by email.
+        Pick a preferred window below. We match it against studio availability and confirm by email.
       </p>
       <form onSubmit={handleSubmit} className="relative space-y-6">
         <div className="absolute -left-[2000px] top-0 h-px w-px overflow-hidden opacity-0" aria-hidden>

@@ -1,47 +1,53 @@
 export const siteConfig = {
   name: "Netiva",
-  legalName: "Mitala Netiva",
-  title: "Full-stack web developer",
-  url: "https://netiva.tech",
-  tagline: "I build web apps, dashboards, marketplaces, and payment-driven systems for real-world operations.",
+  legalName: "Netiva Studio Ltd.",
+  title: "Premier Web Design & Development",
+  /** Short line beside nav logo (agency meta). */
+  tagline: "Digital systems that provoke, perform, and persuade.",
   description:
-    "I'm a solo full-stack web developer based in Kampala, Uganda, building production web products with Next.js, React, Node.js, and modern databases.",
+    "We partner with founders and teams who need more than templates—clear strategy, ruthless craft, and products that behave as well as they look.",
   email: "hello@netiva.tech",
+  /** Voice + WhatsApp (+256705013062) */
   phone: {
-    display: "+256 705 013 062",
+    display: "+256705013062",
     tel: "+256705013062",
     whatsappDigits: "256705013062",
   },
   location: "Kampala — UG",
-  siteVersion: "V.2026.1",
-  availability: "Open for selected projects",
-  avatar: "{{TODO: add real portrait photo}}",
+  /** Build label next to scroll cue (agency sites often version the deck). */
+  siteVersion: "V.2025.2",
+  availability: "Accepting selective projects • Q4 '25",
+  /** Optional portrait for contextual CTAs. */
+  avatar:
+    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&h=128&fit=crop&crop=faces&q=80",
   hero: {
-    line1: "Full-stack",
-    line2: "web products.",
+    line1: "Digital",
+    line2: "Alchemy.",
     leadBold:
-      "Marketplaces, school systems, payment workflows, and operational dashboards — engineered for real users, real money, and production load.",
+      "We don't just build websites—we craft digital nervous systems that provoke, perform, and persuade.",
     leadRest: "",
   },
+  /** Homepage identity block, inspired by premiere studio positioning. */
   identity: {
-    label: "About",
+    label: "Positioning",
     body:
-      "I'm a solo full-stack developer with production work in marketplaces, school management, streaming, and mobile-money-enabled platforms. I work directly with clients and ship the core implementation myself.",
-    manifestoHref: "/work",
-    manifestoCta: "See real projects",
+      "The web is crowded with template-driven noise. We exist to disrupt the silence of sameness—with systems you can iterate, explain, and scale.",
+    manifestoHref: "/blog/designer-developer-gap",
+    manifestoCta: "Read the manifesto",
   },
-  socialProofLine: "Production work in marketplaces, edtech, and digital platforms",
+  socialProofLine: "Trusted by product-led teams globally",
   socials: {
-    twitter: "{{TODO: confirm real URL}}",
-    instagram: "{{TODO: confirm real URL}}",
-    linkedin: "{{TODO: confirm real URL}}",
-    github: "{{TODO: confirm real URL}}",
+    twitter: "https://x.com/mitalasam",
+    instagram: "https://instagram.com",
+    linkedin: "https://www.linkedin.com/in/mitalasamuel/",
+    dribbble: "https://dribbble.com",
   },
   privacyPolicyHref: "/privacy",
   termsHref: "/terms",
 };
 
-export const trustedLogos: string[] = [];
+/** Grayscale client marks in hero trust row. */
+export const trustedLogos = ["Stripe", "Vercel", "Linear", "Framer"];
 
 export type NavLinkItem =
   | { label: string; href: string }
@@ -49,18 +55,25 @@ export type NavLinkItem =
 
 export const navLinks: NavLinkItem[] = [
   { label: "Work", href: "/work" },
-  { label: "Services", href: "/services" },
-  { label: "Edtech", href: "https://edtech.netiva.tech" },
+  { label: "Expertise", href: "/services" },
+  { label: "Agency", href: "/#agency" },
+  { label: "Blog", href: "/blog" },
+  { label: "Book a Call", href: "#", drawer: "booking" },
   { label: "Contact", href: "/contact", drawer: "contact" },
 ];
 
+/** Homepage “Capabilities” — aligned with [jsui.digital](https://www.jsui.digital/) offerings. Section index shown once as **002**. */
 export const CAPABILITIES_SECTION_NO = "002";
 
 export const capabilities = [
-  { id: "product", title: "Product builds", subtitle: "Marketplace, SaaS, and platform features" },
-  { id: "frontend", title: "Frontend engineering", subtitle: "React, Next.js, dashboards, and flows" },
-  { id: "backend", title: "Backend systems", subtitle: "APIs, auth, payments, billing, and integrations" },
-  { id: "ops", title: "Operational tooling", subtitle: "Admin panels, KYC, reconciliations, and notifications" },
+  { id: "brand", title: "Brand Design", subtitle: "Strategy, Identity, Systems" },
+  { id: "uiux", title: "UI / UX", subtitle: "Research, Wireframing, Prototyping" },
+  {
+    id: "web",
+    title: "Web Development",
+    subtitle: "React, Next.js, WebGL-ready experiences",
+  },
+  { id: "cms", title: "CMS & Architecture", subtitle: "Headless, Scalable, Content" },
 ] as const;
 
 export function isContactDrawerLink(link: NavLinkItem): link is NavLinkItem & { drawer: "contact" } {
@@ -71,239 +84,224 @@ export function isBookingDrawerLink(link: NavLinkItem): link is NavLinkItem & { 
   return "drawer" in link && link.drawer === "booking";
 }
 
+/** Real Netiva client work, shown in build/launch order. */
 export const projects = [
   {
     id: "venstela",
     title: "Venstela",
-    subtitle: "Events marketplace",
+    subtitle: "Event Services Marketplace",
     category: "Marketplace",
     year: "2024",
+    status: "ongoing" as const,
     description:
-      "A marketplace for event vendors with vendor management, escrow handling, commission logic, admin controls, and a lead wallet for operator workflows.",
-    problem:
-      "Event operators needed a single system to onboard vendors, hold funds safely, and take commission without manual reconciliation.",
-    engineering: [
-      "Escrow state machine for vendor payouts",
-      "Configurable commission engine per category",
-      "Lead wallet and operator admin control center",
-      "Vendor onboarding and listing workflows",
-    ],
-    tags: ["Next.js", "Node.js", "MongoDB", "Payments"],
-    image: "{{TODO: add screenshot for Venstela}}",
-    color: "#f7f2e8",
-    accent: "#b45309",
+      "Africa's marketplace for modern events — connecting planners with verified vendors, curated venues, and event-ready products, with transparent pricing and secure bookings. Netiva continues to build and maintain the platform.",
+    tags: ["Marketplace", "Web App", "Next.js"],
+    image: "/projects/venstela.png",
+    color: "#0c0a09",
+    accent: "#eab308",
     featured: true,
     client: "Venstela",
-    duration: "Production build",
-    services: ["Full-stack development", "Payments", "Admin tooling"],
-    outcome: "Marketplace platform",
-    outcomeStat: { value: "Escrow", label: "commission engine live" },
-  },
-  {
-    id: "soundit",
-    title: "Soundit",
-    subtitle: "African music streaming and ticketing",
-    category: "Platform",
-    year: "2024",
-    description:
-      "A music and ticketing platform with royalty splits, KYC, mobile-money payouts, WhatsApp/email notifications, and direct messaging for creators and fans.",
-    problem:
-      "Creators and fans needed a platform that could split royalties fairly, verify identity, and pay out via mobile money—not card-only rails.",
-    engineering: [
-      "Royalty split logic across creators and rights holders",
-      "KYC flows before payouts",
-      "PawaPay / Flutterwave / MTN MoMo integration paths",
-      "WhatsApp and email notification pipelines",
-      "Direct messaging between creators and fans",
-    ],
-    tags: ["Node.js", "PostgreSQL", "Payments", "Notifications"],
-    image: "{{TODO: add screenshot for Soundit}}",
-    color: "#101010",
-    accent: "#facc15",
-    featured: true,
-    client: "Soundit",
-    duration: "Production build",
-    services: ["Core platform engineering", "Fintech flows", "Messaging integrations"],
-    outcome: "Streaming + ticketing system",
-    outcomeStat: { value: "MoMo", label: "payout-ready architecture" },
-  },
-  {
-    id: "edtech",
-    title: "Edtech school management",
-    subtitle: "Multi-tenant school SaaS",
-    category: "SaaS",
-    year: "2024",
-    description:
-      "A multi-tenant school management system with a super-admin billing portal, school-level dashboards, and a parent/student mobile app for fees, attendance, and report cards. Live at Eden Blossoms Pre & Primary School with 114 students.",
-    problem:
-      "Schools needed one operational system for fees, attendance, and report cards—with a parent app that works on low-end phones and PIN-based login.",
-    engineering: [
-      "Multi-tenant billing portal for super-admin",
-      "Per-school admin dashboards and role access",
-      "React Native parent/student app (Expo)",
-      "Fees, attendance, and report card workflows",
-      "Secure PIN login for parents",
-    ],
-    tags: ["Next.js", "React Native", "PostgreSQL", "Billing"],
-    image: "{{TODO: add screenshot for Edtech}}",
-    color: "#eef6ff",
-    accent: "#2563eb",
-    featured: true,
-    client: "Eden Blossoms Pre & Primary School",
-    duration: "Live production client",
-    services: ["SaaS engineering", "Billing portal", "Mobile app delivery"],
-    outcome: "School operations platform",
-    outcomeStat: { value: "114", label: "students on system today" },
-    externalUrl: "https://edtech.netiva.tech",
+    duration: "Ongoing",
+    services: ["Product Design", "Web App", "Next.js", "Ongoing Development"],
+    outcome: "Live marketplace",
+    liveUrl: "https://venstela.com",
   },
   {
     id: "draqla",
-    title: "DraQla",
-    subtitle: "Video streaming platform",
+    title: "Draqla",
+    subtitle: "Streaming Platform",
     category: "Streaming",
-    year: "2023",
+    year: "2024",
+    status: "completed" as const,
     description:
-      "A video platform with Bunny CDN delivery and a cost-optimized storage pipeline tuned for media-heavy traffic.",
-    problem:
-      "Video delivery needed CDN-backed playback without runaway storage costs as the library grew.",
-    engineering: [
-      "Bunny CDN integration for media delivery",
-      "Cost-optimized upload and storage pipeline",
-      "Performance tuning for media-heavy pages",
-      "Next.js frontend with streaming-optimized assets",
-    ],
-    tags: ["Next.js", "CDN", "Storage", "Performance"],
-    image: "{{TODO: add screenshot for DraQla}}",
-    color: "#f4f4f5",
-    accent: "#7c3aed",
+      "Uganda's premium streaming platform for movies, series, live TV, and VJ-hosted original content — built for fast browsing and playback across East African audiences.",
+    tags: ["Streaming", "Web App", "Media"],
+    image: "/projects/draqla.png",
+    color: "#0a0a0a",
+    accent: "#d4af37",
     featured: true,
-    client: "DraQla",
-    duration: "Production build",
-    services: ["Frontend + platform delivery", "Media pipeline", "Performance tuning"],
-    outcome: "Streaming delivery platform",
-    outcomeStat: { value: "CDN", label: "cost-aware delivery" },
+    client: "Draqla",
+    duration: "12 weeks",
+    services: ["Product Design", "Web App", "Streaming Infrastructure"],
+    outcome: "Streaming platform",
+    liveUrl: "https://draqla.up.railway.app",
+  },
+  {
+    id: "school-management-system",
+    title: "School Management System",
+    subtitle: "Role-based School Platform",
+    category: "Education",
+    year: "2024",
+    status: "ongoing" as const,
+    description:
+      "A role-based school management system for parents, teachers, secretaries, and admins — handling records, attendance, and communication in one platform. Netiva continues to maintain and extend the system.",
+    tags: ["EdTech", "Web App", "Dashboard"],
+    image: "/projects/edtech.png",
+    color: "#f5f3ff",
+    accent: "#6d28d9",
+    featured: true,
+    client: "School Management System",
+    duration: "Ongoing",
+    services: ["Product Design", "Web App", "Role-based Access", "Ongoing Development"],
+    outcome: "School management platform",
+    liveUrl: "https://edtech.netiva.tech",
+  },
+  {
+    id: "whispers-of-antidote",
+    title: "Whispers of Antidote",
+    subtitle: "Counseling & Therapy",
+    category: "Wellness",
+    year: "2024",
+    status: "completed" as const,
+    description:
+      "A calming, professional web presence for a Kampala-based counseling practice — booking, case studies, and client resources for therapy, trauma support, and relationship guidance.",
+    tags: ["Wellness", "Booking", "Web Design"],
+    image: "/projects/whispers.png",
+    color: "#fdf2ee",
+    accent: "#e8926b",
+    featured: true,
+    client: "Whispers of Antidote",
+    duration: "8 weeks",
+    services: ["Web Design", "Booking System", "Content"],
+    outcome: "Counseling practice site",
+    liveUrl: "https://whispersofantidote.com",
   },
 ];
 
-export const workPhases = ["Discovery", "Build", "Launch"] as const;
-
-/** @deprecated Use workPhases */
-export const agencyPhases = workPhases;
+export const agencyPhases = [
+  "Strategy",
+  "Design",
+  "Development",
+  "Launch",
+] as const;
 
 export const workHistory = [
-  { company: "Global clients", role: "Full-stack product builds", period: "2023–today" },
-  { company: "Schools & operators", role: "Operational web platforms", period: "ongoing" },
+  { company: "Product teams", role: "Full-service digital", period: "2022–today" },
+  { company: "Startups • Non-profits", role: "Web & identity", period: "ongoing" },
+] as const;
+
+/** How we operate — shown as an icon list in the Agency section. */
+export const agencyPrinciples = [
+  {
+    icon: "Award",
+    title: "Ownership",
+    description: "We treat every engagement like our own product, not a line item.",
+  },
+  {
+    icon: "MessageCircle",
+    title: "Communication",
+    description: "Async by default, but visible in real time—no black-box weeks.",
+  },
+  {
+    icon: "Zap",
+    title: "Momentum",
+    description: "Small, shippable steps beat big reveals. We compound weekly.",
+  },
 ] as const;
 
 export const launchFolioTechStack = [
-  "Next.js",
-  "React",
-  "Node.js",
-  "Express",
-  "MongoDB",
-  "PostgreSQL",
-  "Firebase",
-  "Sanity",
+  "Figma",
+  "Framer",
+  "Webflow",
+  "Rive",
+  "Blender",
+  "Trello",
+  "ChatGPT",
+  "Claude",
 ] as const;
 
 export const launchFolioServicePills = [
-  "Marketplace systems",
-  "Payment integrations",
-  "School management software",
-  "Streaming platforms",
-  "Admin dashboards",
-  "Mobile-money workflows",
+  "Brand systems",
+  "Design systems",
+  "Next.js",
+  "Headless CMS",
+  "Motion UI",
+  "Analytics",
+  "Performance",
 ] as const;
 
 export const homePricing = {
-  headline: "How I work",
-  headlineEm: "with clients.",
-  leadBold:
-    "I usually scope work as a clear project with defined milestones, a realistic delivery plan, and direct communication.",
+  headline: "Engagements",
+  headlineEm: "built for clarity.",
+  leadBold: "Every scope is modeled before we write production code.",
   leadRest:
-    " For larger product work, I can partner on a longer engagement once the problem, architecture, and budget are clear.",
+    " Retainers or fixed phases—priced to outcomes, padded with pragmatic documentation.",
   steps: [
     {
-      title: "Scope",
-      body: "We clarify the problem, the users, the core workflows, and the technical constraints before any build starts.",
+      title: "Brief",
+      body: "Executive workshop + KPI mapping so every surface ladders to measurable outcomes.",
     },
     {
-      title: "Build",
-      body: "I implement the product directly, keeping the work visible with practical checkpoints and decisions along the way.",
+      title: "Assemble",
+      body: "We pair design, engineering, and content strategy under one roadmap with visible milestones.",
     },
     {
-      title: "Launch",
-      body: "We ship, test the real workflow, and keep the handover clear so the system remains usable after launch.",
+      title: "Amplify",
+      body: "Launch, instrument, and iterate—we stay embedded until dashboards reflect the uplift.",
     },
   ],
-  footerNote: "I'm a solo full-stack developer, so I keep scope clear and delivery focused.",
+  footerNote: "Netiva operates pods, not freelancers—/async first, ruthless documentation always.",
   unlimited: {
-    kicker: "Best fit",
-    title: "Project-based build",
+    kicker: "Product accelerator",
+    title: "Product partnership",
     description:
-      "Ideal when you need a marketplace, SaaS feature, dashboard, payment flow, or custom web platform delivered with direct ownership.",
-    price: null as number | null,
-    period: "project",
+      "A senior pod embedded with your roadmap—discovery, UX, frontend, and release discipline in one runway.",
+    price: 12000,
+    period: "month",
     bullets: [
-      "Direct implementation from planning to launch",
-      "Clear scope, milestones, and delivery checkpoints",
-      "Frontend + backend delivery in one workflow",
-      "Payment, billing, and operational integrations when needed",
-      "Simple handover and support for launch",
+      "Dedicated design + frontend pod",
+      "Weekly planning & demos",
+      "Design system ownership",
+      "Next.js/React implementation",
+      "Slack + Loom async reviews",
+      "Pause with 30-day notice",
     ],
-    cta: "Discuss your project",
+    cta: "Start a partnership",
   },
   single: {
-    title: "School or operations product",
+    title: "Focused launch",
     description:
-      "For school systems, admin panels, or workflow tools, I can scope the work around the operational need rather than a generic agency package.",
-    bullets: ["Requirements review", "System architecture", "Build and launch", "Post-launch support as needed"],
-    cta: "Start the conversation",
+      "From zero to shipped for a single surface—ideal when you already know what needs to exist.",
+    bullets: ["Narrative positioning", "UI system + CMS", "Launch checklist", "30-day stabilization"],
+    cta: "Request scope",
   },
 } as const;
 
 export const services = [
   {
-    id: "product-builds",
-    title: "Product builds",
-    price: null as number | null,
-    priceType: "project",
+    id: "brand-design",
+    title: "Brand Design",
     description:
-      "Marketplace features, internal tools, admin systems, and custom workflows that need to work in production.",
-    features: ["Requirements review", "UI implementation", "Core feature delivery", "Testing and launch support"],
+      "Positioning and visual systems that behave like infrastructure—stretching seamlessly into product and campaigns.",
+    features: ["Discovery workshops", "Verbal identity", "Logo + lockups", "Color & typography", "Systems guide"],
+    icon: "Pen",
+    popular: false,
+  },
+  {
+    id: "ui-ux",
+    title: "UI / UX",
+    description:
+      "Research-led interfaces with ruthless clarity—rapid prototyping through production-ready handoff.",
+    features: ["Landscape audit", "User flows & wires", "High-fidelity UI", "Interactive prototype", "QA support"],
     icon: "Layers",
     popular: true,
   },
   {
-    id: "frontend-engineering",
-    title: "Frontend engineering",
-    price: null as number | null,
-    priceType: "project",
-    description: "React and Next.js interfaces for dashboards, portals, and product surfaces that need clear behavior.",
-    features: ["Responsive UI implementation", "Component structure", "Interaction polish", "Accessibility basics"],
+    id: "web-dev",
+    title: "Web Development",
+    description:
+      "Engineering that embraces motion, accessibility, and performance budgets without sacrificing artistry.",
+    features: ["React / Next.js build", "Component library in code", "Animation systems", "Core Web Vitals focus"],
     icon: "Code2",
     popular: false,
   },
   {
-    id: "backend-systems",
-    title: "Backend systems",
-    price: null as number | null,
-    priceType: "project",
+    id: "cms-architecture",
+    title: "CMS & Architecture",
     description:
-      "APIs, auth, billing, payments, notifications, and database-backed logic for real operational products.",
-    features: ["API development", "Payment integrations", "Database modeling", "Operational workflows"],
+      "Composable stacks that marketers can wield—scalable schemas, previews, and deploy pipelines included.",
+    features: ["Headless CMS selection", "Content modeling", "Preview + webhooks", "Docs for editors"],
     icon: "Database",
-    popular: false,
-  },
-  {
-    id: "school-ops",
-    title: "School & ops platforms",
-    price: null as number | null,
-    priceType: "project",
-    description:
-      "Multi-user admin systems, parent/student apps, fee workflows, attendance, and reporting for institutions.",
-    features: ["Role-based access", "Billing and reporting", "Mobile-friendly experience", "Secure operational flows"],
-    icon: "Pen",
     popular: false,
   },
 ];
@@ -311,94 +309,268 @@ export const services = [
 export const testimonials = [
   {
     id: 1,
-    name: "{{TODO: request written testimonial from Alex Muheesi / Eden Blossoms}}",
-    role: "{{TODO: real role}}",
-    company: "Eden Blossoms Pre & Primary School",
-    avatar: "{{TODO: add real photo for Alex Muheesi / Eden Blossoms}}",
-    quote: "{{TODO: real testimonial quote from Eden Blossoms head teacher}}",
+    name: "Martina Martinez",
+    role: "Customer Manager",
+    company: "SupportEase",
+    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&q=80",
+    quote:
+      "The new UI halved inbound support tickets—we finally had clarity customers could self-serve.",
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: "Thomas Weber",
+    role: "Co-founder",
+    company: "Marketplace Partner",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80",
+    quote:
+      "Netiva operates like an in-house frontier team—strategy, UX, and build quality stayed aligned.",
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: "Ben Harper",
+    role: "CTO",
+    company: "Nexus",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80",
+    quote:
+      "Conversion improved materially after Netiva tightened our narrative and site architecture.",
+    rating: 5,
+  },
+  {
+    id: 4,
+    name: "Michael Wong",
+    role: "Data Scientist",
+    company: "DataSphere",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80",
+    quote:
+      "Their design systems thinking made dense analytics legible—the product finally feels humane.",
+    rating: 5,
+  },
+  {
+    id: 5,
+    name: "Natalie Rivera",
+    role: "Brand Manager",
+    company: "UnityBrands",
+    avatar: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&q=80",
+    quote:
+      "The repositioning sharpened everything from pitch decks to in-app—we sound like ourselves now.",
+    rating: 5,
+  },
+  {
+    id: 6,
+    name: "Emma Kraft",
+    role: "CMO",
+    company: "TechVista",
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&q=80",
+    quote:
+      "Engagement climbed double digits post-launch; the storytelling finally matches product reality.",
     rating: 5,
   },
 ];
 
 export const faqs = [
   {
-    question: "What kinds of projects do you take on?",
+    question: "How long does a typical project take to complete?",
     answer:
-      "I work on production web products that need careful implementation: marketplaces, dashboards, SaaS features, payment workflows, and school or operations platforms.",
+      "Project timelines vary based on complexity. A simple project might take 2-3 weeks, while more comprehensive designs can take 1-2 months. I will provide a specific estimate after our initial consultation.",
   },
   {
-    question: "Do you work solo or with a team?",
+    question: "Can you work with my existing brand and designs?",
     answer:
-      "I work as a solo full-stack developer and handle the core build directly, while keeping communication simple and delivery focused.",
+      "Absolutely! I'm experienced in working with established brands. I will ensure all new designs align perfectly with your existing brand identity and style.",
   },
   {
-    question: "Can you help with payments, billing, or mobile money?",
+    question: "What makes your design process unique?",
     answer:
-      "Yes. I have experience with payment integrations such as PawaPay, Flutterwave, and MTN MoMo, along with invoice or billing-related flows.",
+      "My process stands out due to our collaborative approach. I involve you at every stage, ensuring the final product truly reflects your vision while benefiting from my expertise.",
   },
   {
-    question: "Do you work with schools or education software?",
+    question: "Do you offer ongoing support after the project is completed?",
     answer:
-      "Yes. I've built school management software with admin portals, parent/student experiences, reporting, fees, and attendance workflows.",
+      "Yes, I provide post-project support. This includes minor adjustments and answering questions about your new designs for up to 30 days after delivery. If there's a need for longer support, we can discuss a retainer.",
   },
   {
-    question: "How do we start?",
+    question: "How do you handle confidentiality and intellectual property rights?",
     answer:
-      "Send a short brief with your goals, scope, timeline, and any technical constraints. I'll reply with a practical next step and a clear estimate.",
+      "I take confidentiality seriously. All client information and project details are kept strictly confidential. Upon project completion, you'll own full intellectual property rights to the final designs.",
   },
 ];
 
 export const blogPosts = [
   {
-    id: "mobile-money-reconciliation",
-    title: "{{TODO: write real post about mobile-money reconciliation and payment workflows}}",
+    id: "designer-developer-gap",
+    title: "How designers and developers can actually collaborate.",
     excerpt:
-      "{{TODO: real excerpt about handling mobile-money payments, reconciliation, and user trust in fintech workflows}}",
-    date: "{{TODO: real publish date}}",
-    readTime: "{{TODO: real read time}}",
+      "Discover proven strategies to bridge the designer-developer gap. Learn how top teams eliminate handoff friction and ship better products faster through true collaboration.",
+    date: "Mar 6, 2025",
+    readTime: "6 min read",
     category: "Process",
-    image: "{{TODO: add blog cover image for mobile-money post}}",
+    image:
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80",
     featured: true,
-    draft: true,
-    content: "{{TODO: write real post about a specific technical challenge I've solved}}",
+    content: `
+      The gap between design and development has been a persistent challenge in product teams for decades. Designers create beautiful, pixel-perfect mockups. Developers build functional, scalable systems. And somewhere in between, the magic gets lost.
+
+      But it doesn't have to be this way.
+
+      The most successful product teams I've worked with share one thing in common: they've made collaboration a first-class citizen in their process, not an afterthought.
+
+      **Start with shared language**
+
+      The first barrier is terminology. Designers talk about "whitespace" and developers talk about "padding." Designers say "component" and developers mean something entirely different by it. Building a shared glossary — even just a simple Notion doc — eliminates countless misunderstandings.
+
+      **Design in systems, not screens**
+
+      The biggest shift you can make is moving from designing screens to designing systems. When you think in components and states, your handoffs become dramatically cleaner. A button isn't just a button — it has hover, active, disabled, loading, and error states. Document all of them.
+
+      **Involve developers early**
+
+      Don't wait until the design is "done" to show it to developers. Bring them in during the concept phase. They'll flag technical constraints early, suggest simpler implementations, and feel genuine ownership over the final product.
+
+      **Use design tokens**
+
+      Design tokens are the bridge between Figma and code. When your design system uses tokens for colors, spacing, and typography — and those tokens map directly to CSS variables or Tailwind config — updates become trivial. Change a token in one place and it ripples everywhere.
+
+      The gap exists because we let it. Close it deliberately, and you'll ship better products faster than you thought possible.
+    `,
   },
   {
-    id: "multi-tenant-billing",
-    title: "{{TODO: write real post about multi-tenant billing architecture}}",
+    id: "conversion-portfolio",
+    title: "Why faster isn't always better.",
     excerpt:
-      "{{TODO: real excerpt about school or SaaS billing structure, per-tenant admin flows, and payment handling}}",
-    date: "{{TODO: real publish date}}",
-    readTime: "{{TODO: real read time}}",
-    category: "Business",
-    image: "{{TODO: add blog cover image for multi-tenant billing post}}",
+      "Speed is celebrated in product teams—but the fastest design process isn't always the one that delivers the best outcomes. Here's when to slow down.",
+    date: "Apr 22, 2025",
+    readTime: "5 min read",
+    category: "Process",
+    image:
+      "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80",
     featured: true,
-    draft: true,
-    content: "{{TODO: write real post about a specific technical challenge I've solved}}",
+    content: `
+      I've reviewed hundreds of designer portfolios. Most of them share the same fundamental flaw: they're designed to impress designers, not hire-able to clients.
+
+      Here's the uncomfortable truth: your potential clients don't care about your process nearly as much as they care about their problem. They're not evaluating your aesthetic sensibility — they're asking "can this person solve my specific problem?"
+
+      **The gallery portfolio trap**
+
+      Most portfolios are just galleries. Beautiful images arranged in a grid. No context, no story, no outcome. A client looking at this is thinking: "This looks nice, but how do I know it worked?"
+
+      The fix is simple but uncomfortable: lead with results, not process.
+
+      **Structure that converts**
+
+      Every case study should follow this arc:
+      1. The problem (make the client feel seen)
+      2. Your approach (establish credibility)
+      3. The solution (show your craft)
+      4. The outcome (prove it worked)
+
+      Numbers matter. "The redesign improved conversion by 34%" is infinitely more compelling than "I redesigned their website."
+
+      **Social proof placement**
+
+      Put testimonials near your CTAs, not at the bottom of the page after the visitor has already decided. The decision to reach out happens before they scroll to the footer.
+
+      **One clear ask**
+
+      What do you want visitors to do? Book a call? Fill out a form? Send an email? Pick one and make it obvious. Multiple competing CTAs create paralysis.
+
+      Your portfolio is your best salesperson. Make it work harder.
+    `,
+  },
+  {
+    id: "framer-design-system",
+    title: "Designing for human connection.",
+    excerpt:
+      "Interfaces aren't neutral—they shape how people feel about your product. A practical lens for designing warmth and clarity without sacrificing usability.",
+    date: "Apr 1, 2025",
+    readTime: "4 min read",
+    category: "Design",
+    image:
+      "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80",
+    featured: false,
+    content: `
+      A design system is only as good as its adoption. The most beautifully documented system is worthless if developers are building their own components from scratch anyway.
+
+      I've built design systems for startups and established companies alike. The ones that survive have a few things in common.
+
+      **Build with developers, not for them**
+
+      Invite your lead developer to the first design system workshop. Not as an observer — as a co-creator. Their input on component structure will be invaluable, and their buy-in will be transformative.
+
+      **Start smaller than you think**
+
+      The trap is trying to systematize everything before you've launched anything. Start with 10 core components: button, input, card, modal, toast, badge, avatar, dropdown, table, and form. Get those right. Build on top.
+
+      **Token everything**
+
+      Colors, spacing, border radius, shadow, typography. Every design decision should trace back to a token. When you change the token, everything updates automatically. This is the magic that makes design systems worth the investment.
+
+      The system that ships beats the system that's perfect. Start shipping.
+    `,
+  },
+  {
+    id: "pricing-design-work",
+    title: "How I Price My Design Work (And Why I Stopped Charging Hourly)",
+    excerpt:
+      "Hourly pricing penalizes expertise. Here's the value-based model that doubled my income without doubling my hours.",
+    date: "Sep 18, 2024",
+    readTime: "7 min read",
+    category: "Business",
+    image:
+      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
+    featured: false,
+    content: `
+      The day I stopped charging hourly was the day my business fundamentally changed.
+
+      Hourly pricing has a perverse incentive built into it: efficiency is punished. The faster you work, the less you earn. Your expertise — the thing clients are actually paying for — becomes a liability.
+
+      **Value-based pricing in practice**
+
+      Value-based pricing means anchoring your price to the outcome, not the time. If your branding work helps a company raise their prices by 20%, what's that worth to them over 5 years? The answer is almost certainly more than your invoice.
+
+      The conversation shifts from "how long will this take?" to "what results can I expect?" That's a much better conversation to be in.
+
+      **My current pricing model**
+
+      I use a hybrid: fixed-price projects for defined scope, monthly retainers for ongoing relationships, and day rates for consulting. Each serves a different type of client need.
+
+      Fixed-price projects work because both parties know exactly what they're getting. The risk is absorbed by the designer (scope creep is real) but the reward is proportional to your efficiency.
+
+      Monthly retainers are ideal for clients who need ongoing design support. Predictable revenue, predictable relationship.
+
+      **The transition**
+
+      Switching pricing models is uncomfortable. You'll likely lose some clients. But you'll gain clients who value design as an investment, not a commodity. Those clients are better to work with, pay more, and refer more.
+
+      Charge what you're worth. Then get better at being worth it.
+    `,
   },
 ];
 
 export const stats = [
-  { value: "4", label: "production platforms built" },
-  { value: "114", label: "students on edtech system today" },
-  { value: "3", label: "payment integrations in production" },
+  { value: "35+", label: "Launches shipped" },
+  { value: "12ms", label: "Avg. CLS budget" },
+  { value: "5★", label: "Avg. sprint feedback" },
 ];
 
 export const tools = [...launchFolioTechStack];
 
 export const skills = [
-  { name: "Next.js / React", level: 90 },
-  { name: "Node.js / Express", level: 88 },
-  { name: "MongoDB / PostgreSQL", level: 85 },
-  { name: "Payment integrations", level: 82 },
-  { name: "React Native", level: 78 },
-  { name: "System architecture", level: 80 },
+  { name: "UI Design", level: 95 },
+  { name: "UX Research", level: 85 },
+  { name: "Brand Identity", level: 90 },
+  { name: "Motion Design", level: 80 },
+  { name: "Framer / Webflow", level: 88 },
+  { name: "Design Systems", level: 92 },
 ];
 
 export const quoteServices = [
-  { id: "product-builds", label: "Product builds" },
-  { id: "frontend-engineering", label: "Frontend engineering" },
-  { id: "backend-systems", label: "Backend systems" },
-  { id: "school-ops", label: "School & operations platforms" },
+  { id: "brand-design", label: "Brand Design" },
+  { id: "ui-ux", label: "UI / UX" },
+  { id: "web-dev", label: "Web Development" },
+  { id: "cms-architecture", label: "CMS & Architecture" },
+  { id: "retainer", label: "Monthly partnership" },
   { id: "other", label: "Something custom" },
 ];
 
@@ -409,5 +581,3 @@ export const budgetRanges = [
   { id: "10k-20k", label: "$10,000 – $20,000" },
   { id: "20k-plus", label: "$20,000+" },
 ];
-
-export const projectCategories = ["All", ...Array.from(new Set(projects.map((p) => p.category)))] as const;

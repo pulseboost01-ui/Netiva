@@ -1,121 +1,136 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
-import { siteConfig, stats, workHistory, workPhases } from "@/data";
+import { ArrowUpRight, Award, MessageCircle, Zap, type LucideProps } from "lucide-react";
+import type { ForwardRefExoticComponent, RefAttributes } from "react";
+import {
+  agencyPhases,
+  agencyPrinciples,
+  siteConfig,
+  stats,
+} from "@/data";
 import { FadeIn } from "@/components/ui/FadeIn";
 
-export default function AboutSection() {
-  const leadStat = stats[0];
+const easeOut = [0.16, 1, 0.3, 1] as const;
 
+const iconMap: Record<string, ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>> = {
+  Award,
+  MessageCircle,
+  Zap,
+};
+
+export default function AboutSection() {
   return (
-    <section id="about" className="scroll-mt-24 border-t border-border section-luxury">
+    <section id="agency" className="border-t border-black/6 scroll-mt-24 py-14 md:py-20">
+      <div className="w-full px-6 md:px-10">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45 }}
-          className="font-mono text-[10px] font-semibold uppercase tracking-[0.42em] text-muted-dim"
+          className="font-mono text-[10px] font-semibold uppercase tracking-[0.42em] text-neutral-400"
         >
-          About
+          The agency
         </motion.p>
-        <div className="mt-12 grid gap-12 md:grid-cols-2 md:gap-14">
+
+        {/* Top row: heading + lead paragraph, side by side */}
+        <div className="mt-8 grid gap-8 md:grid-cols-2 md:gap-14">
+          <FadeIn>
+            <h2 className="text-[clamp(1.85rem,3.9vw,2.75rem)] font-semibold leading-[1.04] tracking-tight text-neutral-900">
+              Signals over static.
+              <br />
+              <span className="text-neutral-400">Systems over souvenirs.</span>
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.06}>
+            <p className="text-[15px] leading-relaxed text-neutral-600">
+              <strong className="font-semibold text-neutral-900">{siteConfig.description}</strong>{" "}
+              We obsess over fidelity from discovery through launch—articulating narratives in product,
+              polish, and code. Netiva behaves like your embedded frontier team, asynchronous by default.
+            </p>
+          </FadeIn>
+        </div>
+
+        {/* Bottom row: principles list + stat-over-image */}
+        <div className="mt-14 grid gap-14 md:grid-cols-2">
           <div>
-            <FadeIn>
-              <h2 className="font-display mb-6 text-[clamp(2rem,4vw,3.25rem)] leading-[0.98] tracking-[-0.03em] text-foreground">
-                Solo developer.
-                <br />
-                <em>Production-focused builds.</em>
-              </h2>
-            </FadeIn>
-            <FadeIn delay={0.06}>
-              <p className="mb-5 text-[15px] leading-relaxed text-muted-foreground">
-                <strong className="font-semibold text-foreground">{siteConfig.description}</strong> I focus on
-                systems that handle real users, real money, and real operational workflows—not template sites.
-              </p>
-              <p className="mb-8 text-[15px] leading-relaxed text-muted-foreground">
-                You work directly with me from scope through launch. I ship the core implementation myself and
-                keep communication straightforward across time zones.
-              </p>
-              <motion.div className="mb-10 flex flex-wrap gap-2">
-                {workPhases.map((phase, i) => (
-                  <motion.span
-                    key={phase}
-                    initial={{ opacity: 0, y: 8 }}
+            <ul>
+              {agencyPrinciples.map((item, i) => {
+                const Icon = iconMap[item.icon] || Award;
+                const isLast = i === agencyPrinciples.length - 1;
+                return (
+                  <motion.li
+                    key={item.title}
+                    initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{
-                      duration: 0.4,
-                      delay: 0.1 + i * 0.05,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                    className="rounded-full border border-border bg-foreground px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-background"
+                    transition={{ duration: 0.45, delay: i * 0.08, ease: easeOut }}
+                    className="flex gap-5"
+                  >
+                    <div className="flex flex-col items-center">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-black/8 bg-[var(--card)] text-neutral-700">
+                        <Icon size={18} />
+                      </span>
+                      {!isLast && <span className="mt-1 w-px flex-1 border-l border-dashed border-black/15" />}
+                    </div>
+                    <div className={isLast ? "pb-0" : "pb-8"}>
+                      <h3 className="text-base font-semibold text-neutral-900">{item.title}</h3>
+                      <p className="mt-1 max-w-xs text-sm leading-relaxed text-neutral-600">
+                        {item.description}
+                      </p>
+                    </div>
+                  </motion.li>
+                );
+              })}
+            </ul>
+
+            <FadeIn delay={0.2} className="mt-8 flex flex-wrap items-center gap-4">
+              <div className="flex flex-wrap gap-2">
+                {agencyPhases.map((phase) => (
+                  <span
+                    key={phase}
+                    className="rounded-full border border-black/8 bg-neutral-950 px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-white"
                   >
                     {phase}
-                  </motion.span>
+                  </span>
                 ))}
-              </motion.div>
+              </div>
               <Link
                 href="/work"
-                className="group inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-foreground"
+                className="group inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-900"
               >
-                View production work
+                Open output log
                 <ArrowUpRight size={13} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </FadeIn>
           </div>
 
-          <div className="space-y-5">
-            <FadeIn delay={0.1}>
-              <motion.div
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="rounded-[1.6rem] border border-border bg-[var(--card)] p-6 shadow-[0_20px_70px_-45px_rgba(22,21,19,0.45)] md:p-7"
-              >
-                <p className="font-display text-6xl tracking-tight text-accent md:text-[4.75rem]">
-                  {leadStat.value}
-                </p>
-                <p className="mt-2 text-sm uppercase tracking-[0.18em] text-muted-dim">{leadStat.label}</p>
-                <div className="mt-10 border-t border-border pt-5">
-                  <p className="text-base font-semibold text-foreground">{siteConfig.legalName}</p>
-                  <p className="text-xs font-medium uppercase tracking-[0.3em] text-muted-dim">
-                    {siteConfig.location}
-                  </p>
-                  <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground">{siteConfig.tagline}</p>
-                </div>
-              </motion.div>
-            </FadeIn>
-
-            <FadeIn delay={0.16}>
-              <div className="rounded-[1.6rem] border border-border bg-[var(--card)] p-6 shadow-[0_20px_70px_-45px_rgba(22,21,19,0.4)] md:p-7">
-                <p className="mb-6 font-mono text-[10px] font-semibold uppercase tracking-[0.38em] text-muted-dim">
-                  Recent focus
-                </p>
-                <ul className="space-y-4">
-                  {workHistory.map((job) => (
-                    <motion.li
-                      key={`${job.company}-${job.period}`}
-                      initial={{ opacity: 0, x: -8 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.45 }}
-                      className="flex items-start justify-between gap-5 border-b border-border pb-4 last:border-none last:pb-0"
-                    >
-                      <div className="min-w-0">
-                        <p className="truncate text-[15px] font-semibold text-foreground">{job.company}</p>
-                        <p className="text-sm text-muted-foreground">{job.role}</p>
-                      </div>
-                      <p className="whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.15em] text-muted-dim">
-                        {job.period}
-                      </p>
-                    </motion.li>
-                  ))}
-                </ul>
+          <FadeIn delay={0.1} className="relative pt-8">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
+              <Image
+                src="https://images.unsplash.com/photo-1705909770198-7e83c24e1616?w=1000&q=80"
+                alt="Netiva workspace"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="absolute left-6 top-0 flex items-center gap-6 rounded-2xl bg-[var(--accent)] px-6 py-5 shadow-xl md:left-8 md:px-8 md:py-6">
+              <div>
+                <p className="text-3xl font-bold leading-none text-black md:text-4xl">{stats[0].value}</p>
+                <p className="mt-1.5 text-[11px] uppercase tracking-[0.14em] text-black/70">{stats[0].label}</p>
               </div>
-            </FadeIn>
-          </div>
+              <div className="h-10 w-px bg-black/15" />
+              <div>
+                <p className="text-3xl font-bold leading-none text-black md:text-4xl">{stats[1].value}</p>
+                <p className="mt-1.5 text-[11px] uppercase tracking-[0.14em] text-black/70">{stats[1].label}</p>
+              </div>
+            </div>
+          </FadeIn>
         </div>
+      </div>
     </section>
   );
 }

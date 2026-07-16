@@ -10,7 +10,7 @@ export default function FeaturedQuoteSection() {
   const { identity } = siteConfig;
 
   return (
-    <section className="border-t border-border bg-[linear-gradient(180deg,rgba(247,241,232,0.45),rgba(236,229,217,0.95))] py-16 md:py-20">
+    <section className="border-t border-black/6 bg-gradient-to-b from-[var(--background)] via-white/[0.35] to-[var(--background)] py-14 md:py-16">
       <div className="w-full px-6 md:px-10">
         <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] md:gap-14 md:items-start">
           <motion.div
@@ -21,7 +21,7 @@ export default function FeaturedQuoteSection() {
             className="space-y-5"
           >
             <motion.p
-              className="font-mono text-[11px] font-medium uppercase tracking-[0.42em] text-muted-dim"
+              className="font-mono text-[11px] font-medium uppercase tracking-[0.42em] text-neutral-400"
               initial={{ opacity: 0, letterSpacing: "0.5em" }}
               whileInView={{ opacity: 1, letterSpacing: "0.42em" }}
               viewport={{ once: true }}
@@ -29,15 +29,26 @@ export default function FeaturedQuoteSection() {
             >
               {identity.label}
             </motion.p>
-            <motion.h2
-                className="font-display text-[clamp(2rem,4vw,3.25rem)] font-normal leading-[1.05] tracking-[-0.03em] text-foreground"
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
+            <div className="space-y-2">
+              <motion.h2
+                className="text-4xl font-semibold leading-[1.02] tracking-tight text-neutral-900 md:text-5xl"
+                initial={{ opacity: 0.2, clipPath: "inset(0 100% 0 0)" }}
+                whileInView={{ opacity: 1, clipPath: "inset(0 0% 0 0)" }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 1, ease: [0.76, 0, 0.17, 1] }}
               >
-                Solo developer. Production systems.
+                Same internet.
               </motion.h2>
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.15, duration: 0.55 }}
+                className="text-sm font-semibold uppercase tracking-[0.28em] text-neutral-400"
+              >
+                New signal.
+              </motion.p>
+            </div>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -46,13 +57,13 @@ export default function FeaturedQuoteSection() {
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="space-y-8"
           >
-            <p className="text-lg leading-relaxed text-muted-foreground md:text-xl md:leading-relaxed">{identity.body}</p>
+            <p className="text-lg leading-snug text-neutral-700 md:text-xl md:leading-relaxed">{identity.body}</p>
             <Link
               href={identity.manifestoHref}
-              className="group inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.32em] text-foreground"
+              className="group inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.32em] text-neutral-900"
             >
               {identity.manifestoCta}
-              <span className="flex h-8 w-8 items-center justify-center rounded-full border border-border transition-all duration-300 group-hover:bg-accent group-hover:text-white">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full border border-black/10 transition-all duration-300 group-hover:bg-premium group-hover:text-white">
                 <ArrowRight size={14} />
               </span>
             </Link>

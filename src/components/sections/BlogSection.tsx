@@ -2,65 +2,50 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { blogPosts } from "@/data";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/ui/FadeIn";
-import ContentImage from "@/components/ui/ContentImage";
-import { hasPublishedBlogPosts } from "@/lib/content";
 
 export default function BlogSection() {
-  const published = hasPublishedBlogPosts(blogPosts);
-  const featured = blogPosts.filter((p) => p.featured && !p.draft).slice(0, 2);
-
-  if (!published) {
-    return (
-      <section className="border-t border-border py-14 md:py-20">
-        <div className="w-full px-6 md:px-10">
-          <FadeIn>
-            <p className="mb-3 text-xs font-medium uppercase tracking-widest text-[var(--accent)]">Writing</p>
-            <h2 className="font-display text-4xl text-foreground md:text-5xl">Technical notes</h2>
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
-              Posts from real build work are in progress—mobile-money reconciliation, multi-tenant billing, and
-              production engineering topics.
-            </p>
-          </FadeIn>
-        </div>
-      </section>
-    );
-  }
+  const featured = blogPosts.filter((p) => p.featured).slice(0, 2);
 
   return (
-    <section className="border-t border-border py-14 md:py-20">
+    <section className="border-t border-black/6 py-14 md:py-20">
       <div className="w-full px-6 md:px-10">
         <div className="mb-10 flex items-end justify-between">
           <FadeIn>
-            <p className="mb-3 text-xs font-medium uppercase tracking-widest text-[var(--accent)]">Writing</p>
-            <h2 className="font-display text-4xl text-foreground md:text-5xl">Notes from production builds.</h2>
+            <p className="text-xs uppercase tracking-widest text-[var(--accent)] font-medium mb-3">
+              From my blog,
+            </p>
+            <h2 className="font-display text-4xl text-neutral-900 md:text-5xl">
+              design insights.
+            </h2>
           </FadeIn>
           <FadeIn delay={0.1}>
             <Link href="/blog">
               <motion.button
                 whileHover={{ scale: 1.02 }}
-                className="group hidden items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground md:flex"
+                className="group hidden md:flex items-center gap-2 text-sm text-neutral-500 hover:text-neutral-900 transition-colors"
               >
-                View all
-                <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                View All
+                <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </motion.button>
             </Link>
           </FadeIn>
         </div>
 
-        <StaggerChildren className="grid gap-5 md:grid-cols-2">
+        <StaggerChildren className="grid md:grid-cols-2 gap-5">
           {featured.map((post) => (
             <StaggerItem key={post.id}>
               <Link href={`/blog/${post.id}`}>
                 <motion.article
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.3 }}
-                  className="group cursor-pointer overflow-hidden rounded-2xl border border-border bg-[var(--card)]"
+                  className="group rounded-2xl overflow-hidden bg-[var(--card)] border border-black/5 cursor-pointer"
                 >
                   <div className="relative aspect-[16/9] overflow-hidden">
-                    <ContentImage
+                    <Image
                       src={post.image}
                       alt={post.title}
                       fill
@@ -75,13 +60,19 @@ export default function BlogSection() {
                     </div>
                   </div>
                   <div className="p-6">
-                    <div className="mb-3 flex items-center gap-3 text-xs text-muted-dim">
+                    <div className="flex items-center gap-3 mb-3 text-xs text-neutral-400">
                       <span>{post.date}</span>
                       <span>·</span>
                       <span>{post.readTime}</span>
                     </div>
-                    <h3 className="font-display mb-2 text-lg leading-snug text-foreground">{post.title}</h3>
-                    <p className="line-clamp-2 text-sm text-muted-foreground">{post.excerpt}</p>
+                    <h3 className="font-display mb-2 text-lg leading-snug text-neutral-900 transition-colors group-hover:text-neutral-900">
+                      {post.title}
+                    </h3>
+                    <p className="text-sm text-neutral-500 line-clamp-2">{post.excerpt}</p>
+                    <div className="flex items-center gap-1 mt-4 text-xs text-[var(--accent)] group-hover:gap-2 transition-all">
+                      Read article
+                      <ArrowUpRight size={12} />
+                    </div>
                   </div>
                 </motion.article>
               </Link>

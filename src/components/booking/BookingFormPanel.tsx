@@ -179,8 +179,8 @@ export default function BookingFormPanel() {
   if (submitted) {
     return (
       <div className="text-center">
-        <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50">
-          <Check className="h-7 w-7 text-emerald-700" />
+        <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-premium/10">
+          <Check className="h-7 w-7 text-premium" />
         </div>
         <h2 id="booking-drawer-title" className="mb-2 text-2xl font-bold text-neutral-900">
           You&apos;re booked
@@ -276,7 +276,7 @@ export default function BookingFormPanel() {
                   }}
                   className={`rounded-lg border p-2.5 text-center text-xs transition-colors ${
                     selectedDate === date
-                      ? "border-neutral-900 bg-neutral-900 text-white"
+                      ? "border-premium bg-premium text-white"
                       : "border-neutral-200 bg-white text-neutral-700 hover:border-neutral-300"
                   }`}
                 >
@@ -305,7 +305,7 @@ export default function BookingFormPanel() {
                   onClick={() => setSelectedSlotStart(slot.start)}
                   className={`rounded-lg border p-2.5 text-center text-xs transition-colors ${
                     selectedSlotStart === slot.start
-                      ? "border-neutral-900 bg-neutral-900 text-white"
+                      ? "border-premium bg-premium text-white"
                       : "border-neutral-200 bg-white text-neutral-700 hover:border-neutral-300"
                   }`}
                 >
@@ -322,7 +322,7 @@ export default function BookingFormPanel() {
           type="button"
           onClick={() => void handleBooking()}
           disabled={booking || !selectedSlotStart || !formData.name.trim() || !formData.email.trim()}
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-neutral-900 py-3 px-4 text-sm font-semibold text-white transition-colors hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex w-full items-center justify-center gap-2 rounded-lg bg-premium py-3 px-4 text-sm font-semibold text-white transition-colors hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {booking ? (
             <>

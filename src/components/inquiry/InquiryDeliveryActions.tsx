@@ -38,7 +38,7 @@ export default function InquiryDeliveryActions({ whatsAppUrl, emailDelivered }: 
           href={whatsAppUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-6 py-[0.7rem] text-[13px] font-semibold text-white shadow-[0_16px_40px_-22px_rgba(5,118,71,1)] transition-colors hover:bg-emerald-700"
+          className="inline-flex items-center justify-center gap-2 rounded-full bg-premium px-6 py-[0.7rem] text-[13px] font-semibold text-white shadow-[0_16px_40px_-22px_rgba(5,118,71,1)] transition-colors hover:bg-emerald-700"
         >
           <MessageCircle size={17} aria-hidden strokeWidth={2} />
           Send via WhatsApp
@@ -53,7 +53,7 @@ export default function InquiryDeliveryActions({ whatsAppUrl, emailDelivered }: 
         <a
           href={`tel:${siteConfig.phone.tel}`}
           className="inline-flex items-center justify-center gap-2 rounded-full border border-black/12 bg-transparent px-6 py-[0.65rem] text-[13px] font-semibold text-neutral-800 hover:border-black/25"
-          aria-label="Call Netiva"
+          aria-label="Call Netiva studio"
         >
           Call <span className="font-mono">{siteConfig.phone.display}</span>
         </a>

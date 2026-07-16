@@ -6,7 +6,7 @@ import { siteConfig } from "@/data";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "How Netiva collects, uses, and protects personal data when you browse the site, enquire about services, or work with me on a project.",
+    "How Netiva collects, uses, and protects personal data when you browse our sites, enquire about services, or work with our studio.",
 };
 
 const LAST_UPDATED_ISO = "2026-05-03";
@@ -216,7 +216,7 @@ export default function PrivacyPage() {
         <li>Ireland: Data Protection Commission (EU lead interactions often coordinated through Irish hub entities).</li>
       </ul>
       <p>
-        Primary contact stays{" "}
+        Primary studio contact stays{" "}
         <a href={`mailto:${email}`} className="font-semibold underline underline-offset-2">
           {email}
         </a>

@@ -294,7 +294,7 @@ export default function Navbar() {
                   setMobileOpen(false);
                   openContact();
                 }}
-                className="mt-2 rounded-full bg-neutral-900 px-8 py-3 text-base font-semibold text-white"
+                className="mt-2 rounded-full bg-premium px-8 py-3 text-base font-semibold text-white"
               >
                 Drop us a signal
               </motion.button>
