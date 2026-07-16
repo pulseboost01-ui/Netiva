@@ -191,7 +191,9 @@ export default function ServicesPage() {
         </FadeIn>
       </div>
 
-      <FAQSection />
+      <div className="max-w-6xl mx-auto">
+        <FAQSection />
+      </div>
     </div>
   );
 }
