@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { projects } from "@/data";
+import { projects, siteConfig } from "@/data";
 import { useContactDrawer } from "@/components/contact/ContactDrawerContext";
 
 const easeOut = [0.16, 1, 0.3, 1] as const;
@@ -96,11 +96,20 @@ export default function HeroSection() {
             ))}
           </h1>
 
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: easeOut }}
+            className="mt-6 max-w-md text-base leading-relaxed text-neutral-600"
+          >
+            {siteConfig.description}
+          </motion.p>
+
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: easeOut }}
-            className="mt-10 flex flex-wrap items-center gap-3"
+            transition={{ duration: 0.6, delay: 0.45, ease: easeOut }}
+            className="mt-8 flex flex-wrap items-center gap-3"
           >
             <Link
               href="/work"
