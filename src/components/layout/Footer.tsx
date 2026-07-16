@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { siteConfig, navLinks, agencyPhases, isContactDrawerLink } from "@/data";
+import { siteConfig, navLinks, agencyPhases, companyInfo, isContactDrawerLink } from "@/data";
 import { useContactDrawer, useQuoteDrawer } from "@/components/contact/ContactDrawerContext";
 import { Linkedin, ArrowUpRight, X } from "lucide-react";
 
@@ -17,7 +17,7 @@ export default function Footer() {
   const { open: openQuote } = useQuoteDrawer();
 
   return (
-    <footer id="contact-strip" className="border-t border-black/8 bg-[var(--muted)]">
+    <footer id="contact-strip" className="border-t border-black/8 bg-[var(--muted)] print:hidden">
       <div className="border-b border-black/8">
         <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-6 py-12 md:flex-row md:items-end md:gap-10 md:py-16 md:px-10">
           <div>
@@ -118,17 +118,27 @@ export default function Footer() {
           {agencyPhases.join(" · ")}
         </p>
 
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-black/8 pt-6 md:flex-row">
-          <div className="flex flex-col items-center gap-3 md:flex-row md:items-center md:gap-6">
+        <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-black/8 pt-6 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-400">
+          <Link href="/team" className="hover:text-neutral-900">
+            Team
+          </Link>
+          <Link href="/capability-statement" className="hover:text-neutral-900">
+            Capability Statement
+          </Link>
+          <Link href="/company" className="hover:text-neutral-900">
+            Company & Legal
+          </Link>
+        </div>
+
+        <div className="mt-6 flex flex-col items-center justify-between gap-4 border-t border-black/8 pt-6 md:flex-row">
+          <div className="flex flex-col items-center gap-1 text-center md:items-start md:text-left">
             <p className="text-xs text-neutral-500">
               © {new Date().getFullYear()} {siteConfig.legalName ?? siteConfig.name}. All rights reserved.
             </p>
-            
+            <p className="text-[11px] text-neutral-400">
+              {companyInfo.jurisdiction} · {companyInfo.registrationStatus}
+            </p>
           </div>
-          {/* <div className="flex items-center gap-1 text-xs text-neutral-500">
-            <span className="w-1.5 h-1.5 rounded-full bg-premium animate-pulse" />
-            <span>{siteConfig.availability}</span>
-          </div> */}
         <nav className="flex items-center gap-4 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-400">
               <Link href={siteConfig.privacyPolicyHref} className="hover:text-neutral-900">
                 Privacy

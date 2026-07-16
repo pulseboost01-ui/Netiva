@@ -12,7 +12,7 @@ export default function SpeakToMeBar() {
 
   return (
     <div
-      className="fixed bottom-5 left-1/2 z-[45] w-[min(calc(100vw-1rem),34rem)] -translate-x-1/2 px-3 md:bottom-7"
+      className="fixed bottom-5 left-1/2 z-[45] w-[min(calc(100vw-1rem),34rem)] -translate-x-1/2 px-3 print:hidden md:bottom-7"
       aria-label="Contact shortcuts"
     >
       <div className="flex items-center justify-between gap-4 rounded-[14px] border border-white/50 bg-white/80 px-3 py-2.5 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.18)] backdrop-blur-xl md:px-4 md:py-3">

@@ -3,6 +3,7 @@ import WorkCategoriesSection from "@/components/sections/WorkCategoriesSection";
 import FeaturedQuoteSection from "@/components/sections/FeaturedQuoteSection";
 import AboutSection from "@/components/sections/AboutSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
+import ClientTestimonialsSection from "@/components/sections/ClientTestimonialsSection";
 import FAQSection from "@/components/sections/FAQSection";
 import BlogSection from "@/components/sections/BlogSection";
 
@@ -15,6 +16,7 @@ export default function HomeLanding() {
         <FeaturedQuoteSection />
         <AboutSection />
         <TestimonialsSection />
+        <ClientTestimonialsSection />
         <FAQSection />
         <BlogSection />
       </div>

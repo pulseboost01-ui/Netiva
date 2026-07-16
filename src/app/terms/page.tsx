@@ -34,7 +34,7 @@ export default function TermsPage() {
       <h2 id="accept">1. Agreement & incorporation</h2>
       <p>
         Accessing pages on domains Netiva publishes for marketing—including hostnames aligning with{' '}
-        <strong>{email.split('@')[1] ?? 'netiva.studio'}</strong>—ticking acceptance boxes digitally, exchanging countersigned
+        <strong>{email.split('@')[1] ?? 'netiva.tech'}</strong>—ticking acceptance boxes digitally, exchanging countersigned
         PDFs/eIDAS equivalents, verbally confirming recorded
         minutes attached to quotations, manifests assent—even if ancillary appendices iterate later—to these Terms &
         contemporaneous artefacts (quotes, onboarding docs, annexes labelled &ldquo;Incorporated by reference&rdquo;).

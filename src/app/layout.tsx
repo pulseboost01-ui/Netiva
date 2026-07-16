@@ -11,8 +11,10 @@ import { ContactDrawerProvider } from "@/components/contact/ContactDrawerContext
 import ContactDrawer from "@/components/contact/ContactDrawer";
 import QuoteDrawer from "@/components/quote/QuoteDrawer";
 import BookingDrawer from "@/components/booking/BookingDrawer";
+import { siteConfig } from "@/data";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://netiva.tech"),
   title: {
     default: "Netiva — Web Design & Engineering Studio",
     template: "%s | Netiva",
@@ -25,12 +27,16 @@ export const metadata: Metadata = {
     "brand design agency",
     "headless CMS",
     "UX research",
+    "payments integration Uganda",
     "Netiva",
   ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://netiva.studio",
+    url: "https://netiva.tech",
     siteName: "Netiva",
     title: "Netiva — Web Design & Engineering Studio",
     description:
@@ -51,6 +57,31 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: siteConfig.name,
+  legalName: siteConfig.legalName ?? siteConfig.name,
+  url: "https://netiva.tech",
+  email: siteConfig.email,
+  telephone: siteConfig.phone.tel,
+  description: siteConfig.description,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Kampala",
+    addressCountry: "UG",
+  },
+  sameAs: Object.values(siteConfig.socials),
+  areaServed: "Worldwide",
+  knowsAbout: [
+    "Web application development",
+    "Brand design",
+    "UI/UX design",
+    "Headless CMS architecture",
+    "Payments and financial integrations",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -59,6 +90,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${dmSans.className} ${dmSans.variable} antialiased`}>
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <ContactDrawerProvider>
           <SmoothScroll />
           <CustomCursor />

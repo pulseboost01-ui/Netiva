@@ -212,3 +212,12 @@ img {
 .prose-custom li {
   margin-bottom: 0.5rem;
 }
+
+@media print {
+  body {
+    background: #ffffff;
+  }
+  main {
+    padding-bottom: 0 !important;
+  }
+}

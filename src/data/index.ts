@@ -78,8 +78,36 @@ export function isBookingDrawerLink(link: NavLinkItem): link is NavLinkItem & { 
   return "drawer" in link && link.drawer === "booking";
 }
 
+export type ProjectTestimonial = {
+  quote: string;
+  name: string;
+  role: string;
+  company: string;
+} | null;
+
 /** Real Netiva client work, shown in build/launch order. */
-export const projects = [
+export const projects: {
+  id: string;
+  title: string;
+  subtitle: string;
+  category: string;
+  year: string;
+  status: "ongoing" | "completed";
+  description: string;
+  tags: string[];
+  image: string;
+  color: string;
+  accent: string;
+  featured: boolean;
+  client: string;
+  duration: string;
+  services: string[];
+  outcome: string;
+  liveUrl: string;
+  caseStudy: { challenge: string; approach: string; result: string };
+  outcomes: { label: string; value: string }[];
+  testimonial: ProjectTestimonial;
+}[] = [
   {
     id: "venstela",
     title: "Venstela",
@@ -99,6 +127,21 @@ export const projects = [
     services: ["Product Design", "Web App", "Next.js", "Ongoing Development"],
     outcome: "Live marketplace",
     liveUrl: "https://venstela.com",
+    caseStudy: {
+      challenge:
+        "Event planners were juggling vendor discovery, quotes, and payment across chat threads and manual invoices—with no reliable way to verify who they were paying or hold funds safely until a booking was actually fulfilled.",
+      approach:
+        "We designed and built a marketplace with verified vendor onboarding, transparent listings, and secure, escrow-backed bookings, so payment only releases once both sides confirm delivery. Netiva remains the team building and maintaining the platform today.",
+      result:
+        "Venstela is live in production as an ongoing marketplace, with Netiva continuing to ship new vendor, booking, and payments features.",
+    },
+    outcomes: [
+      { label: "Payments", value: "Escrow-backed booking flow" },
+      { label: "Trust & safety", value: "Verified vendor onboarding" },
+      { label: "Status", value: "Live & in ongoing development" },
+      { label: "Commerce model", value: "Transparent, upfront pricing" },
+    ],
+    testimonial: null,
   },
   {
     id: "draqla",
@@ -119,6 +162,20 @@ export const projects = [
     services: ["Product Design", "Web App", "Streaming Infrastructure"],
     outcome: "Streaming platform",
     liveUrl: "https://draqla.up.railway.app",
+    caseStudy: {
+      challenge:
+        "Streaming platforms serving East African audiences have to perform well on inconsistent mobile connections while still feeling like a global-grade product—most off-the-shelf solutions weren't built for that trade-off.",
+      approach:
+        "We built a fast-loading catalog and playback experience covering movies, series, live TV, and VJ-hosted original content, tuned for East African network conditions, and shipped it to production.",
+      result: "Draqla is live and streaming to real users today.",
+    },
+    outcomes: [
+      { label: "Performance", value: "Tuned for East African network conditions" },
+      { label: "Catalog", value: "Movies, series, live TV & VJ-hosted originals" },
+      { label: "Status", value: "Live in production" },
+      { label: "Experience", value: "Fast-loading browsing & playback" },
+    ],
+    testimonial: null,
   },
   {
     id: "school-management-system",
@@ -139,6 +196,20 @@ export const projects = [
     services: ["Product Design", "Web App", "Role-based Access", "Ongoing Development"],
     outcome: "School management platform",
     liveUrl: "https://edtech.netiva.tech",
+    caseStudy: {
+      challenge:
+        "The school needed one system that four very different roles—parents, teachers, secretaries, and admins—could all trust for records, attendance, and communication, replacing a patchwork of spreadsheets and paper.",
+      approach:
+        "We designed a role-based platform with dedicated permissions and workflows for each user type, then shipped it into a live school environment. Netiva continues to maintain and extend it as the school's needs grow.",
+      result: "The system is live and in daily use at a real school, with Netiva actively extending it.",
+    },
+    outcomes: [
+      { label: "Access control", value: "Role-based access for 4 user types" },
+      { label: "Coverage", value: "Records, attendance & communication in one system" },
+      { label: "Status", value: "Live & in daily use at a real school" },
+      { label: "Development", value: "Actively maintained & extended" },
+    ],
+    testimonial: null,
   },
   {
     id: "whispers-of-antidote",
@@ -159,8 +230,24 @@ export const projects = [
     services: ["Web Design", "Booking System", "Content"],
     outcome: "Counseling practice site",
     liveUrl: "https://whispersofantidote.com",
+    caseStudy: {
+      challenge:
+        "A counseling practice needed a web presence that felt as calm and trustworthy as the therapy itself, with straightforward booking and resources for people who may already be in a vulnerable place.",
+      approach:
+        "We designed and built a calming, professional site end to end—covering booking, case studies, and client resources for therapy, trauma support, and relationship guidance.",
+      result: "The site is live and in active use as the practice's primary booking and information channel.",
+    },
+    outcomes: [
+      { label: "Design tone", value: "Calm, trust-first visual design" },
+      { label: "Booking", value: "Integrated booking system" },
+      { label: "Content", value: "Case studies & client resources" },
+      { label: "Status", value: "Live & in active use" },
+    ],
+    testimonial: null,
   },
 ];
+
+export type ProjectItem = (typeof projects)[number];
 
 export const agencyPhases = [
   "Strategy",
@@ -298,7 +385,31 @@ export const services = [
     icon: "Database",
     popular: false,
   },
+  {
+    id: "payments-integrations",
+    title: "Payments & Financial Integrations",
+    description:
+      "Production-grade money movement for African markets—mobile money, cards, and escrow logic that reconciles cleanly and survives audits.",
+    features: [
+      "PawaPay, Flutterwave & MTN MoMo integration",
+      "Escrow & split-payment logic",
+      "KYC & verification flows",
+      "Mobile money reconciliation",
+      "Webhook-driven transaction states",
+    ],
+    icon: "Landmark",
+    popular: false,
+  },
 ];
+
+/** General-practices statement, not a formal certification. Flag any claim here that should be backed by a real security policy doc. */
+export const securityStatement = {
+  heading: "Security & data handling",
+  body:
+    "We handle client and payment data on a least-privilege basis: secrets stay in environment variables and secret managers (never in source control), production access is scoped per engagement, and payment flows are built against the provider's own PCI-compliant infrastructure rather than storing card data ourselves. Every integration is reviewed for webhook signature verification and idempotent transaction handling before it ships.",
+  disclaimer:
+    "This is a description of our current working practices, not a formal security certification.",
+};
 
 export const faqs = [
   {
@@ -501,6 +612,7 @@ export const quoteServices = [
   { id: "ui-ux", label: "UI / UX" },
   { id: "web-dev", label: "Web Development" },
   { id: "cms-architecture", label: "CMS & Architecture" },
+  { id: "payments-integrations", label: "Payments & Financial Integrations" },
   { id: "retainer", label: "Monthly partnership" },
   { id: "other", label: "Something custom" },
 ];
@@ -512,3 +624,106 @@ export const budgetRanges = [
   { id: "10k-20k", label: "$10,000 – $20,000" },
   { id: "20k-plus", label: "$20,000+" },
 ];
+
+/**
+ * Legal/compliance facts for procurement & vendor-vetting review. Fields not yet confirmed use
+ * honest "available on request" copy rather than bracketed placeholders — see CONTENT_TODO.md
+ * for what still needs to be filled in and where.
+ */
+export const PENDING_LEGAL_FIELD = "Available on request";
+
+export const companyInfo = {
+  legalName: siteConfig.legalName ?? siteConfig.name,
+  tradingAs: siteConfig.name,
+  registrationStatus: PENDING_LEGAL_FIELD,
+  registrationNumber: PENDING_LEGAL_FIELD,
+  tin: PENDING_LEGAL_FIELD,
+  certificateOfGoodStanding: PENDING_LEGAL_FIELD,
+  registeredAddress: PENDING_LEGAL_FIELD,
+  jurisdiction: "Uganda",
+  contactEmail: siteConfig.email,
+  contactPhone: siteConfig.phone.display,
+} as const;
+
+/**
+ * Core team. Roles and bios are real; names are withheld (not fabricated) until each person
+ * signs off on being named publicly — see CONTENT_TODO.md. `name: null` means the page shows
+ * the role only, with no placeholder text.
+ */
+export const teamMembers: {
+  id: string;
+  name: string | null;
+  role: string;
+  bio: string;
+  photoPlaceholder: boolean;
+}[] = [
+  {
+    id: "founder",
+    name: null,
+    role: "Founder & Full-Stack Engineer",
+    bio: "Leads engineering and client delivery across every Netiva engagement — from architecture decisions to production payments integrations.",
+    photoPlaceholder: true,
+  },
+  {
+    id: "backend-lead",
+    name: null,
+    role: "Lead Backend Engineer",
+    bio: "Owns API design, data modeling, and the infrastructure behind ongoing platforms like Venstela and the school management system.",
+    photoPlaceholder: true,
+  },
+  {
+    id: "product-designer",
+    name: null,
+    role: "Product & UI Designer",
+    bio: "Drives research, UX flows, and visual systems from discovery through high-fidelity handoff.",
+    photoPlaceholder: true,
+  },
+  {
+    id: "frontend-engineer",
+    name: null,
+    role: "Frontend Engineer",
+    bio: "Builds and maintains the interfaces and design systems that ship on Next.js and React.",
+    photoPlaceholder: true,
+  },
+] as const;
+
+/** /capability-statement content. Quantified outcomes are placeholder-tagged until real numbers are supplied. */
+export const capabilityStatement = {
+  legalName: siteConfig.legalName ?? siteConfig.name,
+  teamSize: "3–5 person core team",
+  foundedContext: "Full-service digital studio operating out of Kampala, Uganda, working with clients globally.",
+  techStack: [
+    "Next.js / React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Node.js",
+    "Headless CMS platforms",
+    "PawaPay / Flutterwave / MTN MoMo",
+  ],
+  sectorExperience: [
+    { sector: "Marketplaces & escrow commerce", detail: "Vendor onboarding, bookings, and escrow-backed payments (Venstela)." },
+    { sector: "EdTech", detail: "Role-based school management software live in daily use (School Management System)." },
+    { sector: "Fintech & payments", detail: "Production integrations with PawaPay, Flutterwave, and MTN MoMo covering KYC and reconciliation." },
+    { sector: "Media & streaming", detail: "Playback and catalog infrastructure tuned for East African network conditions (Draqla)." },
+  ],
+  /** Derived from `projects` below rather than hardcoded, so it stays accurate as the portfolio grows. */
+  quantifiedOutcomes: [
+    { label: "Live production platforms shipped & maintained", value: String(projects.length) },
+    { label: "Payments infrastructure", value: "PawaPay, Flutterwave & MTN MoMo in production" },
+    { label: "Engagement range", value: "8-week fixed launches to ongoing multi-year platforms" },
+  ],
+} as const;
+
+/**
+ * Homepage social-proof quotes. Empty until real client testimonials are collected — see
+ * CONTENT_TODO.md. ClientTestimonialsSection hides itself entirely when this is empty rather
+ * than rendering placeholder quotes; add real entries here (id, quote, name, role, company) to
+ * bring the section back.
+ */
+export const clientTestimonials: {
+  id: string;
+  quote: string;
+  name: string;
+  role: string;
+  company: string;
+}[] = [];
