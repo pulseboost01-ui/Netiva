@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Layers, Pen, Code2, Database, Landmark, Check, ShieldCheck, type LucideProps } from "lucide-react";
-import { services, securityStatement } from "@/data";
+import Link from "next/link";
+import { ArrowUpRight, Layers, Pen, Code2, Database, Landmark, Check, ShieldCheck, Globe2, type LucideProps } from "lucide-react";
+import { services, securityStatement, internationalEngagement } from "@/data";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/ui/FadeIn";
 import FAQSection from "@/components/sections/FAQSection";
 import { useContactDrawer, useQuoteDrawer } from "@/components/contact/ContactDrawerContext";
@@ -141,6 +142,56 @@ export default function ServicesPageClient() {
               <h2 className="text-xl text-neutral-900 mb-2 font-display">{securityStatement.heading}</h2>
               <p className="text-sm text-neutral-600 leading-relaxed mb-3">{securityStatement.body}</p>
               <p className="text-xs text-neutral-400 leading-relaxed">{securityStatement.disclaimer}</p>
+            </div>
+          </div>
+        </FadeIn>
+
+        {/* Working with international clients */}
+        <FadeIn className="mb-14">
+          <div className="p-7 md:p-8 rounded-2xl border border-black/5 bg-[var(--card)] flex flex-col md:flex-row gap-5">
+            <div className="w-11 h-11 shrink-0 rounded-xl bg-black/5 flex items-center justify-center">
+              <Globe2 size={20} className="text-neutral-600" />
+            </div>
+            <div className="flex-1">
+              <h2 className="text-xl text-neutral-900 mb-2 font-display">{internationalEngagement.heading}</h2>
+              <p className="text-sm text-neutral-600 leading-relaxed mb-5">{internationalEngagement.body}</p>
+
+              <div className="grid gap-6 sm:grid-cols-2">
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-neutral-400 font-semibold mb-2.5">
+                    Payment rails
+                  </p>
+                  <ul className="space-y-1.5">
+                    {internationalEngagement.paymentRails.map((rail) => (
+                      <li key={rail} className="flex items-start gap-2 text-sm text-neutral-600">
+                        <Check size={14} className="mt-0.5 flex-shrink-0 text-neutral-400" />
+                        {rail}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-neutral-400 font-semibold mb-2.5">
+                    Remote delivery
+                  </p>
+                  <ul className="space-y-1.5">
+                    {internationalEngagement.delivery.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-sm text-neutral-600">
+                        <Check size={14} className="mt-0.5 flex-shrink-0 text-neutral-400" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <p className="mt-5 text-sm text-neutral-600 leading-relaxed">
+                {internationalEngagement.contracting}{" "}
+                <Link href="/terms" className="font-medium underline decoration-black/25 underline-offset-2 hover:text-neutral-900">
+                  Read the Terms of Service
+                </Link>
+                .
+              </p>
             </div>
           </div>
         </FadeIn>

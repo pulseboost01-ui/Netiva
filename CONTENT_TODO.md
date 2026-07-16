@@ -94,6 +94,23 @@ than 3 real testimonials are available, trim the array rather than shipping plac
   `siteConfig` (name, email, phone, location, social links) — no registration numbers or claims
   requiring verification were added to structured data.
 
+## 7. Discoverability (external actions, no code involved)
+
+- Claim/complete a Netiva profile on **Clutch** and **GoodFirms**, and set up a **LinkedIn Company
+  Page** — these are primary channels international/enterprise buyers use to vet vendors, and they
+  compound credibility independently of the website.
+- Once 2-3 consented client testimonials exist (see section 3/4 above), ask those clients to also
+  leave a review on one of the platforms above — third-party-hosted reviews outweigh on-site quotes.
+- Once real testimonials and metrics are in place, the site is a legitimate submission candidate for
+  design award platforms (Awwwards, CSS Design Awards, regional African design awards). Submit, and
+  only add an award badge to the site after actually winning/being listed — never preemptively.
+- If a formal, lawyer-drafted Master Service Agreement template (distinct from the on-site Terms of
+  Service at `/terms`) is wanted for larger procurement processes, have that drafted and referenced
+  from `src/data/index.ts` (`internationalEngagement.contracting`,
+  `src/components/services/ServicesPageClient.tsx`) — the current copy honestly points to the
+  existing Terms of Service as the operative contract rather than claiming a separate document
+  exists.
+
 ## Legal entity / registration status — do not change without explicit instruction
 
 Netiva's URSB business registration is in **Draft/Pending** status. Per explicit user

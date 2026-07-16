@@ -411,6 +411,25 @@ export const securityStatement = {
     "This is a description of our current working practices, not a formal security certification.",
 };
 
+/** International/remote engagement logistics — payment rails, delivery cadence, contracting. */
+export const internationalEngagement = {
+  heading: "Working with international clients",
+  body:
+    "Most of our engagements are remote and async-by-default, so distance and time zones aren't a blocker to working with us.",
+  paymentRails: [
+    "USDT / crypto",
+    "USD via Wise, Payoneer, or bank wire",
+    "Standard invoicing (NET terms by agreement)",
+  ],
+  delivery: [
+    "4+ hour overlap with US/EU/UK business hours by default",
+    "Async updates via written status reports, with live calls for key milestones",
+    "Same-business-day response commitment on active engagements",
+  ],
+  contracting:
+    "Every engagement runs under our Terms of Service — the same contractual framework covering scope, IP assignment, confidentiality, and payment terms that a customised master agreement would. An NDA is available on request before any discovery call — just ask.",
+};
+
 export const faqs = [
   {
     question: "How long does a typical project take to complete?",
@@ -435,7 +454,7 @@ export const faqs = [
   {
     question: "How do you handle confidentiality and intellectual property rights?",
     answer:
-      "I take confidentiality seriously. All client information and project details are kept strictly confidential. Upon project completion, you'll own full intellectual property rights to the final designs.",
+      "I take confidentiality seriously. All client information and project details are kept strictly confidential, and an NDA is available on request before we even get on a discovery call. Every engagement runs on a written contract covering scope and payment terms, and upon project completion you own full intellectual property rights to the final work.",
   },
 ];
 

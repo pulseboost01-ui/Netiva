@@ -15,7 +15,7 @@ export default function FAQSection() {
         <div className="grid gap-10 md:grid-cols-2 md:gap-14">
           <FadeIn>
             <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.42em] text-neutral-400">
-              FAQ · 009
+              FAQ
             </p>
             <h2 className="mt-4 text-4xl font-semibold leading-[1.02] tracking-tight text-neutral-900 md:text-[2.85rem]">
               Operating manual
