@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Netiva",
-  legalName: "Netiva Studio Ltd.",
+  legalName: "Netiva",
   title: "Premier Web Design & Development",
   /** Short line beside nav logo (agency meta). */
   tagline: "Digital systems that provoke, perform, and persuade.",
