@@ -9,7 +9,6 @@ import {
   agencyPhases,
   agencyPrinciples,
   siteConfig,
-  stats,
 } from "@/data";
 import { FadeIn } from "@/components/ui/FadeIn";
 
@@ -107,7 +106,7 @@ export default function AboutSection() {
             </FadeIn>
           </div>
 
-          <FadeIn delay={0.1} className="relative pt-8">
+          <FadeIn delay={0.1}>
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
               <Image
                 src="https://images.unsplash.com/photo-1705909770198-7e83c24e1616?w=1000&q=80"
@@ -116,17 +115,6 @@ export default function AboutSection() {
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
-            </div>
-            <div className="absolute left-6 top-0 flex items-center gap-6 rounded-2xl bg-[var(--accent)] px-6 py-5 shadow-xl md:left-8 md:px-8 md:py-6">
-              <div>
-                <p className="text-3xl font-bold leading-none text-black md:text-4xl">{stats[0].value}</p>
-                <p className="mt-1.5 text-[11px] uppercase tracking-[0.14em] text-black/70">{stats[0].label}</p>
-              </div>
-              <div className="h-10 w-px bg-black/15" />
-              <div>
-                <p className="text-3xl font-bold leading-none text-black md:text-4xl">{stats[1].value}</p>
-                <p className="mt-1.5 text-[11px] uppercase tracking-[0.14em] text-black/70">{stats[1].label}</p>
-              </div>
             </div>
           </FadeIn>
         </div>

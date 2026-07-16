@@ -17,9 +17,6 @@ export const siteConfig = {
   /** Build label next to scroll cue (agency sites often version the deck). */
   // siteVersion: "V.2025.2",
   // availability: "Accepting selective projects • Q4 '25",
-  /** Optional portrait for contextual CTAs. */
-  avatar:
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&h=128&fit=crop&crop=faces&q=80",
   hero: {
     line1: "Digital",
     line2: "Alchemy.",

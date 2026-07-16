@@ -63,9 +63,6 @@ export default function Footer() {
             </div>
             <div className="flex flex-col">
               <span className="text-sm font-semibold text-neutral-900">{siteConfig.name}</span>
-              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-neutral-400">
-                {siteConfig.location}
-              </span>
             </div>
           </div>
 

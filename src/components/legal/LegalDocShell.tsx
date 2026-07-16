@@ -47,12 +47,6 @@ export default function LegalDocShell({
           <span className="font-medium text-neutral-700">{lastUpdatedDisplay}</span>
           {" · "}Operated by{" "}
           <span className="text-neutral-800">{siteConfig.legalName ?? siteConfig.name}</span>
-          {siteConfig.location ? (
-            <>
-              {" "}
-              (<span>{siteConfig.location}</span>)
-            </>
-          ) : null}
         </p>
         {summary ? <div className="mt-5 max-w-prose border-l-2 border-[var(--accent)]/55 pl-4 text-[15px] leading-relaxed text-neutral-700">{summary}</div> : null}
         <p className="mt-6 rounded-xl border border-black/8 bg-neutral-950/[0.02] px-4 py-3 text-[12px] leading-relaxed text-neutral-500">

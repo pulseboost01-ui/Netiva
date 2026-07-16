@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { projects, stats } from "@/data";
+import { projects } from "@/data";
 import { useContactDrawer } from "@/components/contact/ContactDrawerContext";
 
 const easeOut = [0.16, 1, 0.3, 1] as const;
@@ -27,7 +27,6 @@ function StackCard({
 }) {
   const style = SLOT_STYLE[slot]!;
   const isFront = slot === 0;
-  const heroStat = stats[0];
 
   return (
     <div
@@ -58,12 +57,9 @@ function StackCard({
             <p className="text-[11px] uppercase tracking-wider text-white/70">{project.category}</p>
             <p className="text-lg font-semibold text-white md:text-xl">{project.title}</p>
           </div>
-          <div className="rounded-xl bg-premium px-3 py-2 text-right text-white shadow-lg">
-            <span className="block text-xl font-bold leading-none md:text-2xl">{heroStat.value}</span>
-            <span className="block text-[9px] uppercase tracking-wider text-white/80">
-              {heroStat.label}
-            </span>
-          </div>
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-black shadow-lg">
+            <ArrowUpRight size={18} />
+          </span>
         </div>
       ) : (
         <span className="pointer-events-none absolute bottom-6 left-1/2 origin-left -translate-x-1/2 -rotate-90 whitespace-nowrap text-xs font-semibold uppercase tracking-[0.2em] text-white/85">
@@ -129,10 +125,6 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 0.2, ease: easeOut }}
           className="relative h-[380px] sm:h-[440px] md:h-[520px]"
         >
-          <div
-            aria-hidden
-            className="absolute inset-0 -z-10 translate-x-4 translate-y-4 rounded-[32px] bg-gradient-to-br from-premium to-[var(--accent)] opacity-90 md:translate-x-6 md:translate-y-6"
-          />
           {STACK.map((project, slot) => (
             <StackCard key={project.id} project={project} slot={slot} />
           ))}

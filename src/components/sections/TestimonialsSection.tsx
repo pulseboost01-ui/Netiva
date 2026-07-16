@@ -1,13 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { Quote, ArrowUpRight } from "lucide-react";
 import { projects } from "@/data";
 import { FadeIn } from "@/components/ui/FadeIn";
 
 const easeOut = [0.16, 1, 0.3, 1] as const;
+
+/** Netiva's own account of each engagement — not customer quotes, since we won't fabricate those. */
+const spotlights: Record<string, string> = {
+  venstela:
+    "Venstela came to us needing a marketplace that could handle verified vendors, venues, and bookings without falling apart under real usage. We're still the team behind it today.",
+  draqla:
+    "Draqla needed a streaming experience fast enough for East African connections and slick enough to compete with global platforms. We shipped it and it's live.",
+  "school-management-system":
+    "A school needed one system four different roles could trust—parents, teachers, secretaries, admins. We built it, and we're still extending it as their needs grow.",
+  "whispers-of-antidote":
+    "A counseling practice needed a site as calm and trustworthy as the work itself. We designed and built it end to end.",
+};
 
 export default function TestimonialsSection() {
   return (
@@ -32,40 +43,25 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: i * 0.06, ease: easeOut }}
+              className="flex h-full flex-col rounded-2xl border border-black/5 bg-[var(--card)] p-6"
             >
-              <Link
-                href={`/work/${project.id}`}
-                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-black/5 bg-[var(--card)]"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                    sizes="(max-width: 768px) 100vw, 25vw"
-                  />
+              <Quote size={20} className="text-premium" />
+              <p className="mt-4 flex-1 text-[15px] leading-relaxed text-neutral-700">
+                {spotlights[project.id]}
+              </p>
+              <div className="mt-6 flex items-center justify-between gap-2 border-t border-black/5 pt-4">
+                <div>
+                  <p className="text-sm font-semibold text-neutral-900">{project.title}</p>
+                  <p className="text-xs text-neutral-500">Netiva, on {project.title}</p>
                 </div>
-                <div className="flex flex-1 flex-col gap-2 p-5">
-                  <div className="flex items-center justify-between gap-2">
-                    <p className="text-[11px] uppercase tracking-wider text-neutral-400">{project.category}</p>
-                    {project.status === "ongoing" ? (
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-premium/10 px-2 py-0.5 text-[10px] font-semibold text-premium">
-                        <span className="h-1.5 w-1.5 rounded-full bg-premium" />
-                        Ongoing
-                      </span>
-                    ) : null}
-                  </div>
-                  <p className="text-base font-semibold text-neutral-900">{project.title}</p>
-                  <p className="mt-auto flex items-center gap-1.5 text-sm text-neutral-500">
-                    {project.outcome}
-                    <ArrowUpRight
-                      size={13}
-                      className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    />
-                  </p>
-                </div>
-              </Link>
+                <Link
+                  href={`/work/${project.id}`}
+                  className="group flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/10 text-neutral-600 transition-colors hover:border-black/25 hover:text-neutral-900"
+                  aria-label={`View ${project.title} case study`}
+                >
+                  <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+              </div>
             </motion.div>
           ))}
         </div>

@@ -1,12 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Mail,
-  MapPin,
   Clock,
   Phone,
   Calendar,
@@ -482,7 +480,6 @@ export default function ContactFormPanel({ variant = "page" }: { variant?: Varia
               value: "View availability",
               onClick: () => openBooking(),
             },
-            { icon: MapPin, label: "Location", value: siteConfig.location, href: undefined },
             { icon: Clock, label: "Response time", value: "Within one business day", href: undefined },
           ].map(({ icon: Icon, label, value, href, onClick, external = false }) => (
             <div key={label} className="flex items-center gap-4">

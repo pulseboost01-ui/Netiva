@@ -23,7 +23,7 @@ export default function FAQSection() {
               <span className="text-neutral-400">translated.</span>
             </h2>
             <p className="mt-5 max-w-sm text-[14px] leading-relaxed text-neutral-600">
-              Need something sharper? Ping us—we usually reply same day Kampala · GMT+3 friendly.
+              Need something sharper? Ping us—we usually reply same business day.
             </p>
           </FadeIn>
 
