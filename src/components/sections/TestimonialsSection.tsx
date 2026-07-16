@@ -1,62 +1,18 @@
 "use client";
 
-import { motion, useAnimationFrame } from "framer-motion";
+import Link from "next/link";
 import Image from "next/image";
-import { Star } from "lucide-react";
-import { siteConfig, testimonials } from "@/data";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import { projects } from "@/data";
 import { FadeIn } from "@/components/ui/FadeIn";
-import { useRef, useState } from "react";
 
-function TestimonialCard({ testimonial }: { testimonial: (typeof testimonials)[0] }) {
-  return (
-    <div className="flex-shrink-0 w-[340px] md:w-[400px] p-6 rounded-2xl bg-[var(--card)] border border-black/5 mx-3">
-      <div className="flex items-center gap-1 mb-4">
-        {Array.from({ length: testimonial.rating }).map((_, i) => (
-          <Star key={i} size={12} className="fill-[var(--accent)] text-[var(--accent)]" />
-        ))}
-      </div>
-      <p className="text-sm text-neutral-600 leading-relaxed mb-5">&ldquo;{testimonial.quote}&rdquo;</p>
-      <div className="flex items-center gap-3 pt-4 border-t border-black/5">
-        <div className="relative w-9 h-9 rounded-full overflow-hidden flex-shrink-0">
-          <Image
-            src={testimonial.avatar}
-            alt={testimonial.name}
-            fill
-            className="object-cover"
-          />
-        </div>
-        <div>
-          <p className="text-sm font-medium text-neutral-900">{testimonial.name}</p>
-          <p className="text-xs text-neutral-500">
-            {testimonial.role}, {testimonial.company}
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
+const easeOut = [0.16, 1, 0.3, 1] as const;
 
 export default function TestimonialsSection() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [paused, setPaused] = useState(false);
-  const xRef = useRef(0);
-
-  const doubled = [...testimonials, ...testimonials];
-
-  useAnimationFrame((_, delta) => {
-    if (paused) return;
-    if (!trackRef.current) return;
-    xRef.current -= delta * 0.04;
-    const totalWidth = trackRef.current.scrollWidth / 2;
-    if (Math.abs(xRef.current) >= totalWidth) {
-      xRef.current = 0;
-    }
-    trackRef.current.style.transform = `translateX(${xRef.current}px)`;
-  });
-
   return (
-    <section className="overflow-hidden border-t border-black/6 py-14 md:py-20">
-      <div className="mb-10 w-full px-6 md:px-10">
+    <section className="border-t border-black/6 py-14 md:py-20">
+      <div className="w-full px-6 md:px-10">
         <FadeIn>
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.42em] text-neutral-400">
             Partner signals
@@ -66,25 +22,51 @@ export default function TestimonialsSection() {
             <br />
             <span className="text-neutral-400">not in the reel.</span>
           </h2>
-          <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.24em] text-neutral-400">
-            {siteConfig.socialProofLine}
-          </p>
         </FadeIn>
-      </div>
 
-      {/* Scrolling testimonials */}
-      <div
-        className="relative overflow-hidden"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        {/* Fade edges */}
-        <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-20 bg-gradient-to-r from-[var(--background)] to-transparent" />
-        <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-20 bg-gradient-to-l from-[var(--background)] to-transparent" />
-
-        <div ref={trackRef} className="flex will-change-transform">
-          {doubled.map((t, i) => (
-            <TestimonialCard key={`${t.id}-${i}`} testimonial={t} />
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {projects.map((project, i) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: i * 0.06, ease: easeOut }}
+            >
+              <Link
+                href={`/work/${project.id}`}
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-black/5 bg-[var(--card)]"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col gap-2 p-5">
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="text-[11px] uppercase tracking-wider text-neutral-400">{project.category}</p>
+                    {project.status === "ongoing" ? (
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-premium/10 px-2 py-0.5 text-[10px] font-semibold text-premium">
+                        <span className="h-1.5 w-1.5 rounded-full bg-premium" />
+                        Ongoing
+                      </span>
+                    ) : null}
+                  </div>
+                  <p className="text-base font-semibold text-neutral-900">{project.title}</p>
+                  <p className="mt-auto flex items-center gap-1.5 text-sm text-neutral-500">
+                    {project.outcome}
+                    <ArrowUpRight
+                      size={13}
+                      className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
+                  </p>
+                </div>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>

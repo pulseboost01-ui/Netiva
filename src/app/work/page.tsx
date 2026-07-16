@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,6 +12,14 @@ import { FadeIn, StaggerChildren, StaggerItem } from "@/components/ui/FadeIn";
 const categories = ["All", "Marketplace", "Streaming", "Education", "Wellness"];
 
 export default function WorkPage() {
+  return (
+    <Suspense fallback={null}>
+      <WorkPageContent />
+    </Suspense>
+  );
+}
+
+function WorkPageContent() {
   const searchParams = useSearchParams();
   const requestedCategory = searchParams.get("category");
   const matchedCategory = categories.find(

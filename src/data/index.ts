@@ -15,8 +15,8 @@ export const siteConfig = {
   },
   location: "Kampala — UG",
   /** Build label next to scroll cue (agency sites often version the deck). */
-  siteVersion: "V.2025.2",
-  availability: "Accepting selective projects • Q4 '25",
+  // siteVersion: "V.2025.2",
+  // availability: "Accepting selective projects • Q4 '25",
   /** Optional portrait for contextual CTAs. */
   avatar:
     "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&h=128&fit=crop&crop=faces&q=80",
@@ -46,9 +46,6 @@ export const siteConfig = {
   termsHref: "/terms",
 };
 
-/** Grayscale client marks in hero trust row. */
-export const trustedLogos = ["Stripe", "Vercel", "Linear", "Framer"];
-
 export type NavLinkItem =
   | { label: string; href: string }
   | { label: string; href: string; drawer: "contact" | "booking" };
@@ -58,7 +55,7 @@ export const navLinks: NavLinkItem[] = [
   { label: "Expertise", href: "/services" },
   { label: "Agency", href: "/#agency" },
   { label: "Blog", href: "/blog" },
-  { label: "Book a Call", href: "#", drawer: "booking" },
+  // { label: "Book a Call", href: "#", drawer: "booking" },
   { label: "Contact", href: "/contact", drawer: "contact" },
 ];
 
@@ -303,69 +300,6 @@ export const services = [
     features: ["Headless CMS selection", "Content modeling", "Preview + webhooks", "Docs for editors"],
     icon: "Database",
     popular: false,
-  },
-];
-
-export const testimonials = [
-  {
-    id: 1,
-    name: "Martina Martinez",
-    role: "Customer Manager",
-    company: "SupportEase",
-    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&q=80",
-    quote:
-      "The new UI halved inbound support tickets—we finally had clarity customers could self-serve.",
-    rating: 5,
-  },
-  {
-    id: 2,
-    name: "Thomas Weber",
-    role: "Co-founder",
-    company: "Marketplace Partner",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80",
-    quote:
-      "Netiva operates like an in-house frontier team—strategy, UX, and build quality stayed aligned.",
-    rating: 5,
-  },
-  {
-    id: 3,
-    name: "Ben Harper",
-    role: "CTO",
-    company: "Nexus",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80",
-    quote:
-      "Conversion improved materially after Netiva tightened our narrative and site architecture.",
-    rating: 5,
-  },
-  {
-    id: 4,
-    name: "Michael Wong",
-    role: "Data Scientist",
-    company: "DataSphere",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80",
-    quote:
-      "Their design systems thinking made dense analytics legible—the product finally feels humane.",
-    rating: 5,
-  },
-  {
-    id: 5,
-    name: "Natalie Rivera",
-    role: "Brand Manager",
-    company: "UnityBrands",
-    avatar: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&q=80",
-    quote:
-      "The repositioning sharpened everything from pitch decks to in-app—we sound like ourselves now.",
-    rating: 5,
-  },
-  {
-    id: 6,
-    name: "Emma Kraft",
-    role: "CMO",
-    company: "TechVista",
-    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&q=80",
-    quote:
-      "Engagement climbed double digits post-launch; the storytelling finally matches product reality.",
-    rating: 5,
   },
 ];
 

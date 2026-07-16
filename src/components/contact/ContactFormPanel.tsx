@@ -279,13 +279,9 @@ export default function ContactFormPanel({ variant = "page" }: { variant?: Varia
               </p>
 
               <div className="mt-8 flex items-center gap-3">
-                <Image
-                  src={siteConfig.avatar}
-                  alt=""
-                  width={48}
-                  height={48}
-                  className="shrink-0 rounded-full border border-neutral-200 object-cover"
-                />
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-[var(--accent)]">
+                  <span className="font-mono text-sm font-bold text-neutral-900">N</span>
+                </div>
                 <div className="min-w-0">
                   <p className="truncate text-[15px] font-semibold text-neutral-950">{siteConfig.name}</p>
                   <a

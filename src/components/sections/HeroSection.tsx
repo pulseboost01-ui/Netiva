@@ -78,15 +78,8 @@ export default function HeroSection() {
   const { openBooking } = useContactDrawer();
 
   return (
-    <section className="relative w-full overflow-hidden px-6 pb-16 pt-36 md:px-10 md:pb-24 md:pt-44">
-      {/* Ambient brand-color wash */}
-      <div className="pointer-events-none absolute inset-0" aria-hidden>
-        <div className="absolute -left-24 top-0 h-[420px] w-[420px] rounded-full bg-premium/[0.08] blur-[110px]" />
-        <div className="absolute -right-16 top-1/4 h-[380px] w-[380px] rounded-full bg-[var(--accent)]/[0.12] blur-[110px]" />
-        <div className="absolute left-1/3 bottom-0 h-3 w-3 rounded-full bg-premium/40 blur-[1px]" />
-      </div>
-
-      <div className="relative grid gap-12 md:grid-cols-2 md:items-center md:gap-10">
+    <section className="relative w-full px-6 pb-16 pt-36 md:px-10 md:pb-24 md:pt-44">
+      <div className="grid gap-12 md:grid-cols-2 md:items-center md:gap-10">
         <div>
           <h1 className="text-[clamp(2.75rem,6.5vw,5rem)] font-semibold leading-[0.98] tracking-tight">
             {[

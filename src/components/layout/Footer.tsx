@@ -40,7 +40,7 @@ export default function Footer() {
               onClick={() => openContact()}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="group flex w-full items-center justify-center gap-2 rounded-full border border-black/10 bg-premium px-8 py-3.5 text-[11px] font-semibold uppercase tracking-[0.32em] text-white transition-colors hover:bg-emerald-700 sm:w-auto"
+              className="group flex w-full items-center justify-center gap-2 rounded-full border border-black/10 bg-neutral-900 px-8 py-3.5 text-[11px] font-semibold uppercase tracking-[0.32em] text-white sm:w-auto"
             >
               Drop us a signal
               <ArrowUpRight size={15} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -126,7 +126,13 @@ export default function Footer() {
             <p className="text-xs text-neutral-500">
               © {new Date().getFullYear()} {siteConfig.legalName ?? siteConfig.name}. All rights reserved.
             </p>
-            <nav className="flex items-center gap-4 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-400">
+            
+          </div>
+          {/* <div className="flex items-center gap-1 text-xs text-neutral-500">
+            <span className="w-1.5 h-1.5 rounded-full bg-premium animate-pulse" />
+            <span>{siteConfig.availability}</span>
+          </div> */}
+        <nav className="flex items-center gap-4 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-400">
               <Link href={siteConfig.privacyPolicyHref} className="hover:text-neutral-900">
                 Privacy
               </Link>
@@ -134,12 +140,7 @@ export default function Footer() {
                 Terms
               </Link>
             </nav>
-          </div>
-          <div className="flex items-center gap-1 text-xs text-neutral-500">
-            <span className="w-1.5 h-1.5 rounded-full bg-premium animate-pulse" />
-            <span>{siteConfig.availability}</span>
-          </div>
-        </div>
+            </div>
       </div>
     </footer>
   );
