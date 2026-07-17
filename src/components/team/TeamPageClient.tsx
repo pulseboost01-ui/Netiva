@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowUpRight, User } from "lucide-react";
+import { ArrowUpRight, Linkedin, User } from "lucide-react";
 import { teamMembers } from "@/data";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/ui/FadeIn";
 import { useContactDrawer } from "@/components/contact/ContactDrawerContext";
@@ -24,26 +24,53 @@ export default function TeamPageClient() {
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.42em] text-neutral-400 mb-3">
             The team
           </p>
-          <h1 className="text-5xl md:text-7xl text-neutral-900 mb-14">
+          <h1 className="text-5xl md:text-7xl text-neutral-900 mb-6">
             Who you&apos;d
             <br />
             <em>actually work with.</em>
           </h1>
+          <p className="max-w-xl text-sm leading-relaxed text-neutral-500 mb-14">
+            We stay a small senior team on purpose — every engagement gets direct founder access
+            and hands-on senior work, not a rotating cast behind an account manager. Fewer
+            hand-offs, faster decisions, and nobody on the call who isn&apos;t actually building it.
+          </p>
         </FadeIn>
 
         <StaggerChildren className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {teamMembers.map((member) => (
             <StaggerItem key={member.id}>
               <div className="group relative h-full overflow-hidden rounded-2xl border border-black/8 bg-[var(--card)] p-6 md:p-7">
-                <div
-                  aria-hidden
-                  className="mb-5 flex h-16 w-16 items-center justify-center rounded-full border border-dashed border-black/15 bg-neutral-950/[0.02] text-neutral-300"
-                >
-                  <User size={26} />
+                <div className="mb-5 flex items-center justify-between">
+                  <div
+                    aria-hidden
+                    className="flex h-16 w-16 items-center justify-center rounded-full border border-dashed border-black/15 bg-neutral-950/[0.02] text-neutral-300"
+                  >
+                    <User size={26} />
+                  </div>
+                  {member.linkedin ? (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${member.name} on LinkedIn`}
+                      className="flex h-8 w-8 items-center justify-center rounded-full border border-black/10 text-neutral-400 transition-colors hover:border-black/25 hover:text-neutral-800"
+                    >
+                      <Linkedin size={14} />
+                    </a>
+                  ) : null}
                 </div>
                 <p className="text-lg font-semibold text-neutral-900 mb-1">{member.name}</p>
                 <p className="text-xs uppercase tracking-wider text-neutral-500 font-semibold mb-4">{member.role}</p>
                 <p className="text-sm text-neutral-600 leading-relaxed">{member.domain}</p>
+                {member.markers && member.markers.length > 0 ? (
+                  <ul className="mt-4 space-y-1.5 border-t border-black/5 pt-4">
+                    {member.markers.map((marker) => (
+                      <li key={marker} className="text-xs leading-relaxed text-neutral-500">
+                        {marker}
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
               </div>
             </StaggerItem>
           ))}

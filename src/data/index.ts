@@ -85,6 +85,17 @@ export type ProjectTestimonial = {
   company: string;
 } | null;
 
+/**
+ * Quantified stat tiles for case studies — distinct from the qualitative `outcomes` below.
+ * All four projects currently use `[METRIC_NEEDED]` placeholders pending real numbers; see
+ * CONTENT_TODO.md before replacing any of them.
+ */
+export type CaseStudyMetric = {
+  value: string;
+  label: string;
+  context?: string;
+};
+
 /** Real Netiva client work, shown in build/launch order. */
 export const projects: {
   id: string;
@@ -105,6 +116,7 @@ export const projects: {
   outcome: string;
   liveUrl: string;
   caseStudy: { challenge: string; approach: string; result: string };
+  metrics: CaseStudyMetric[];
   outcomes: { label: string; value: string }[];
   testimonial: ProjectTestimonial;
 }[] = [
@@ -135,6 +147,11 @@ export const projects: {
       result:
         "Venstela is live in production as an ongoing marketplace, with Netiva continuing to ship new vendor, booking, and payments features.",
     },
+    metrics: [
+      { value: "[METRIC_NEEDED]", label: "Verified vendors onboarded" },
+      { value: "[METRIC_NEEDED]", label: "Bookings processed" },
+      { value: "[METRIC_NEEDED]", label: "Platform uptime" },
+    ],
     outcomes: [
       { label: "Payments", value: "Escrow-backed booking flow" },
       { label: "Trust & safety", value: "Verified vendor onboarding" },
@@ -169,6 +186,11 @@ export const projects: {
         "We built a fast-loading catalog and playback experience covering movies, series, live TV, and VJ-hosted original content, tuned for East African network conditions, and shipped it to production.",
       result: "Draqla is live and streaming to real users today.",
     },
+    metrics: [
+      { value: "[METRIC_NEEDED]", label: "Median load time" },
+      { value: "[METRIC_NEEDED]", label: "Concurrent stream capacity" },
+      { value: "[METRIC_NEEDED]", label: "East Africa playback latency" },
+    ],
     outcomes: [
       { label: "Performance", value: "Tuned for East African network conditions" },
       { label: "Catalog", value: "Movies, series, live TV & VJ-hosted originals" },
@@ -203,6 +225,11 @@ export const projects: {
         "We designed a role-based platform with dedicated permissions and workflows for each user type, then shipped it into a live school environment. Netiva continues to maintain and extend it as the school's needs grow.",
       result: "The system is live and in daily use at a real school, with Netiva actively extending it.",
     },
+    metrics: [
+      { value: "4", label: "User roles unified", context: "Parents, teachers, secretaries, admins" },
+      { value: "[METRIC_NEEDED]", label: "Students & staff managed" },
+      { value: "[METRIC_NEEDED]", label: "Admin time saved" },
+    ],
     outcomes: [
       { label: "Access control", value: "Role-based access for 4 user types" },
       { label: "Coverage", value: "Records, attendance & communication in one system" },
@@ -237,6 +264,11 @@ export const projects: {
         "We designed and built a calming, professional site end to end—covering booking, case studies, and client resources for therapy, trauma support, and relationship guidance.",
       result: "The site is live and in active use as the practice's primary booking and information channel.",
     },
+    metrics: [
+      { value: "[METRIC_NEEDED]", label: "Booking conversion rate" },
+      { value: "[METRIC_NEEDED]", label: "Booking payment success rate" },
+      { value: "[METRIC_NEEDED]", label: "Avg. booking response time" },
+    ],
     outcomes: [
       { label: "Design tone", value: "Calm, trust-first visual design" },
       { label: "Booking", value: "Integrated booking system" },
@@ -434,27 +466,27 @@ export const faqs = [
   {
     question: "How long does a typical project take to complete?",
     answer:
-      "Project timelines vary based on complexity. A simple project might take 2-3 weeks, while more comprehensive designs can take 1-2 months. I will provide a specific estimate after our initial consultation.",
+      "Project timelines vary based on complexity. A simple project might take 2-3 weeks, while more comprehensive builds can take 1-2 months or run as an ongoing engagement. We provide a specific estimate after our initial consultation.",
   },
   {
     question: "Can you work with my existing brand and designs?",
     answer:
-      "Absolutely! I'm experienced in working with established brands. I will ensure all new designs align perfectly with your existing brand identity and style.",
+      "Absolutely! We're experienced in working with established brands. We'll ensure all new designs align perfectly with your existing brand identity and style.",
   },
   {
     question: "What makes your design process unique?",
     answer:
-      "My process stands out due to our collaborative approach. I involve you at every stage, ensuring the final product truly reflects your vision while benefiting from my expertise.",
+      "Our process stands out due to our collaborative approach. We involve you at every stage, ensuring the final product truly reflects your vision while benefiting from our expertise.",
   },
   {
     question: "Do you offer ongoing support after the project is completed?",
     answer:
-      "Yes, I provide post-project support. This includes minor adjustments and answering questions about your new designs for up to 30 days after delivery. If there's a need for longer support, we can discuss a retainer.",
+      "Yes, we provide post-project support. This includes minor adjustments and answering questions about your new build for up to 30 days after delivery. If there's a need for longer support, we can discuss a retainer.",
   },
   {
     question: "How do you handle confidentiality and intellectual property rights?",
     answer:
-      "I take confidentiality seriously. All client information and project details are kept strictly confidential, and an NDA is available on request before we even get on a discovery call. Every engagement runs on a written contract covering scope and payment terms, and upon project completion you own full intellectual property rights to the final work.",
+      "We take confidentiality seriously. All client information and project details are kept strictly confidential, and an NDA is available on request before we even get on a discovery call. Every engagement runs on a written contract covering scope and payment terms, and upon project completion you own full intellectual property rights to the final work.",
   },
 ];
 
@@ -641,7 +673,10 @@ export const budgetRanges = [
   { id: "2k-5k", label: "$2,000 – $5,000" },
   { id: "5k-10k", label: "$5,000 – $10,000" },
   { id: "10k-20k", label: "$10,000 – $20,000" },
-  { id: "20k-plus", label: "$20,000+" },
+  { id: "20k-50k", label: "$20,000 – $50,000" },
+  { id: "50k-150k", label: "$50,000 – $150,000" },
+  { id: "150k-plus", label: "$150,000+" },
+  { id: "retainer", label: "Ongoing retainer" },
 ];
 
 /**
@@ -678,6 +713,8 @@ export const teamMembers: {
   role: string;
   roleConfirmed: boolean;
   domain: string;
+  linkedin?: string;
+  markers?: string[];
 }[] = [
   {
     id: "founder",
@@ -685,6 +722,11 @@ export const teamMembers: {
     role: "Full-Stack Developer",
     roleConfirmed: true,
     domain: "Handles architecture, payments integrations, and stays the main point of contact for clients.",
+    linkedin: siteConfig.socials.linkedin,
+    markers: [
+      "Payments integrations: PawaPay, Flutterwave, and MTN MoMo in production",
+      "Main point of contact across every engagement — no account-manager layer",
+    ],
   },
   {
     id: "hope",

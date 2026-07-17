@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowUpRight, Calendar, Clock, Tag, Quote, TrendingUp } from
 import { projects, type ProjectItem } from "@/data";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { useContactDrawer } from "@/components/contact/ContactDrawerContext";
+import CaseStudyMetrics from "./CaseStudyMetrics";
 
 export default function ProjectCaseStudy({ project }: { project: ProjectItem }) {
   const { open: openContact } = useContactDrawer();
@@ -87,6 +88,9 @@ export default function ProjectCaseStudy({ project }: { project: ProjectItem }) 
       </FadeIn>
 
       <div className="max-w-6xl mx-auto px-6 pb-24">
+        {/* Quantified metrics */}
+        <CaseStudyMetrics metrics={project.metrics} />
+
         {/* Tech stack badges */}
         <FadeIn className="mb-16">
           <p className="text-xs uppercase tracking-widest text-neutral-400 mb-3">Tech & scope</p>

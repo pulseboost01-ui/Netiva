@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
-import { capabilityStatement, companyInfo, siteConfig } from "@/data";
+import { capabilityStatement, companyInfo, internationalEngagement, siteConfig } from "@/data";
 import PrintButton from "@/components/ui/PrintButton";
 
 export const metadata: Metadata = {
@@ -76,6 +76,38 @@ export default function CapabilityStatementPage() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="pt-12">
+        <h2 className="text-xs uppercase tracking-widest text-neutral-400 font-semibold mb-4">
+          {internationalEngagement.heading}
+        </h2>
+        <p className="text-[15px] leading-relaxed text-neutral-700 max-w-prose mb-5">
+          {internationalEngagement.body}
+        </p>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="p-5 rounded-2xl border border-black/5 bg-[var(--card)]">
+            <p className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-2.5">Payment rails</p>
+            <ul className="space-y-1.5">
+              {internationalEngagement.paymentRails.map((item) => (
+                <li key={item} className="text-sm text-neutral-600 leading-relaxed">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="p-5 rounded-2xl border border-black/5 bg-[var(--card)]">
+            <p className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-2.5">Delivery & cadence</p>
+            <ul className="space-y-1.5">
+              {internationalEngagement.delivery.map((item) => (
+                <li key={item} className="text-sm text-neutral-600 leading-relaxed">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <p className="mt-5 text-sm text-neutral-600 leading-relaxed">{internationalEngagement.contracting}</p>
       </section>
 
       <section className="pt-12">

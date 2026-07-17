@@ -133,7 +133,7 @@ export default function Footer() {
               © {new Date().getFullYear()} {siteConfig.legalName ?? siteConfig.name}. All rights reserved.
             </p>
             <p className="text-[11px] text-neutral-400">
-              {companyInfo.jurisdiction} · {companyInfo.registrationStatus}
+              {companyInfo.jurisdiction}-based — built for US/EU/UK time zone overlap
             </p>
           </div>
         <nav className="flex items-center gap-4 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-400">

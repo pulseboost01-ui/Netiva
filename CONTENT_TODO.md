@@ -44,31 +44,43 @@ confirmed fact:
 Rendered by `src/components/team/TeamPageClient.tsx` (founder gets a featured block; Hope/Derick/
 Reagan render as a name + role roster list, no avatar placeholders).
 
-## 3. Case study outcomes & testimonials (`src/data/index.ts`, `projects` array)
+## 3. Case study quantified metrics & testimonials (`src/data/index.ts`, `projects` array)
 
-### Venstela
-- `src/data/index.ts:111-114` — 4 quantified outcome metrics (active vendors, bookings
-  processed, escrow volume, uptime).
-- `src/data/index.ts:117-121` — Client testimonial: real contact name, role, and quote.
+Each project now has two separate blocks: a qualitative `outcomes` array (real, already written)
+and a quantified `metrics` array (new — `CaseStudyMetric[]`, rendered by
+`src/components/work/CaseStudyMetrics.tsx` directly below the hero image). Every `metrics` entry
+currently uses a `"[METRIC_NEEDED]"` value placeholder — replace with real numbers, don't remove
+the tile.
 
-### Draqla
-- `src/data/index.ts:151-154` — 4 quantified outcome metrics (viewers, playback start time,
-  catalog size, sessions).
-- `src/data/index.ts:157-161` — Client testimonial: real contact name, role, and quote.
+### Venstela (`metrics` array on the `venstela` project)
+- Verified vendors onboarded (count)
+- Bookings processed (count or volume)
+- Platform uptime (%)
+- Client testimonial: real contact name, role, and quote (`testimonial` field, currently `null`).
 
-### School Management System
-- `src/data/index.ts:191-194` — 4 quantified outcome metrics (students managed, staff accounts,
-  attendance records, messages sent).
-- `src/data/index.ts:197-201` — Client testimonial: real contact name, role, quote, **and the
-  real school name** (currently withheld pending permission to publish it).
+### Draqla (`metrics` array on the `draqla` project)
+- Median load time
+- Concurrent stream capacity
+- East Africa playback latency
+- Client testimonial: real contact name, role, and quote (`testimonial` field, currently `null`).
 
-### Whispers of Antidote
-- `src/data/index.ts:231-234` — 4 quantified outcome metrics (booking requests, response time,
-  resource pages, satisfaction).
-- `src/data/index.ts:237-241` — Client testimonial: real contact name, role, and quote.
+### School Management System (`metrics` array on the `school-management-system` project)
+- User roles unified — already real ("4": parents, teachers, secretaries, admins), no action needed.
+- Students & staff managed (count)
+- Admin time saved (e.g. hours/week, or % reduction)
+- Client testimonial: real contact name, role, quote, **and the real school name** (currently
+  withheld pending permission to publish it).
+
+### Whispers of Antidote (`metrics` array on the `whispers-of-antidote` project)
+- Booking conversion rate
+- Booking payment success rate — label deliberately doesn't name a specific payment processor
+  (e.g. PawaPay) since none is listed in this project's `services`/description; only add a
+  processor name here if the project actually integrates one.
+- Avg. booking response time
+- Client testimonial: real contact name, role, and quote.
 
 All of the above render on each project's case study page at `/work/<slug>`
-(`src/components/work/ProjectCaseStudy.tsx`).
+(`src/components/work/ProjectCaseStudy.tsx` + `CaseStudyMetrics.tsx`).
 
 ## 4. Homepage testimonials (`src/data/index.ts`, `clientTestimonials` array)
 

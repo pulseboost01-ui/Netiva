@@ -249,7 +249,7 @@ export default function QuoteRequestForm({
             transition={{ duration: 0.3 }}
           >
             <h2 className="mb-1 text-lg text-neutral-900 font-display">What&apos;s your budget?</h2>
-            <p className="mb-4 text-sm text-neutral-500">This helps me tailor my proposal.</p>
+            <p className="mb-4 text-sm text-neutral-500">This helps us tailor our proposal.</p>
             <div className="space-y-2.5">
               {budgetRanges.map((range) => (
                 <motion.button
@@ -382,7 +382,7 @@ export default function QuoteRequestForm({
           <em>your project</em>
         </h1>
         <p className="text-neutral-600 text-sm mb-10">
-          Fill out the details below and I&apos;ll send a personalised quote within 48 hours.
+          Fill out the details below and we&apos;ll send a personalised quote within 48 hours.
         </p>
       </FadeIn>
 
