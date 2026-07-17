@@ -89,7 +89,7 @@ export default function ProjectCaseStudy({ project }: { project: ProjectItem }) 
 
       <div className="max-w-6xl mx-auto px-6 pb-24">
         {/* Quantified metrics */}
-        <CaseStudyMetrics metrics={project.metrics} />
+        {/* <CaseStudyMetrics metrics={project.metrics} /> */}
 
         {/* Tech stack badges */}
         <FadeIn className="mb-16">
