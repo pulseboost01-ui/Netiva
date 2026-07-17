@@ -119,9 +119,6 @@ export default function Footer() {
         </p>
 
         <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-black/8 pt-6 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-400">
-          <Link href="/team" className="hover:text-neutral-900">
-            Team
-          </Link>
           <Link href="/capability-statement" className="hover:text-neutral-900">
             Capability Statement
           </Link>

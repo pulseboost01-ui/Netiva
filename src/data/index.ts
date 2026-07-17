@@ -50,7 +50,7 @@ export type NavLinkItem =
 export const navLinks: NavLinkItem[] = [
   { label: "Work", href: "/work" },
   { label: "Expertise", href: "/services" },
-  { label: "Agency", href: "/#agency" },
+  { label: "Team", href: "/team" },
   { label: "Blog", href: "/blog" },
   // { label: "Book a Call", href: "#", drawer: "booking" },
   { label: "Contact", href: "/contact", drawer: "contact" },
@@ -665,51 +665,54 @@ export const companyInfo = {
 } as const;
 
 /**
- * Core team. Roles and bios are real; names are withheld (not fabricated) until each person
- * signs off on being named publicly — see CONTENT_TODO.md. `name: null` means the page shows
- * the role only, with no placeholder text.
+ * Core team. Names are real and confirmed. Mitala's title and domain line are confirmed by the
+ * user; the other three members' `role` and `domain` values are Claude's best-guess inference
+ * (reusing the previously-established backend/design/frontend seat descriptions), including the
+ * name-to-role mapping — all of it needs explicit sign-off before shipping. See CONTENT_TODO.md.
+ * No photo, LinkedIn, or email is shown for anyone besides the founder until that person supplies
+ * it themselves.
  */
 export const teamMembers: {
   id: string;
-  name: string | null;
+  name: string;
   role: string;
-  bio: string;
-  photoPlaceholder: boolean;
+  roleConfirmed: boolean;
+  domain: string;
 }[] = [
   {
     id: "founder",
-    name: null,
-    role: "Founder & Full-Stack Engineer",
-    bio: "Leads engineering and client delivery across every Netiva engagement — from architecture decisions to production payments integrations.",
-    photoPlaceholder: true,
+    name: "Mitala",
+    role: "Full-Stack Developer",
+    roleConfirmed: true,
+    domain: "Handles architecture, payments integrations, and stays the main point of contact for clients.",
   },
   {
-    id: "backend-lead",
-    name: null,
+    id: "hope",
+    name: "Hope",
     role: "Lead Backend Engineer",
-    bio: "Owns API design, data modeling, and the infrastructure behind ongoing platforms like Venstela and the school management system.",
-    photoPlaceholder: true,
+    roleConfirmed: false,
+    domain: "Builds and maintains the APIs and databases behind Venstela and the school system.",
   },
   {
-    id: "product-designer",
-    name: null,
+    id: "derick",
+    name: "Derick",
     role: "Product & UI Designer",
-    bio: "Drives research, UX flows, and visual systems from discovery through high-fidelity handoff.",
-    photoPlaceholder: true,
+    roleConfirmed: false,
+    domain: "Turns early ideas into wireframes, then into the interfaces that ship.",
   },
   {
-    id: "frontend-engineer",
-    name: null,
+    id: "reagan",
+    name: "Reagan",
     role: "Frontend Engineer",
-    bio: "Builds and maintains the interfaces and design systems that ship on Next.js and React.",
-    photoPlaceholder: true,
+    roleConfirmed: false,
+    domain: "Writes the React and Next.js code that turns finished designs into working pages.",
   },
 ] as const;
 
 /** /capability-statement content. Quantified outcomes are placeholder-tagged until real numbers are supplied. */
 export const capabilityStatement = {
   legalName: siteConfig.legalName ?? siteConfig.name,
-  teamSize: "3–5 person core team",
+  teamSize: "4-person core team",
   foundedContext: "Full-service digital studio operating out of Kampala, Uganda, working with clients globally.",
   techStack: [
     "Next.js / React",

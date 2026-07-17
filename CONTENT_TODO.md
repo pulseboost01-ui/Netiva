@@ -22,16 +22,27 @@ Rendered on `/company` (`src/app/company/page.tsx`) and referenced from the foot
 
 ## 2. Team (`/team`, data in `src/data/index.ts`, `teamMembers` array)
 
-- `src/data/index.ts:642` — Founder name (real name, role is already correct: "Founder &
-  Full-Stack Engineer"). Add a real photo to replace the placeholder avatar in
-  `src/components/team/TeamPageClient.tsx`.
-- `src/data/index.ts:649` — Lead Backend Engineer: name, bio accuracy, photo.
-- `src/data/index.ts:656` — Product & UI Designer: name, bio accuracy, photo (or remove the slot
-  if this role isn't filled yet).
-- `src/data/index.ts:663` — Frontend Engineer: name, bio accuracy, photo (or remove the slot if
-  this role isn't filled yet).
+Names are real and now public on `/team`: Mitala, Hope, Derick, Reagan. Mitala's title
+("Founder & Full-Stack Developer") and one-line domain description were given directly and are
+settled. **The other three are not settled** — everything below is Claude's inference, not
+confirmed fact:
 
-If any of these roles are genuinely unfilled, delete the slot rather than leaving a fake name.
+- **Role titles and one-line domain descriptions are guessed**, reusing the three seats that were
+  previously placeholder-only ("Lead Backend Engineer" / API design, data modeling, infra;
+  "Product & UI Designer" / research, UX, visual systems; "Frontend Engineer" / interfaces and
+  design systems). Confirm or correct both the title and the description directly with Hope,
+  Derick, and Reagan — the description was originally written about an anonymous seat, not a named
+  person, so check it actually matches what each of them does.
+- **The name-to-role mapping is also a guess** — Hope, Derick, and Reagan were assigned to those
+  three titles in the order they were listed, with no actual information about who does what.
+  Don't assume the pairing is right; check it explicitly with each person.
+- No photo, LinkedIn, or email is shown for Hope, Derick, or Reagan — left out of the rendered page
+  entirely rather than shown as placeholders. Add each once the person supplies it.
+- **Confirm each team member is okay being listed publicly before this page goes live**, and
+  collect photos/bios/LinkedIn from anyone who wants them included.
+
+Rendered by `src/components/team/TeamPageClient.tsx` (founder gets a featured block; Hope/Derick/
+Reagan render as a name + role roster list, no avatar placeholders).
 
 ## 3. Case study outcomes & testimonials (`src/data/index.ts`, `projects` array)
 
