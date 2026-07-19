@@ -6,7 +6,7 @@ export const siteConfig = {
   tagline: "Digital systems that provoke, perform, and persuade.",
   description:
     "We partner with founders and teams who need more than templates—clear strategy, ruthless craft, and products that behave as well as they look.",
-  email: "hello@netiva.tech",
+  email: "netivatech@gmail.com",
   /** Voice + WhatsApp (+256705013062) */
   phone: {
     display: "+256705013062",
@@ -107,6 +107,8 @@ export const projects: {
   description: string;
   tags: string[];
   image: string;
+  /** Additional real screenshots for the case study gallery. Omit or leave empty if none are cleared for publishing. */
+  gallery?: string[];
   color: string;
   accent: string;
   featured: boolean;
@@ -130,7 +132,8 @@ export const projects: {
     description:
       "Africa's marketplace for modern events — connecting planners with verified vendors, curated venues, and event-ready products, with transparent pricing and secure bookings. Netiva continues to build and maintain the platform.",
     tags: ["Marketplace", "Web App", "Next.js"],
-    image: "/projects/venstela.png",
+    image: "/projects/venstela1.jpg",
+    gallery: ["/projects/venstela1.jpg", "/projects/venstela2.jpg", "/projects/venstela3.jpg"],
     color: "#0c0a09",
     accent: "#eab308",
     featured: true,
@@ -170,7 +173,8 @@ export const projects: {
     description:
       "Uganda's premium streaming platform for movies, series, live TV, and VJ-hosted original content — built for fast browsing and playback across East African audiences.",
     tags: ["Streaming", "Web App", "Media"],
-    image: "/projects/draqla.png",
+    image: "/projects/draqla4.jpg",
+    gallery: ["/projects/draqla1.png", "/projects/draqla2.jpg", "/projects/draqla3.jpg"],
     color: "#0a0a0a",
     accent: "#d4af37",
     featured: true,
@@ -209,7 +213,8 @@ export const projects: {
     description:
       "A role-based school management system for parents, teachers, secretaries, and admins — handling records, attendance, and communication in one platform. Netiva continues to maintain and extend the system.",
     tags: ["EdTech", "Web App", "Dashboard"],
-    image: "/projects/edtech.png",
+    image: "/projects/system2.jpg",
+    gallery: ["/projects/system.png", "/projects/system2.jpg", "/projects/system3.jpg"],
     color: "#f5f3ff",
     accent: "#6d28d9",
     featured: true,
@@ -248,7 +253,8 @@ export const projects: {
     description:
       "A calming, professional web presence for a Kampala-based counseling practice — booking, case studies, and client resources for therapy, trauma support, and relationship guidance.",
     tags: ["Wellness", "Booking", "Web Design"],
-    image: "/projects/whispers.png",
+    image: "/projects/whispers2.jpg",
+    gallery: ["/projects/whispers3.jpg", "/projects/whispers4.jpg", "/projects/whispers5.jpg"],
     color: "#fdf2ee",
     accent: "#e8926b",
     featured: true,
@@ -755,7 +761,7 @@ export const teamMembers: {
 export const capabilityStatement = {
   legalName: siteConfig.legalName ?? siteConfig.name,
   teamSize: "4-person core team",
-  foundedContext: "Full-service digital studio operating out of Kampala, Uganda, working with clients globally.",
+  foundedContext: "Full-service digital studio working with clients globally.",
   techStack: [
     "Next.js / React",
     "TypeScript",

@@ -63,7 +63,7 @@ export default function OpengraphImage() {
             {siteConfig.tagline}
           </span>
           <span style={{ fontSize: 26, color: "#a3a3a1", maxWidth: 820 }}>
-            Brand design, UI/UX, web engineering & payments integrations — {siteConfig.location}.
+            Brand design, UI/UX, web engineering & payments integrations.
           </span>
         </div>
       </div>

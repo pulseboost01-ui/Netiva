@@ -71,6 +71,15 @@ the tile.
 - Client testimonial: real contact name, role, quote, **and the real school name** (currently
   withheld pending permission to publish it).
 
+**Image gallery note** (`src/data/index.ts`, `image`/`gallery` fields on
+`school-management-system`): the gallery (`system.png`, `system2.jpg`, `system3.jpg`) shows the
+live admin dashboard, which displays the real school's name ("Eden Blossoms Pre & Primary School")
+and a real admin's name and email. The user explicitly confirmed (2026-07-19) these should be
+published as-is — this is a deliberate decision, not an oversight, and supersedes the "withheld
+pending permission" caveat in section 2 above for the *images* specifically. The real school name
+still isn't used in the written case study *testimonial* copy in this file — confirm separately
+before adding that.
+
 ### Whispers of Antidote (`metrics` array on the `whispers-of-antidote` project)
 - Booking conversion rate
 - Booking payment success rate — label deliberately doesn't name a specific payment processor
@@ -106,10 +115,13 @@ than 3 real testimonials are available, trim the array rather than shipping plac
 ## Notes on what was deliberately left alone
 
 - No fake client logos, fake review-site ratings, or invented press mentions were added anywhere.
-- The homepage's "How we approach the work" section (`src/components/sections/TestimonialsSection.tsx`,
-  formerly "Partner signals") is Netiva's own account of each engagement, styled deliberately
-  without quote marks or testimonial-card chrome so it can't be mistaken for third-party
-  endorsement. Real client testimonials belong exclusively in
+- The homepage's "How we build" section (`src/components/sections/TestimonialsSection.tsx`,
+  formerly "Partner signals" / "How we approach the work") originally re-listed each project
+  (name, one-liner, case-study link) — but the project grid already appears twice above it
+  (HeroSection carousel, then WorkCategoriesSection), so as of 2026-07-19 it was redesigned to
+  describe the four stages of an engagement (Strategy/Design/Development/Launch) instead, naming
+  no projects at all. Still deliberately styled without quote marks or testimonial-card chrome so
+  it can't be mistaken for third-party endorsement. Real client testimonials belong exclusively in
   `src/components/sections/ClientTestimonialsSection.tsx`, which stays hidden until real quotes
   are added to `clientTestimonials` in `src/data/index.ts` — keep these two sections visually
   distinct going forward.

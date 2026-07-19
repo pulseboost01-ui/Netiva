@@ -23,6 +23,14 @@ export type QuoteInquiryPayload = {
   description: string;
 };
 
+export type BookingInquiryPayload = {
+  name: string;
+  email: string;
+  date: string;
+  time: string;
+  message?: string;
+};
+
 const SITE = "Netiva";
 
 export function buildContactPlain(payload: ContactInquiryPayload): string {
@@ -56,6 +64,21 @@ export function buildQuotePlain(payload: QuoteInquiryPayload): string {
     "",
     "*Brief:*",
     payload.description.trim(),
+  ].filter(Boolean) as string[];
+  return lines.join("\n");
+}
+
+export function buildBookingPlain(payload: BookingInquiryPayload): string {
+  const lines = [
+    `*${SITE} — booking request*`,
+    "",
+    `*Name:* ${payload.name}`,
+    `*Email:* ${payload.email}`,
+    `*Preferred date:* ${payload.date}`,
+    `*Preferred time:* ${payload.time}`,
+    payload.message?.trim() ? "" : null,
+    payload.message?.trim() ? "*Context:*" : null,
+    payload.message?.trim() || null,
   ].filter(Boolean) as string[];
   return lines.join("\n");
 }

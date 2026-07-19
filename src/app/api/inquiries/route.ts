@@ -3,32 +3,30 @@ import { Resend } from "resend";
 import { budgetRanges, quoteServices } from "@/data";
 import { siteConfig } from "@/data";
 import {
+  buildBookingPlain,
   buildContactPlain,
   buildQuotePlain,
   buildWhatsAppHref,
+  type BookingInquiryPayload,
   type ContactInquiryPayload,
   type QuoteInquiryPayload,
 } from "@/lib/inquiryMessaging";
+import { buildBookingEmail, buildContactEmail, buildQuoteEmail } from "@/lib/inquiryEmail";
 
 export const runtime = "nodejs";
 
 const resendApiKey = process.env.RESEND_API_KEY?.trim();
-
-function htmlEscape(s: string): string {
-  return s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
 
 const inbox =
   typeof process.env.INQUIRY_INBOX_EMAIL === "string" && process.env.INQUIRY_INBOX_EMAIL.trim()
     ? process.env.INQUIRY_INBOX_EMAIL.trim()
     : siteConfig.email;
 
-async function sendInquiryEmail(subject: string, plain: string, replyTo: string): Promise<boolean> {
+async function sendInquiryEmail(
+  subject: string,
+  content: { html: string; text: string },
+  replyTo: string,
+): Promise<boolean> {
   if (!resendApiKey) return false;
   const resend = new Resend(resendApiKey);
   const from =
@@ -40,8 +38,8 @@ async function sendInquiryEmail(subject: string, plain: string, replyTo: string)
       from,
       to: [inbox],
       subject,
-      html: `<pre style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; line-height: 1.5; white-space: pre-wrap;">${htmlEscape(plain)}</pre>`,
-      text: plain,
+      html: content.html,
+      text: content.text,
       replyTo,
     });
     if (error) {
@@ -67,7 +65,26 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, muted: true });
   }
 
-  const type = json.type === "quote" ? "quote" : "contact";
+  const type = json.type === "quote" ? "quote" : json.type === "booking" ? "booking" : "contact";
+
+  if (type === "booking") {
+    const name = String(json.name ?? "").trim().slice(0, 240);
+    const email = String(json.email ?? "").trim().slice(0, 254);
+    const date = String(json.date ?? "").trim().slice(0, 40);
+    const time = String(json.time ?? "").trim().slice(0, 40);
+    const message = typeof json.message === "string" ? json.message.trim().slice(0, 15000) : "";
+
+    if (name.length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !date || !time) {
+      return NextResponse.json({ error: "Please provide a valid name, email, date, and time." }, { status: 400 });
+    }
+
+    const payload: BookingInquiryPayload = { name, email, date, time, message: message || undefined };
+    const subject = `[${siteConfig.name}] Booking request — ${name}`;
+    const emailSent = await sendInquiryEmail(subject, buildBookingEmail(payload), email);
+
+    const whatsAppUrl = buildWhatsAppHref(siteConfig.phone.whatsappDigits, buildBookingPlain(payload));
+    return NextResponse.json({ ok: true, emailSent, whatsAppUrl });
+  }
 
   if (type === "contact") {
     const variant = json.variant === "drawer" ? "drawer" : "page";
@@ -98,11 +115,10 @@ export async function POST(req: Request) {
       budgetLabel,
     };
 
-    const plain = buildContactPlain(payload);
     const subject = `[${siteConfig.name}] Contact — ${name}`;
-    const emailSent = await sendInquiryEmail(subject, plain, email);
+    const emailSent = await sendInquiryEmail(subject, buildContactEmail(payload), email);
 
-    const whatsAppUrl = buildWhatsAppHref(siteConfig.phone.whatsappDigits, plain);
+    const whatsAppUrl = buildWhatsAppHref(siteConfig.phone.whatsappDigits, buildContactPlain(payload));
     return NextResponse.json({ ok: true, emailSent, whatsAppUrl });
   }
 
@@ -146,10 +162,9 @@ export async function POST(req: Request) {
     description,
   };
 
-  const plain = buildQuotePlain(payload);
   const subject = `[${siteConfig.name}] Quote — ${name}`;
-  const emailSent = await sendInquiryEmail(subject, plain, email);
-  const whatsAppUrl = buildWhatsAppHref(siteConfig.phone.whatsappDigits, plain);
+  const emailSent = await sendInquiryEmail(subject, buildQuoteEmail(payload), email);
+  const whatsAppUrl = buildWhatsAppHref(siteConfig.phone.whatsappDigits, buildQuotePlain(payload));
 
   return NextResponse.json({ ok: true, emailSent, whatsAppUrl });
 }

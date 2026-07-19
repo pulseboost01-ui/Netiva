@@ -4,7 +4,7 @@ import TeamPageClient from "@/components/team/TeamPageClient";
 export const metadata: Metadata = {
   title: "Team",
   description:
-    "The people behind Netiva — a small core team spanning design, backend, and frontend engineering, based in Kampala, Uganda.",
+    "The people behind Netiva — a small core team spanning design, backend, and frontend engineering.",
   alternates: { canonical: "/team" },
 };
 

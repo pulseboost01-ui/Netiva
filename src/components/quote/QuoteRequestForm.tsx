@@ -204,6 +204,7 @@ export default function QuoteRequestForm({
         </div>
       )}
 
+      <div className={isDrawer ? "pb-24" : ""}>
       <AnimatePresence mode="wait">
         {step === 0 && (
           <motion.div
@@ -315,9 +316,12 @@ export default function QuoteRequestForm({
           </motion.div>
         )}
       </AnimatePresence>
+      </div>
 
       <div
-        className={`mt-6 flex items-center justify-between border-t border-black/5 pt-5 ${isDrawer ? "" : "mt-7 pt-6"}`}
+        className={`mt-6 flex items-center justify-between border-t border-black/5 bg-white pt-5 ${
+          isDrawer ? "sticky bottom-0 -mx-6 px-6 pb-1" : "mt-7 pt-6"
+        }`}
       >
         <button
           type="button"

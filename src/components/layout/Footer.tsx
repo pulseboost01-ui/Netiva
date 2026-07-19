@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { siteConfig, navLinks, agencyPhases, companyInfo, isContactDrawerLink } from "@/data";
+import { siteConfig, navLinks, agencyPhases, isContactDrawerLink } from "@/data";
 import { useContactDrawer, useQuoteDrawer } from "@/components/contact/ContactDrawerContext";
 import { Linkedin, ArrowUpRight, X } from "lucide-react";
 
@@ -19,7 +19,7 @@ export default function Footer() {
   return (
     <footer id="contact-strip" className="border-t border-black/8 bg-[var(--muted)] print:hidden">
       <div className="border-b border-black/8">
-        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-6 py-12 md:flex-row md:items-end md:gap-10 md:py-16 md:px-10">
+        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-6 py-8 md:flex-row md:items-end md:gap-10 md:py-10 md:px-10">
           <div>
             <p className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.38em] text-neutral-400">
               Let&apos;s build
@@ -55,7 +55,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-6xl px-6 py-8 md:px-10">
+      <div className="mx-auto max-w-6xl px-6 py-6 md:px-10">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div className="flex items-center gap-3">
             <div className="flex h-8 w-8 items-center justify-center rounded-full border border-black/10 bg-[var(--accent)]">
@@ -118,7 +118,7 @@ export default function Footer() {
           {agencyPhases.join(" · ")}
         </p>
 
-        <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-black/8 pt-6 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-400">
+        <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-black/8 pt-5 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-400">
           <Link href="/capability-statement" className="hover:text-neutral-900">
             Capability Statement
           </Link>
@@ -127,15 +127,10 @@ export default function Footer() {
           </Link>
         </div>
 
-        <div className="mt-6 flex flex-col items-center justify-between gap-4 border-t border-black/8 pt-6 md:flex-row">
-          <div className="flex flex-col items-center gap-1 text-center md:items-start md:text-left">
-            <p className="text-xs text-neutral-500">
-              © {new Date().getFullYear()} {siteConfig.legalName ?? siteConfig.name}. All rights reserved.
-            </p>
-            <p className="text-[11px] text-neutral-400">
-              {companyInfo.jurisdiction}-based — built for US/EU/UK time zone overlap
-            </p>
-          </div>
+        <div className="mt-5 flex flex-col items-center justify-between gap-4 border-t border-black/8 pt-5 md:flex-row">
+          <p className="text-xs text-neutral-500">
+            © {new Date().getFullYear()} {siteConfig.legalName ?? siteConfig.name}. All rights reserved.
+          </p>
         <nav className="flex items-center gap-4 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-400">
               <Link href={siteConfig.privacyPolicyHref} className="hover:text-neutral-900">
                 Privacy

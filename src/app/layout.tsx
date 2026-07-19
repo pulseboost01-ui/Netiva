@@ -22,12 +22,12 @@ export const metadata: Metadata = {
   description:
     "Netiva crafts campaigns, interfaces, and web systems that provoke, perform, and persuade—brand design, UX, Next.js builds, headless CMS.",
   keywords: [
-    "digital agency Kampala",
+    "digital agency",
     "Next.js studio",
     "brand design agency",
     "headless CMS",
     "UX research",
-    "payments integration Uganda",
+    "payments integrations",
     "Netiva",
   ],
   alternates: {
@@ -66,11 +66,6 @@ const organizationJsonLd = {
   email: siteConfig.email,
   telephone: siteConfig.phone.tel,
   description: siteConfig.description,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Kampala",
-    addressCountry: "UG",
-  },
   sameAs: Object.values(siteConfig.socials),
   areaServed: "Worldwide",
   knowsAbout: [
@@ -100,7 +95,7 @@ export default function RootLayout({
           <CustomCursor />
           <Navbar />
           <PageTransition>
-            <main className="pb-20 md:pb-24">{children}</main>
+            <main>{children}</main>
           </PageTransition>
           <SpeakToMeBar />
           <Footer />

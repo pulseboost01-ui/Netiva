@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
@@ -9,80 +10,34 @@ import { useContactDrawer } from "@/components/contact/ContactDrawerContext";
 
 const easeOut = [0.16, 1, 0.3, 1] as const;
 
-const STACK = projects.filter((p) => p.featured).slice(0, 3);
-
-/** Front / mid / back slot geometry for the stacked card carousel (Skillex-style). */
-const SLOT_STYLE = [
-  { left: "0%", width: "60%", top: "0%", height: "100%", zIndex: 30, scale: 1, opacity: 1 },
-  { left: "56%", width: "24%", top: "0%", height: "100%", zIndex: 20, scale: 0.97, opacity: 1 },
-  { left: "78%", width: "22%", top: "4%", height: "92%", zIndex: 10, scale: 0.94, opacity: 0.92 },
+const WORDS = [
+  { word: "Design.", className: "text-neutral-900" },
+  { word: "Build.", className: "text-premium" },
+  { word: "Launch.", className: "text-neutral-400" },
 ] as const;
 
-function StackCard({
-  project,
-  slot,
-}: {
-  project: (typeof STACK)[number];
-  slot: number;
-}) {
-  const style = SLOT_STYLE[slot]!;
-  const isFront = slot === 0;
-
-  return (
-    <div
-      style={{
-        left: style.left,
-        width: style.width,
-        top: style.top,
-        height: style.height,
-        zIndex: style.zIndex,
-      }}
-      className="absolute overflow-hidden rounded-[28px] bg-neutral-900"
-    >
-      <Link href={`/work/${project.id}`} className="absolute inset-0 z-10" aria-label={project.title} />
-      <Image
-        src={project.image}
-        alt={project.title}
-        fill
-        priority={isFront}
-        className="object-cover"
-        sizes="(max-width: 768px) 80vw, 40vw"
-      />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-premium/85 via-black/35 to-transparent mix-blend-multiply" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-
-      {isFront ? (
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5 md:p-6">
-          <div>
-            <p className="text-[11px] uppercase tracking-wider text-white/70">{project.category}</p>
-            <p className="text-lg font-semibold text-white md:text-xl">{project.title}</p>
-          </div>
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-black shadow-lg">
-            <ArrowUpRight size={18} />
-          </span>
-        </div>
-      ) : (
-        <span className="pointer-events-none absolute bottom-6 left-1/2 origin-left -translate-x-1/2 -rotate-90 whitespace-nowrap text-xs font-semibold uppercase tracking-[0.2em] text-white/85">
-          {project.category}
-        </span>
-      )}
-    </div>
-  );
-}
+const SHOWCASE = projects.filter((p) => p.featured);
 
 export default function HeroSection() {
   const { openBooking } = useContactDrawer();
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActive((i) => (i + 1) % SHOWCASE.length);
+    }, 5000);
+    return () => clearInterval(id);
+  }, []);
+
+  const project = SHOWCASE[active]!;
 
   return (
-    <section className="relative w-full px-6 pb-16 pt-36 md:px-10 md:pb-24 md:pt-44">
-      <div className="grid gap-12 md:grid-cols-2 md:items-center md:gap-10">
+    <section className="relative w-full px-6 pb-20 pt-32 md:px-10 md:pt-40">
+      <div className="grid gap-12 md:grid-cols-2 md:items-center md:gap-16">
+        {/* Left panel */}
         <div>
-          <h1 className="text-[clamp(2.75rem,6.5vw,5rem)] font-semibold leading-[0.98] tracking-tight">
-            {[
-              { word: "Design.", className: "text-neutral-900" },
-              { word: "Build.", className: "text-premium" },
-              { word: "Launch.", className: "text-neutral-400" },
-            ].map(({ word, className }, i) => (
+          <h1 className="text-[clamp(2.75rem,6.5vw,5.5rem)] font-semibold leading-[0.98] tracking-tight">
+            {WORDS.map(({ word, className }, i) => (
               <span key={word} className="block overflow-hidden">
                 <motion.span
                   className={`block ${className}`}
@@ -99,7 +54,7 @@ export default function HeroSection() {
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: easeOut }}
+            transition={{ duration: 0.6, delay: 0.4, ease: easeOut }}
             className="mt-6 max-w-md text-base leading-relaxed text-neutral-600"
           >
             {siteConfig.description}
@@ -108,35 +63,58 @@ export default function HeroSection() {
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.45, ease: easeOut }}
-            className="mt-8 flex flex-wrap items-center gap-3"
+            transition={{ duration: 0.6, delay: 0.5, ease: easeOut }}
+            className="mt-9 flex flex-wrap items-center gap-6"
           >
+            <button
+              type="button"
+              onClick={() => openBooking()}
+              className="inline-flex items-center gap-2 rounded-2xl bg-neutral-900 px-8 py-4 text-sm font-semibold text-white transition-transform hover:scale-[1.02]"
+            >
+              Book a call
+            </button>
             <Link
               href="/work"
-              className="group inline-flex items-center gap-2 rounded-2xl bg-premium px-7 py-4 text-sm font-semibold text-white shadow-[0_16px_40px_-18px_rgba(5,150,105,0.65)] transition-transform hover:scale-[1.02]"
+              className="group inline-flex items-center gap-1.5 text-sm font-semibold text-neutral-600 transition-colors hover:text-neutral-900"
             >
               View our work
               <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
-            <button
-              type="button"
-              onClick={() => openBooking()}
-              className="inline-flex items-center gap-2 rounded-2xl border border-black/10 bg-white px-7 py-4 text-sm font-semibold text-neutral-900 transition-colors hover:border-black/25"
-            >
-              Book a call
-            </button>
           </motion.div>
         </div>
 
+        {/* Right panel — clean, ambient product showcase */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: easeOut }}
-          className="relative h-[380px] sm:h-[440px] md:h-[520px]"
         >
-          {STACK.map((project, slot) => (
-            <StackCard key={project.id} project={project} slot={slot} />
-          ))}
+          <Link href={`/work/${project.id}`} className="group block">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-[28px] shadow-[0_40px_100px_-30px_rgba(0,0,0,0.25)]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.6, ease: easeOut }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    priority
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+            <p className="mt-4 text-center text-xs font-medium uppercase tracking-[0.2em] text-neutral-400">
+              {project.title}
+            </p>
+          </Link>
         </motion.div>
       </div>
     </section>

@@ -106,6 +106,26 @@ export default function ProjectCaseStudy({ project }: { project: ProjectItem }) 
           </div>
         </FadeIn>
 
+        {/* Gallery — additional real screenshots, only shown once cleared for publishing */}
+        {project.gallery && project.gallery.length > 0 ? (
+          <FadeIn className="mb-16">
+            <p className="text-xs uppercase tracking-widest text-neutral-400 mb-3">More from this project</p>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {project.gallery.map((src, i) => (
+                <div key={src} className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-black/5">
+                  <Image
+                    src={src}
+                    alt={`${project.title} — additional view ${i + 1}`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+        ) : null}
+
         {/* Challenge -> Approach -> Result */}
         <div className="grid md:grid-cols-3 gap-6 mb-16">
           {[

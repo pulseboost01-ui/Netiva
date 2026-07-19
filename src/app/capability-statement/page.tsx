@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
-import { capabilityStatement, companyInfo, internationalEngagement, siteConfig } from "@/data";
+import { capabilityStatement, companyInfo, internationalEngagement } from "@/data";
 import PrintButton from "@/components/ui/PrintButton";
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function CapabilityStatementPage() {
           <h1 className="mt-3 text-[clamp(1.85rem,4vw,2.75rem)] font-semibold leading-[1.05] tracking-tight text-neutral-900">
             Capability Statement
           </h1>
-          <p className="mt-3 text-sm text-neutral-500">{capabilityStatement.legalName} · {siteConfig.location}</p>
+          <p className="mt-3 text-sm text-neutral-500">{capabilityStatement.legalName}</p>
         </div>
         <PrintButton />
       </header>
@@ -124,7 +124,7 @@ export default function CapabilityStatementPage() {
       <section className="pt-12 border-t border-black/8 mt-12">
         <h2 className="text-xs uppercase tracking-widest text-neutral-400 font-semibold mb-4">Contact</h2>
         <p className="text-sm text-neutral-700">
-          {companyInfo.contactEmail} · {companyInfo.contactPhone} · {siteConfig.location}
+          {companyInfo.contactEmail} · {companyInfo.contactPhone}
         </p>
       </section>
     </article>
