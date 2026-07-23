@@ -11,8 +11,8 @@ const easeOut = [0.16, 1, 0.3, 1] as const;
 
 const WORDS = [
   { word: "Design.", className: "text-neutral-900" },
-  { word: "Build.", className: "text-accent" },
-  { word: "Launch.", className: "text-neutral-400" },
+  { word: "Build.", className: "text-neutral-900" },
+  { word: "Launch.", className: "text-accent" },
 ] as const;
 
 const heroProject = projects.find((p) => p.id === "venstela")!;

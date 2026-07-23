@@ -1,16 +1,30 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Mail, Calendar, Phone, Tag } from "lucide-react";
 import { siteConfig } from "@/data";
 import { useContactDrawer, useQuoteDrawer } from "@/components/contact/ContactDrawerContext";
 
+const REVEAL_SCROLL_PX = 480;
+
 export default function SpeakToMeBar() {
   const { open, openBooking } = useContactDrawer();
   const { open: openQuote } = useQuoteDrawer();
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setRevealed(window.scrollY > REVEAL_SCROLL_PX);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <div
-      className="fixed bottom-5 left-1/2 z-[45] w-[min(calc(100vw-1rem),34rem)] -translate-x-1/2 px-3 print:hidden md:bottom-7"
+      className={`fixed bottom-5 left-1/2 z-[45] w-[min(calc(100vw-1rem),34rem)] -translate-x-1/2 px-3 transition-all duration-300 print:hidden md:bottom-7 ${
+        revealed ? "opacity-100" : "pointer-events-none opacity-0 translate-y-2"
+      }`}
+      aria-hidden={!revealed}
       aria-label="Contact shortcuts"
     >
       <div className="flex items-center justify-between gap-4 rounded-[14px] border border-white/50 bg-white/80 px-3 py-2.5 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.18)] backdrop-blur-xl md:px-4 md:py-3">

@@ -41,6 +41,7 @@ export const navLinks: NavLinkItem[] = [
   { label: "Services", href: "/services" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact", drawer: "contact" },
+  { label: "Book a call", href: "/book", drawer: "booking" },
 ];
 
 /** Homepage "Services" — the four capability groups named in CLAUDE.md §4. */
