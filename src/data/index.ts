@@ -6,6 +6,10 @@ export const siteConfig = {
   tagline: "Digital systems that provoke, perform, and persuade.",
   description:
     "We partner with founders and teams who need more than templates—clear strategy, ruthless craft, and products that behave as well as they look.",
+  /** Hero subline (CLAUDE.md §4.1) — must concretely name: Next.js web apps, marketplaces,
+   * payment-integrated platforms, and mobile money (MoMo/Flutterwave/PawaPay). */
+  heroSubline:
+    "We build Next.js web apps, marketplaces, and payment-integrated platforms—MTN MoMo, Flutterwave, and PawaPay wired in from day one.",
   email: "netivatech@gmail.com",
   /** Voice + WhatsApp (+256705013062) */
   phone: {
@@ -17,21 +21,6 @@ export const siteConfig = {
   /** Build label next to scroll cue (agency sites often version the deck). */
   // siteVersion: "V.2025.2",
   // availability: "Accepting selective projects • Q4 '25",
-  hero: {
-    line1: "Digital",
-    line2: "Alchemy.",
-    leadBold:
-      "We don't just build websites—we craft digital nervous systems that provoke, perform, and persuade.",
-    leadRest: "",
-  },
-  /** Homepage identity block, inspired by premiere studio positioning. */
-  identity: {
-    label: "Positioning",
-    body:
-      "The web is crowded with template-driven noise. We exist to disrupt the silence of sameness—with systems you can iterate, explain, and scale.",
-    manifestoHref: "/blog/designer-developer-gap",
-    manifestoCta: "Read the manifesto",
-  },
   socialProofLine: "Trusted by product-led teams globally",
   socials: {
     twitter: "https://x.com/mitalasam",
@@ -49,25 +38,21 @@ export type NavLinkItem =
 
 export const navLinks: NavLinkItem[] = [
   { label: "Work", href: "/work" },
-  { label: "Expertise", href: "/services" },
-  { label: "Team", href: "/team" },
+  { label: "Services", href: "/services" },
   { label: "Blog", href: "/blog" },
-  // { label: "Book a Call", href: "#", drawer: "booking" },
   { label: "Contact", href: "/contact", drawer: "contact" },
 ];
 
-/** Homepage “Capabilities” — aligned with [jsui.digital](https://www.jsui.digital/) offerings. Section index shown once as **002**. */
-export const CAPABILITIES_SECTION_NO = "002";
-
+/** Homepage "Services" — the four capability groups named in CLAUDE.md §4. */
 export const capabilities = [
-  { id: "brand", title: "Brand Design", subtitle: "Strategy, Identity, Systems" },
-  { id: "uiux", title: "UI / UX", subtitle: "Research, Wireframing, Prototyping" },
+  { id: "strategy", title: "Strategy", subtitle: "Scope, architecture, and a plan we can commit to" },
+  { id: "design", title: "Design", subtitle: "Interfaces designed in the medium they ship in" },
+  { id: "development", title: "Development", subtitle: "Next.js and React, production-grade from week one" },
   {
-    id: "web",
-    title: "Web Development",
-    subtitle: "React, Next.js, WebGL-ready experiences",
+    id: "payments",
+    title: "Payments & Mobile Money Integrations",
+    subtitle: "MTN MoMo, Flutterwave, and PawaPay — built and shipped, not theoretical",
   },
-  { id: "cms", title: "CMS & Architecture", subtitle: "Headless, Scalable, Content" },
 ] as const;
 
 export function isContactDrawerLink(link: NavLinkItem): link is NavLinkItem & { drawer: "contact" } {

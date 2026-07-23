@@ -40,7 +40,7 @@ export default function SpeakToMeBar() {
           <button
             type="button"
             onClick={() => openQuote()}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-emerald-700/35 bg-premium text-white shadow-sm transition-colors hover:bg-emerald-700 md:h-10 md:w-10"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-emerald-700/35 bg-accent text-white shadow-sm transition-colors hover:bg-emerald-700 md:h-10 md:w-10"
             aria-label="Get a quote from Netiva"
             title="Get a Quote"
           >

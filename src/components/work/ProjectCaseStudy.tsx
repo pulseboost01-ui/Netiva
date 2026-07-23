@@ -35,8 +35,8 @@ export default function ProjectCaseStudy({ project }: { project: ProjectItem }) 
                 {project.category}
               </p>
               {project.status === "ongoing" ? (
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-premium/10 px-2.5 py-0.5 text-[11px] font-semibold text-premium">
-                  <span className="h-1.5 w-1.5 rounded-full bg-premium animate-pulse" />
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/10 px-2.5 py-0.5 text-[11px] font-semibold text-accent">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
                   Ongoing
                 </span>
               ) : null}
@@ -162,7 +162,7 @@ export default function ProjectCaseStudy({ project }: { project: ProjectItem }) 
         {project.testimonial ? (
           <FadeIn className="mb-16">
             <div className="p-8 md:p-10 rounded-2xl border border-black/5 bg-[var(--card)]">
-              <Quote size={22} className="text-premium mb-4" />
+              <Quote size={22} className="text-accent mb-4" />
               <p className="text-lg md:text-xl leading-relaxed font-display mb-6 text-neutral-800">
                 &ldquo;{project.testimonial.quote}&rdquo;
               </p>
@@ -194,7 +194,7 @@ export default function ProjectCaseStudy({ project }: { project: ProjectItem }) 
                 <p className="text-xs uppercase tracking-widest text-neutral-400 mb-1">Live product</p>
                 <p className="text-sm text-neutral-700">{project.liveUrl.replace(/^https?:\/\//, "")}</p>
               </div>
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-premium text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                 <ArrowUpRight size={18} />
               </span>
             </a>

@@ -38,7 +38,7 @@ export default function AboutSection() {
         <div className="mt-8 grid gap-8 md:grid-cols-2 md:gap-14">
           <FadeIn>
             <h2 className="text-[clamp(1.85rem,3.9vw,2.75rem)] font-semibold leading-[1.04] tracking-tight text-neutral-900">
-              Signals over static.
+              Proof over polish.
               <br />
               <span className="text-neutral-400">Systems over souvenirs.</span>
             </h2>
@@ -100,21 +100,23 @@ export default function AboutSection() {
                 href="/work"
                 className="group inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-900"
               >
-                Open output log
+                View selected work
                 <ArrowUpRight size={13} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </FadeIn>
           </div>
 
           <FadeIn delay={0.1}>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
-              <Image
-                src="https://images.unsplash.com/photo-1705909770198-7e83c24e1616?w=1000&q=80"
-                alt="Netiva workspace"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+            <div className="rounded-3xl bg-neutral-950 p-3">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+                <Image
+                  src="/projects/draqla2.jpg"
+                  alt="Draqla — real product shipped by Netiva"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
             </div>
           </FadeIn>
         </div>

@@ -33,7 +33,7 @@ export default function ClientTestimonialsSection() {
               transition={{ duration: 0.45, delay: i * 0.06, ease: easeOut }}
               className="flex h-full flex-col rounded-2xl border border-black/5 bg-[var(--card)] p-6"
             >
-              <Quote size={20} className="text-premium" />
+              <Quote size={20} className="text-accent" />
               <p className="mt-4 flex-1 text-[15px] leading-relaxed text-neutral-700">{testimonial.quote}</p>
               <div className="mt-6 flex items-center gap-3 border-t border-black/5 pt-4">
                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-neutral-200 text-xs font-semibold text-neutral-500">

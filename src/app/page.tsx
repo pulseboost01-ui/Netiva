@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import HomeLanding from "@/components/home/HomeLanding";
 
 export const metadata: Metadata = {
-  title: "Netiva — Digital Alchemy Across Brand, UX & Code",
+  title: "Netiva — Web Apps & Mobile Money Integrations",
 };
 
 export default function HomePage() {

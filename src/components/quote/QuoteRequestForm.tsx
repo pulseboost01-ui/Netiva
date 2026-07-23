@@ -190,7 +190,7 @@ export default function QuoteRequestForm({
               <div
                 className={`flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-medium ${
                   i < step
-                    ? "bg-premium text-white"
+                    ? "bg-accent text-white"
                     : i === step
                       ? "border border-neutral-300 bg-white text-neutral-900"
                       : "bg-neutral-100 text-neutral-400"

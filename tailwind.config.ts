@@ -20,7 +20,6 @@ const config: Config = {
         "surface-elevated": "var(--surface-elevated)",
         accent: "var(--accent)",
         "accent-dim": "var(--accent-dim)",
-        premium: "var(--premium)",
         muted: "var(--muted)",
         "muted-foreground": "var(--muted-foreground)",
         "muted-dim": "var(--muted-dim)",

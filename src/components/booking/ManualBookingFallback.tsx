@@ -55,8 +55,8 @@ export default function ManualBookingFallback() {
   if (submitted) {
     return (
       <div className="rounded-2xl border border-black/10 bg-[var(--card)] p-8 text-center shadow-sm">
-        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-premium/20 bg-premium/10">
-          <Calendar className="h-7 w-7 text-premium" />
+        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-accent/20 bg-accent/10">
+          <Calendar className="h-7 w-7 text-accent" />
         </div>
         <h2 className="text-xl font-semibold text-neutral-900">Request received</h2>
         <p className="mt-2 text-sm leading-relaxed text-neutral-600">

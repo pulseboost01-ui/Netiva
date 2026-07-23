@@ -3,54 +3,28 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import {
-  CAPABILITIES_SECTION_NO,
-  capabilities,
-  launchFolioTechStack,
-  siteConfig,
-} from "@/data";
+import { capabilities } from "@/data";
 
 export default function ServicesSection() {
   return (
-    <section id="capabilities" className="border-t border-black/6 py-14 md:py-20">
+    <section id="services" className="border-t border-black/6 py-14 md:py-20">
       <div className="w-full px-6 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10% 0px" }}
           transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between"
+          className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"
         >
-          <div className="max-w-3xl space-y-4">
-            <div className="flex items-center gap-4 font-mono text-[11px] font-medium uppercase tracking-[0.42em] text-neutral-400">
-              <span>{CAPABILITIES_SECTION_NO}</span>
-              <motion.span
-                className="hidden h-px flex-1 max-w-[120px] origin-left bg-black/15 sm:block md:max-w-[200px]"
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.85, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-              />
-              <span>Capabilities</span>
-            </div>
-            <div className="flex flex-wrap gap-2 pt-1">
-              {launchFolioTechStack.slice(0, 6).map((tool, i) => (
-                <motion.span
-                  key={tool}
-                  initial={{ opacity: 0, y: 8 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.45,
-                    delay: 0.08 + i * 0.04,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className="rounded-full border border-black/8 bg-neutral-900 px-3 py-1 text-[13px] font-medium text-white"
-                >
-                  {tool}
-                </motion.span>
-              ))}
-            </div>
+          <div className="max-w-xl space-y-3">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.42em] text-neutral-400">
+              Services
+            </p>
+            <h2 className="text-[clamp(1.85rem,3.9vw,2.75rem)] font-semibold leading-[1.04] tracking-tight text-neutral-900">
+              Four disciplines,
+              <br />
+              <span className="text-neutral-400">one team.</span>
+            </h2>
           </div>
           <Link
             href="/services#pricing"
@@ -85,16 +59,6 @@ export default function ServicesSection() {
             </motion.article>
           ))}
         </div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.25, duration: 0.5 }}
-          className="mt-8 max-w-2xl text-sm leading-relaxed text-neutral-500"
-        >
-          {siteConfig.tagline}
-        </motion.p>
       </div>
     </section>
   );

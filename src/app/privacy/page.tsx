@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "How Netiva collects, uses, and protects personal data when you browse our sites, enquire about services, or work with our studio.",
+  alternates: { canonical: "/privacy" },
 };
 
 const LAST_UPDATED_ISO = "2026-05-03";

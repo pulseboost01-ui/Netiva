@@ -29,8 +29,9 @@
 :root {
   --background: #f5f5f4;
   --foreground: #141414;
-  --accent: #c8e600;
-  --premium: #059669;
+  /* CLAUDE.md §2: exactly one accent. Consolidated on emerald (2026-07-23) — previously split
+   * between this token (lime #c8e600) and a separate --premium token, now retired. */
+  --accent: #059669;
   --muted: #f0f0ee;
   --muted-foreground: #5c5c5a;
   --border: rgba(0, 0, 0, 0.08);

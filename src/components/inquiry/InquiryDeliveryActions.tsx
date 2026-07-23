@@ -38,7 +38,7 @@ export default function InquiryDeliveryActions({ whatsAppUrl, emailDelivered }: 
           href={whatsAppUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-premium px-6 py-[0.7rem] text-[13px] font-semibold text-white shadow-[0_16px_40px_-22px_rgba(5,118,71,1)] transition-colors hover:bg-emerald-700"
+          className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-[0.7rem] text-[13px] font-semibold text-white shadow-[0_16px_40px_-22px_rgba(5,118,71,1)] transition-colors hover:bg-emerald-700"
         >
           <MessageCircle size={17} aria-hidden strokeWidth={2} />
           Send via WhatsApp

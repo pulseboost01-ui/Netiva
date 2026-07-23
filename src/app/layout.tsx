@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s | Netiva",
   },
   description:
-    "Netiva crafts campaigns, interfaces, and web systems that provoke, perform, and persuade—brand design, UX, Next.js builds, headless CMS.",
+    "Netiva builds Next.js web apps, marketplaces, and payment-integrated platforms — including MTN MoMo, Flutterwave, and PawaPay — for founders in Kampala and beyond.",
   keywords: [
     "digital agency",
     "Next.js studio",
@@ -40,13 +40,13 @@ export const metadata: Metadata = {
     siteName: "Netiva",
     title: "Netiva — Web Design & Engineering Studio",
     description:
-      "Digital alchemy across brand, UX, engineered web surfaces, and future-proof content architecture.",
+      "Netiva builds Next.js web apps, marketplaces, and payment-integrated platforms — including MTN MoMo, Flutterwave, and PawaPay — for founders in Kampala and beyond.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Netiva — Web Design & Engineering Studio",
     description:
-      "Digital nervous systems spanning brand identity, UX, React/Next.js development, CMS architecture.",
+      "Netiva builds Next.js web apps, marketplaces, and payment-integrated platforms — including MTN MoMo, Flutterwave, and PawaPay — for founders in Kampala and beyond.",
   },
 };
 

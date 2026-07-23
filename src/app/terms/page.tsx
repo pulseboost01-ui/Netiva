@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Terms of Service",
   description:
     "Contractual framework governing use of Netiva’s website, enquiries, engagements, intellectual property transfer, confidentiality, warranties, limitation of liability, and dispute resolution.",
+  alternates: { canonical: "/terms" },
 };
 
 const LAST_UPDATED_ISO = "2026-05-03";

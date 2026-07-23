@@ -8,33 +8,37 @@ import { useSearchParams } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/data";
 import { FadeIn } from "@/components/ui/FadeIn";
+import CTASection from "@/components/sections/CTASection";
 
 const categories = ["All", "Marketplace", "Streaming", "Education", "Wellness"];
 
 export default function WorkPageClient() {
   return (
-    <div className="pt-32 pb-24 max-w-6xl mx-auto px-6">
-      {/* Header — kept outside the Suspense boundary below so it's present in the
-          initial server-rendered HTML instead of waiting on useSearchParams. */}
-      <FadeIn>
-        <p className="text-xs uppercase tracking-widest text-[var(--accent)] font-medium mb-3">
-          Portfolio
-        </p>
-        <h1 className="text-5xl md:text-7xl text-neutral-900 mb-6">
-          Selected
-          <br />
-          <em>Work</em>
-        </h1>
-        <p className="text-neutral-600 text-base max-w-md leading-relaxed mb-12">
-          A curated collection of projects that delivered real results for real clients. Every
-          project started with a problem worth solving.
-        </p>
-      </FadeIn>
+    <>
+      <div className="pt-32 pb-24 max-w-6xl mx-auto px-6">
+        {/* Header — kept outside the Suspense boundary below so it's present in the
+            initial server-rendered HTML instead of waiting on useSearchParams. */}
+        <FadeIn>
+          <p className="text-xs uppercase tracking-widest text-[var(--accent)] font-medium mb-3">
+            Portfolio
+          </p>
+          <h1 className="text-5xl md:text-7xl text-neutral-900 mb-6">
+            Selected
+            <br />
+            <em>Work</em>
+          </h1>
+          <p className="text-neutral-600 text-base max-w-md leading-relaxed mb-12">
+            A curated collection of projects that delivered real results for real clients. Every
+            project started with a problem worth solving.
+          </p>
+        </FadeIn>
 
-      <Suspense fallback={null}>
-        <WorkFilterGrid />
-      </Suspense>
-    </div>
+        <Suspense fallback={null}>
+          <WorkFilterGrid />
+        </Suspense>
+      </div>
+      <CTASection />
+    </>
   );
 }
 

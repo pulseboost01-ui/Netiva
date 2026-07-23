@@ -16,7 +16,7 @@ export default function BlogSection() {
         <div className="mb-10 flex items-end justify-between">
           <FadeIn>
             <p className="text-xs uppercase tracking-widest text-[var(--accent)] font-medium mb-3">
-              From my blog,
+              From the studio,
             </p>
             <h2 className="font-display text-4xl text-neutral-900 md:text-5xl">
               design insights.

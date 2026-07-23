@@ -7,6 +7,7 @@ import Image from "next/image";
 import { ArrowUpRight, Clock } from "lucide-react";
 import { blogPosts } from "@/data";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/ui/FadeIn";
+import CTASection from "@/components/sections/CTASection";
 
 const categories = ["All", "Process", "Business", "Design Systems"];
 
@@ -15,6 +16,7 @@ export default function BlogPageClient() {
   const filtered = active === "All" ? blogPosts : blogPosts.filter((p) => p.category === active);
 
   return (
+    <>
     <div className="pt-32 pb-24 max-w-6xl mx-auto px-6">
       <FadeIn>
         <p className="text-xs uppercase tracking-widest text-[var(--accent)] font-medium mb-3">
@@ -140,5 +142,7 @@ export default function BlogPageClient() {
         ))}
       </StaggerChildren>
     </div>
+    <CTASection />
+    </>
   );
 }
