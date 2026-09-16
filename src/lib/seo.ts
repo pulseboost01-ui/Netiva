@@ -5,8 +5,8 @@
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://example.com'
 
-export const SITE_NAME = 'Premier League Intelligence'
-export const SITE_SHORT_NAME = 'EPL Hub'
+export const SITE_NAME = 'Netiva'
+export const SITE_SHORT_NAME = 'Netiva'
 export const SITE_DESCRIPTION =
   'Live Premier League fixtures, injury tracking, predictions, and Fantasy Premier League tips — plus La Liga, Serie A, Bundesliga, Ligue 1, Champions League, and more.'
 

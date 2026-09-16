@@ -80,7 +80,7 @@ export default async function LeagueHubPage({ params }: { params: { league: stri
             {league.slug === DEFAULT_LEAGUE.slug && (
               <>
                 {' '}Looking for the full Premier League experience?{' '}
-                <Link href="/" className="text-floodlight hover:underline">Visit the EPL hub</Link>
+                <Link href="/" className="text-floodlight hover:underline">Visit Netiva</Link>
               </>
             )}
           </p>
