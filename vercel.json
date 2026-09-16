@@ -1,0 +1,29 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "env": [
+    {
+      "key": "FOOTBALL_API_KEY",
+      "description": "API key for api-football.com",
+      "type": "sensitive"
+    },
+    {
+      "key": "NEXT_PUBLIC_SITE_URL",
+      "description": "Your domain URL (e.g., https://your-domain.com)",
+      "type": "string"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, s-maxage=3600, stale-while-revalidate=86400"
+        }
+      ]
+    }
+  ]
+}

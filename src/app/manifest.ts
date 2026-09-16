@@ -1,18 +1,18 @@
-import type { MetadataRoute } from "next";
+import { MetadataRoute } from 'next'
+import { SITE_NAME, SITE_SHORT_NAME, SITE_DESCRIPTION } from '@/lib/seo'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Netiva — Web Design & Engineering Studio",
-    short_name: "Netiva",
-    description:
-      "Netiva crafts campaigns, interfaces, and web systems that provoke, perform, and persuade—brand design, UX, Next.js builds, headless CMS, and payments integrations.",
-    start_url: "/",
-    display: "standalone",
-    background_color: "#f5f5f4",
-    theme_color: "#141414",
+    name: SITE_NAME,
+    short_name: SITE_SHORT_NAME,
+    description: SITE_DESCRIPTION,
+    start_url: '/',
+    display: 'standalone',
+    background_color: '#ffffff',
+    theme_color: '#0f3a2f',
     icons: [
-      { src: "/icon", sizes: "512x512", type: "image/png" },
-      { src: "/apple-icon", sizes: "180x180", type: "image/png" },
+      { src: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { src: '/icon-512.png', sizes: '512x512', type: 'image/png' },
     ],
-  };
+  }
 }

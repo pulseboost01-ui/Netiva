@@ -1,61 +1,73 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss'
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/app/**/*.{js,ts,jsx,tsx}',
+    './src/components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
-        display: ["var(--font-display)", "ui-serif", "Georgia", "serif"],
-        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
-      },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        surface: "var(--surface)",
-        "surface-elevated": "var(--surface-elevated)",
-        accent: "var(--accent)",
-        "accent-dim": "var(--accent-dim)",
-        muted: "var(--muted)",
-        "muted-foreground": "var(--muted-foreground)",
-        "muted-dim": "var(--muted-dim)",
-        border: "var(--border)",
-        "border-strong": "var(--border-strong)",
-        card: "var(--card)",
-        "card-foreground": "var(--card-foreground)",
-      },
-      borderRadius: {
-        luxury: "var(--radius)",
-      },
-      animation: {
-        "fade-in": "fadeIn 0.6s ease forwards",
-        "slide-up": "slideUp 0.6s ease forwards",
-        marquee: "marquee 25s linear infinite",
-      },
-      keyframes: {
-        fadeIn: {
-          from: { opacity: "0" },
-          to: { opacity: "1" },
+        pitch: {
+          DEFAULT: '#0e3b2e',
+          light: '#145c41',
         },
-        slideUp: {
-          from: { opacity: "0", transform: "translateY(20px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
+        chalk: {
+          DEFAULT: '#f6f3ea',
+          line: '#ddd6c4',
         },
-        marquee: {
-          from: { transform: "translateX(0)" },
-          to: { transform: "translateX(-50%)" },
+        ink: {
+          DEFAULT: '#16211c',
+          soft: '#4a5850',
+        },
+        floodlight: {
+          DEFAULT: '#e2a33b',
+          dark: '#b97f22',
+        },
+        turf: '#1c6b4f',
+        'card-red': '#b23a2e',
+        // Legacy aliases kept so existing class names across the app
+        // (accent-green/amber/red, slate-*) keep working while pages
+        // are migrated to the new palette one at a time.
+        accent: {
+          green: '#1c6b4f',
+          amber: '#e2a33b',
+          red: '#b23a2e',
+        },
+        slate: {
+          50: '#f6f3ea',
+          100: '#efeadc',
+          200: '#ddd6c4',
+          500: '#4a5850',
+          600: '#3a463e',
+          700: '#2c362f',
+          900: '#16211c',
         },
       },
-      transitionTimingFunction: {
-        luxury: "cubic-bezier(0.16, 1, 0.3, 1)",
+      fontFamily: {
+        sans: ['var(--font-body)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-display)', 'system-ui', 'sans-serif'],
+        mono: ['Menlo', 'monospace'],
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: '70ch',
+            color: '#2c362f',
+            a: {
+              color: '#1c6b4f',
+              '&:hover': {
+                color: '#145c41',
+              },
+            },
+          },
+        },
       },
     },
   },
-  plugins: [],
-};
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
+}
 
-export default config;
+export default config
