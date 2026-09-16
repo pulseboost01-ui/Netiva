@@ -3,18 +3,6 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "env": [
-    {
-      "key": "FOOTBALL_API_KEY",
-      "description": "API key for api-football.com",
-      "type": "sensitive"
-    },
-    {
-      "key": "NEXT_PUBLIC_SITE_URL",
-      "description": "Your domain URL (e.g., https://your-domain.com)",
-      "type": "string"
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
