@@ -121,6 +121,23 @@ export default function RootLayout({
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8597898343613591"
           crossOrigin="anonymous"
         ></script>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6093166595977387"
+          crossOrigin="anonymous"
+        ></script>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJW8EY92W3"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-KJW8EY92W3');
+            `,
+          }}
+        />
         <link rel="preconnect" href="https://media.api-sports.io" />
         {/* Sitewide Organization + WebSite entity. Helps Google's Knowledge
             Graph and answer engines treat every page as part of one
