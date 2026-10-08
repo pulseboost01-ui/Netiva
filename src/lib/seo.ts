@@ -2,8 +2,19 @@
 // Edit SITE_URL / SITE_NAME / socials once you have a real domain and handles,
 // and every page's metadata + structured data updates automatically.
 
-export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://example.com'
+const PRODUCTION_URL = 'https://www.netiva.tech'
+
+// A localhost value leaking into the production env would make every
+// canonical, sitemap and robots.txt URL point Google at localhost, so it is
+// only honoured outside production.
+function resolveSiteUrl() {
+  const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/$/, '')
+  const isLocal = !configured || /localhost|127\.0\.0\.1/.test(configured)
+  if (process.env.NODE_ENV === 'production' && isLocal) return PRODUCTION_URL
+  return configured || PRODUCTION_URL
+}
+
+export const SITE_URL = resolveSiteUrl()
 
 export const SITE_NAME = 'Netiva'
 export const SITE_SHORT_NAME = 'Netiva'

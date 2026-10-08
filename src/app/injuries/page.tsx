@@ -3,15 +3,22 @@ import Link from 'next/link'
 import { getInjuries, getTeams } from '@/lib/api'
 import { getFaqJsonLd, jsonLdScriptProps } from '@/lib/seo'
 import { PlayerVisual } from '@/components/PlayerVisual'
+import { AdUnit } from '@/components/AdUnit'
+import { formatUkDate } from '@/lib/format'
+
+// Rebuild from fresh data at most once an hour so match-day changes show up.
+// Kept at an hour because api-football's free tier allows 100 requests a
+// day; a page that regenerates while the quota is spent renders empty.
+export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: 'Premier League Injury Tracker - Live Updates',
-  description: 'Real-time injury and suspension updates for all Premier League teams. Know who\'s fit before this week\'s matches.',
-  keywords: ['injury tracker', 'player availability', 'EPL news', 'suspension', 'injury updates', 'who is injured premier league'],
+  title: 'Premier League Injury News & Team News - Who\'s Out This Weekend',
+  description: 'Latest Premier League injury news, suspensions and team news for every club. See who\'s out and who\'s doubtful before this weekend\'s games and your FPL deadline.',
+  keywords: ['premier league injury news', 'premier league team news', 'who is injured premier league', 'FPL injury news', 'premier league suspensions', 'injury tracker'],
   alternates: { canonical: '/injuries' },
   openGraph: {
-    title: 'Premier League Injury Tracker - Live Updates',
-    description: 'Real-time injury and suspension updates for all Premier League teams.',
+    title: 'Premier League Injury News & Team News - Who\'s Out This Weekend',
+    description: 'Latest Premier League injury news, suspensions and team news for every club.',
     url: '/injuries',
   },
 }
@@ -25,7 +32,7 @@ const INJURY_FAQS = [
   {
     question: 'How often is the injury tracker updated?',
     answer:
-      'This tracker pulls directly from api-football’s injury feed, filtered to the most recent report per player from the last three weeks, so it refreshes as soon as the underlying data does (cached for 5 minutes on this site).',
+      'This tracker pulls directly from api-football’s injury feed, filtered to the most recent report per player from the last three weeks, and this page refreshes from that feed every hour.',
   },
 ]
 
@@ -81,6 +88,8 @@ export default async function InjuriesPage() {
         </div>
       </section>
 
+      <AdUnit placement="top" />
+
       <section className="py-12">
         <div className="container max-w-4xl">
           <div className="mb-10 flex gap-6 pb-6 border-b border-chalk-line">
@@ -127,7 +136,7 @@ export default async function InjuriesPage() {
                           <div className="text-right shrink-0">
                             <SeverityBadge status={injury.status} />
                             <p className="text-xs text-ink-soft mt-1">
-                              {fixtureDate.toLocaleDateString('en-GB', { month: 'short', day: 'numeric' })}
+                              {formatUkDate(fixtureDate, { month: 'short', day: 'numeric' })}
                             </p>
                           </div>
                         </div>
@@ -141,12 +150,14 @@ export default async function InjuriesPage() {
         </div>
       </section>
 
+      <AdUnit placement="inContent" />
+
       {/* FPL CTA */}
       <section className="bg-pitch/[0.04] border-t border-turf py-12">
         <div className="container max-w-3xl text-center">
           <h2 className="mb-4">Fantasy Premier League players</h2>
           <p className="text-ink-soft mb-6">
-            Use injury data to refine your captain picks and bench strategy. Updated live every matchday.
+            Use injury data to refine your captain picks and bench strategy. Refreshed every hour, including on matchdays.
           </p>
           <Link href="/fpl-tips" className="inline-block bg-floodlight text-ink px-6 py-2.5 rounded font-semibold hover:bg-floodlight-dark hover:text-white transition-colors no-underline">
             See this week's FPL analysis

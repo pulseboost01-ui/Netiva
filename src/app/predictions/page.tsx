@@ -2,6 +2,8 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { getPredictions, getUpcomingFixtures, type Prediction, type Fixture } from '@/lib/api'
 import { getFaqJsonLd, jsonLdScriptProps } from '@/lib/seo'
+import { AdUnit } from '@/components/AdUnit'
+import { formatUkDate } from '@/lib/format'
 
 export const metadata: Metadata = {
   title: 'EPL Predictions - This Week\'s Matches Analysis',
@@ -36,7 +38,7 @@ const METHOD_FACTORS = [
 ]
 
 function formatMatchDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString('en-GB', { weekday: 'short', month: 'short', day: 'numeric' })
+  return formatUkDate(dateStr, { weekday: 'short', month: 'short', day: 'numeric' })
 }
 
 export default async function PredictionsPage() {
@@ -51,6 +53,8 @@ export default async function PredictionsPage() {
           <p className="text-white/75 mt-3 max-w-lg">Form-based analysis and head-to-head records for every fixture.</p>
         </div>
       </section>
+
+      <AdUnit placement="top" />
 
       <section className="py-12">
         <div className="container max-w-3xl">
@@ -126,6 +130,8 @@ export default async function PredictionsPage() {
           )}
         </div>
       </section>
+
+      <AdUnit placement="inContent" />
 
       {/* Methodology */}
       <section className="bg-white/50 py-12 border-t border-chalk-line">

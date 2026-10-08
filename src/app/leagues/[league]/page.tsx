@@ -6,6 +6,8 @@ import { getUpcomingFixtures, getInjuries, getPredictions, getTeams } from '@/li
 import { getFaqJsonLd, jsonLdScriptProps } from '@/lib/seo'
 import { CountryFlag, TeamLogo } from '@/components/TeamVisual'
 import { PlayerVisual } from '@/components/PlayerVisual'
+import { AdUnit } from '@/components/AdUnit'
+import { formatUkKickoff } from '@/lib/format'
 
 export function generateStaticParams() {
   return LEAGUES.map((league) => ({ league: league.slug }))
@@ -94,6 +96,8 @@ export default async function LeagueHubPage({ params }: { params: { league: stri
         </div>
       </section>
 
+      <AdUnit placement="top" />
+
       {/* Fixtures */}
       <section className="py-12 border-b border-slate-200">
         <div className="container">
@@ -109,7 +113,7 @@ export default async function LeagueHubPage({ params }: { params: { league: stri
               {fixtures.slice(0, 8).map((match) => (
                 <div key={match.id} className="bg-white border border-slate-200 rounded p-4">
                   <p className="text-xs font-mono text-slate-500 mb-2">
-                    {new Date(match.date).toLocaleDateString('en-GB', { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                    {formatUkKickoff(match.date)}
                   </p>
                   <div className="flex items-center justify-between gap-2">
                     <p className="flex flex-1 items-center justify-end gap-2 text-right text-sm font-semibold text-slate-700">
@@ -164,6 +168,8 @@ export default async function LeagueHubPage({ params }: { params: { league: stri
           )}
         </div>
       </section>
+
+      <AdUnit placement="inContent" />
 
       {/* Predictions */}
       <section className="py-12">

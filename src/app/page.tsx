@@ -3,15 +3,22 @@ import Link from 'next/link'
 import { getUpcomingFixtures, getInjuries, type Injury } from '@/lib/api'
 import { getFaqJsonLd, jsonLdScriptProps } from '@/lib/seo'
 import { PlayerVisual } from '@/components/PlayerVisual'
+import { AdUnit } from '@/components/AdUnit'
+import { formatUkDate, formatUkTime } from '@/lib/format'
+
+// Rebuild from fresh data at most once an hour so match-day changes show up.
+// Kept at an hour because api-football's free tier allows 100 requests a
+// day; a page that regenerates while the quota is spent renders empty.
+export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: 'Premier League This Week - Fixtures & Injury News',
-  description: 'This week\'s Premier League matches, team news, injuries, and where to stream. Live updates every minute.',
-  keywords: ['premier league fixtures', 'EPL this week', 'football injuries', 'EPL news', 'premier league today'],
+  title: 'Premier League Fixtures This Weekend, Kick-off Times & Team News',
+  description: 'This weekend\'s Premier League fixtures with UK kick-off times, team news, injuries, and which games are on Sky Sports, TNT Sports and Prime Video.',
+  keywords: ['premier league fixtures this weekend', 'premier league kick-off times', 'premier league team news', 'football injury news', 'premier league today', 'what football is on TV today'],
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'Premier League This Week - Fixtures & Injury News',
-    description: 'This week\'s Premier League matches, team news, injuries, and where to stream.',
+    title: 'Premier League Fixtures This Weekend, Kick-off Times & Team News',
+    description: 'This weekend\'s Premier League fixtures with UK kick-off times, team news and injuries.',
     url: '/',
   },
 }
@@ -20,7 +27,7 @@ const HOME_FAQS = [
   {
     question: 'Where can I find this week’s Premier League fixtures?',
     answer:
-      'This week’s Premier League fixtures are listed on the Fixtures page, updated live with kickoff times and scores throughout each matchday.',
+      'This week’s Premier League fixtures are listed on the Fixtures page, with UK kick-off times and scores, refreshed every hour through each matchday.',
   },
   {
     question: 'How often is Premier League injury news updated?',
@@ -65,9 +72,9 @@ function FixtureRow({ match }: { match: any }) {
       className="flex items-center gap-4 py-4 border-b border-chalk-line/70 hover:bg-white/60 transition-colors no-underline group"
     >
       <span className="w-24 shrink-0 text-xs text-ink-soft">
-        {date.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })}
+        {formatUkDate(date, { weekday: 'short', day: 'numeric', month: 'short' })}
         <br />
-        {date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}
+        {formatUkTime(date)} UK
       </span>
       <span className="flex-1 text-right text-sm font-medium text-ink group-hover:text-turf">{match.homeTeam}</span>
       <span className="scoreline w-16 text-center text-lg shrink-0">
@@ -118,6 +125,8 @@ export default async function Home() {
         </div>
       </section>
 
+      <AdUnit placement="top" />
+
       {/* This week's fixtures - a scoreline strip, not a card grid */}
       <section className="py-16 border-b border-chalk-line">
         <div className="container">
@@ -162,6 +171,8 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      <AdUnit placement="inContent" />
 
       {/* Section index - this IS a sequence (news to watch, in the order
           a fan uses it across a matchweek), so numbering earns its

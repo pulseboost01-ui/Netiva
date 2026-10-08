@@ -15,17 +15,6 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  headers: async () => [
-    {
-      source: '/:path*',
-      headers: [
-        {
-          key: 'Cache-Control',
-          value: 'public, s-maxage=3600, stale-while-revalidate=86400',
-        },
-      ],
-    },
-  ],
 };
 
 module.exports = nextConfig;

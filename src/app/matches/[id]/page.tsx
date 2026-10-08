@@ -5,6 +5,8 @@ import { getWatchPartners, getOddsPartners } from '@/lib/affiliate'
 import { notFound } from 'next/navigation'
 import { getBreadcrumbJsonLd, jsonLdScriptProps } from '@/lib/seo'
 import { TrackedOutboundLink } from '@/components/TrackedOutboundLink'
+import { AdUnit } from '@/components/AdUnit'
+import { formatUkKickoff } from '@/lib/format'
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const match = await getFixture(params.id)
@@ -12,12 +14,12 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   if (!match) return notFound()
 
   return {
-    title: `${match.homeTeam} vs ${match.awayTeam} - Live Score & Stats`,
-    description: `${match.homeTeam} vs ${match.awayTeam} on ${new Date(match.date).toLocaleDateString()}. Live score, team news, and stats.`,
-    keywords: [`${match.homeTeam} vs ${match.awayTeam}`, `${match.homeTeam} vs ${match.awayTeam} score`, 'premier league live score'],
+    title: `${match.homeTeam} vs ${match.awayTeam}: Kick-off Time & Team News`,
+    description: `${match.homeTeam} vs ${match.awayTeam}, ${formatUkKickoff(match.date, { weekday: 'long', day: 'numeric', month: 'long' })}. Kick-off time, team news, where to watch in the UK and live score.`,
+    keywords: [`${match.homeTeam} vs ${match.awayTeam}`, `${match.homeTeam} vs ${match.awayTeam} kick-off time`, `${match.homeTeam} vs ${match.awayTeam} team news`, `what channel is ${match.homeTeam} vs ${match.awayTeam} on`],
     alternates: { canonical: `/matches/${params.id}` },
     openGraph: {
-      title: `${match.homeTeam} vs ${match.awayTeam} - Live Score & Stats`,
+      title: `${match.homeTeam} vs ${match.awayTeam}: Kick-off Time & Team News`,
       description: `${match.homeTeam} vs ${match.awayTeam}. Live score, team news, and stats.`,
       url: `/matches/${params.id}`,
     },
@@ -54,7 +56,7 @@ export default async function MatchPage({ params }: { params: { id: string } }) 
         <div className="container max-w-3xl">
           <div className="text-center">
             <p className="text-white/60 mb-6 text-sm">
-              {date.toLocaleDateString('en-GB', { weekday: 'long', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+              {formatUkKickoff(date, { weekday: 'long', day: 'numeric', month: 'long' })}
             </p>
             <h1 className="sr-only">{match.homeTeam} vs {match.awayTeam}</h1>
             <div className="flex items-center justify-center gap-8 mb-6" aria-hidden="true">
@@ -79,6 +81,8 @@ export default async function MatchPage({ params }: { params: { id: string } }) 
           </div>
         </div>
       </section>
+
+      <AdUnit placement="top" />
 
       <section className="py-12 border-b border-chalk-line">
         <div className="container max-w-3xl">
@@ -189,6 +193,8 @@ export default async function MatchPage({ params }: { params: { id: string } }) 
           )}
         </div>
       </section>
+
+      <AdUnit placement="inContent" />
 
       {/* FPL Section */}
       <section className="py-12 border-t border-slate-200">

@@ -4,6 +4,8 @@ import { getTeam, getTeamFixtures } from '@/lib/api'
 import { notFound } from 'next/navigation'
 import { getBreadcrumbJsonLd, jsonLdScriptProps } from '@/lib/seo'
 import { CountryFlag, TeamLogo } from '@/components/TeamVisual'
+import { AdUnit } from '@/components/AdUnit'
+import { formatUkKickoff } from '@/lib/format'
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const team = await getTeam(params.id)
@@ -49,6 +51,8 @@ export default async function TeamPage({ params }: { params: { id: string } }) {
           </div>
         </div>
       </section>
+
+      <AdUnit placement="top" />
 
       <section className="py-12 border-b border-slate-200">
         <div className="container max-w-3xl">
@@ -104,7 +108,7 @@ export default async function TeamPage({ params }: { params: { id: string } }) {
               >
                 <div className="flex items-center justify-between gap-4">
                   <span className="text-sm text-slate-500 font-mono min-w-fit">
-                    {new Date(match.date).toLocaleDateString('en-GB', { weekday: 'short', month: 'short', day: 'numeric' })}
+                    {formatUkKickoff(match.date)}
                   </span>
                   <div className="flex-1 flex items-center justify-between">
                     <span className="text-sm font-semibold text-slate-700">{match.homeTeam}</span>
@@ -120,6 +124,8 @@ export default async function TeamPage({ params }: { params: { id: string } }) {
           </Link>
         </div>
       </section>
+
+      <AdUnit placement="inContent" />
 
       {/* Squad News CTA */}
       <section className="bg-slate-50 py-12 border-t border-slate-200">

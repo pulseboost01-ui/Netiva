@@ -30,17 +30,19 @@ const body = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} - Fixtures, Injuries, Predictions & FPL Tips`,
+    default: `${SITE_NAME} - Premier League Fixtures, Team News & FPL Tips (UK)`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
   keywords: [
     'Premier League fixtures',
-    'EPL injury tracker',
+    'Premier League kick-off times UK',
+    'Premier League team news',
+    'football injury news',
     'Premier League predictions',
-    'Fantasy Premier League tips',
-    'where to watch Premier League',
-    'EPL live scores',
+    'FPL tips',
+    'what Premier League games are on TV',
+    'football scores today',
   ],
   applicationName: SITE_NAME,
   authors: [{ name: SITE_NAME }],
@@ -48,6 +50,7 @@ export const metadata: Metadata = {
   referrer: 'origin-when-cross-origin',
   alternates: {
     canonical: '/',
+    languages: { 'en-GB': '/' },
   },
   robots: {
     index: true,
@@ -70,7 +73,7 @@ export const metadata: Metadata = {
     locale: 'en_GB',
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} - Fixtures, Injuries, Predictions & FPL Tips`,
+    title: `${SITE_NAME} - Premier League Fixtures, Team News & FPL Tips (UK)`,
     description: SITE_DESCRIPTION,
     images: [
       {
@@ -85,7 +88,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: SOCIAL.twitterHandle,
     creator: SOCIAL.twitterHandle,
-    title: `${SITE_NAME} - Fixtures, Injuries, Predictions & FPL Tips`,
+    title: `${SITE_NAME} - Premier League Fixtures, Team News & FPL Tips (UK)`,
     description: SITE_DESCRIPTION,
     images: ['/og-image.png'],
   },
@@ -114,7 +117,7 @@ export default function RootLayout({
   ]
 
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    <html lang="en-GB" className={`${display.variable} ${body.variable}`}>
       <head>
         <script
           async
@@ -197,7 +200,7 @@ export default function RootLayout({
               <div>
                 <h3 className="font-display text-base font-semibold text-white mb-4">Data</h3>
                 <p className="text-sm leading-relaxed">
-                  Fixture and squad data is updated live. Stream recommendations link to official
+                  Fixture and squad data refreshes hourly, more often for FPL. Stream recommendations link to official
                   broadcasters only. We earn commission on some merchandise and streaming referral links.
                 </p>
               </div>

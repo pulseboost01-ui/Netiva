@@ -14,14 +14,19 @@ import { getFaqJsonLd, jsonLdScriptProps } from '@/lib/seo'
 import { PlayerVisual } from '@/components/PlayerVisual'
 import { TeamLogo } from '@/components/TeamVisual'
 import { getTeams } from '@/lib/api'
+import { AdUnit } from '@/components/AdUnit'
+
+// The official FPL API has no daily quota, so this page can refresh every
+// 30 minutes - fast enough to follow price changes and deadline-day news.
+export const revalidate = 1800
 
 export const metadata: Metadata = {
-  title: 'Fantasy Premier League Tips - Captain Picks & Transfers',
-  description: 'Weekly FPL analysis, captain recommendations, transfer tips, and differential plays. Injury-adjusted advice.',
+  title: 'FPL Tips This Gameweek - Captain Picks, Transfers & Injury News',
+  description: 'Fantasy Premier League tips before the deadline: captain picks, transfers in and out, differentials and the latest injury news for this gameweek.',
   keywords: ['fantasy premier league tips', 'FPL captain picks', 'FPL transfers', 'FPL differential', 'best FPL captain this gameweek'],
   alternates: { canonical: '/fpl-tips' },
   openGraph: {
-    title: 'Fantasy Premier League Tips - Captain Picks & Transfers',
+    title: 'FPL Tips This Gameweek - Captain Picks, Transfers & Injury News',
     description: 'Weekly FPL analysis, captain recommendations, transfer tips, and differential plays.',
     url: '/fpl-tips',
   },
@@ -88,6 +93,8 @@ export default async function FPLTipsPage() {
           </p>
         </div>
       </section>
+
+      <AdUnit placement="top" />
 
       <section className="py-12">
         <div className="container max-w-3xl">
@@ -241,6 +248,8 @@ export default async function FPLTipsPage() {
           )}
         </div>
       </section>
+
+      <AdUnit placement="inContent" />
 
       {/* FPL Resources */}
       <section className="bg-slate-50 py-12 border-t border-slate-200">
